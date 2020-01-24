@@ -19,6 +19,9 @@ class CreateStudentsTable extends Migration
             $table->string('level_name');
             $table->unsignedTinyInteger('level');
             $table->integer('points')->default(0);
+            $table->string('enrollment');
+            $table->unsignedTinyInteger('section')->default(1);
+            $table->string('status')->default('first-enrollment');
             $table->timestamps();
         });
     }

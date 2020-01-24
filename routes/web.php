@@ -25,3 +25,7 @@ Route::group(['middleware' => ['auth']], function () {
         //
     });
 });
+
+Route::get('test', function () {
+    dd(\DB::select('select id as identifier, name as user_name from users;'));
+});
