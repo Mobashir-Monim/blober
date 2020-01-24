@@ -73,7 +73,28 @@
         </nav>
 
         <main class="py-4">
-            @yield('content')
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-md-12">
+                        @include('layouts.messages')
+                    </div>
+                </div>
+                <div class="row">
+                    @auth
+                        <div class="col-md-3">
+                            <div class="card">
+                                <div class="card-header">Side Nav</div>
+                                <div class="card-body">
+                                    @include('layouts.side-nav')
+                                </div>
+                            </div>
+                        </div>
+                    @endauth
+                    <div class="col-md">
+                        @yield('content')
+                    </div>
+                </div>
+            </div>
         </main>
     </div>
 </body>
