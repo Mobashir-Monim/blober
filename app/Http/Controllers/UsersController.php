@@ -25,4 +25,9 @@ class UsersController extends Controller
 
         return redirect(route('home'))->with('success', $request->name . ' Registered on the system as a ' . Role::find($request->role)->display_name);
     }
+
+    public function edit()
+    {
+        return view('users.edit');
+    }
 }

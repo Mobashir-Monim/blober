@@ -85,6 +85,11 @@
                             <div class="card">
                                 <div class="card-header">Side Nav</div>
                                 <div class="card-body">
+                                    <div class="row mb-2">
+                                        <div class="col-md-12">
+                                            <a href="{{ route('users.edit') }}" class="btn btn-primary w-100">Update Profile</a>
+                                        </div>
+                                    </div>
                                     @include('layouts.side-nav')
                                 </div>
                             </div>
