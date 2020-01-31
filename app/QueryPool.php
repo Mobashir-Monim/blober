@@ -8,7 +8,7 @@ class QueryPool extends Model
 {
     public function tables()
     {
-        return $this->belongsToMany('App\Tables');
+        return $this->belongsTo('App\DataPool');
     }
 
     public function tags()

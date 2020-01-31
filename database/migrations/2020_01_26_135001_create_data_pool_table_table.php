@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateQueryPoolsTable extends Migration
+class CreateDataPoolTableTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,10 @@ class CreateQueryPoolsTable extends Migration
      */
     public function up()
     {
-        Schema::create('query_pools', function (Blueprint $table) {
+        Schema::create('data_pool_table', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->text('question');
-            $table->text('output');
-            $table->unsignedTinyInteger('difficulty');
-            $table->text('query')->nullable();
-            $table->integer('points')->default(0);
-            $table->integer('deductible')->nullable();
-            $table->unsignedInteger('time')->nullable();
             $table->unsignedInteger('data_pool_id');
+            $table->unsignedInteger('table_id');
             $table->timestamps();
         });
     }
@@ -34,6 +28,6 @@ class CreateQueryPoolsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('query_pools');
+        Schema::dropIfExists('data_pool_table');
     }
 }

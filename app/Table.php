@@ -6,8 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Table extends Model
 {
-    public function pools()
+    public function tables()
     {
-        return $this->belongsToMany('App\QueryPool');
+        return $this->belongsToMany('App\DataPool');
     }
 }
