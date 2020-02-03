@@ -1,5 +1,4 @@
-<div class="row mb-2">
-    <div class="col-md-12">
-        <a href="{{ route('users.create') }}" class="btn btn-primary w-100">Add Users</a>
-    </div>
-</div>
+@include('side-nav.items.add-users')
+@include('side-nav.items.add-datapool')
+@include('side-nav.items.view-datapools')
+@include('side-nav.items.add-query')

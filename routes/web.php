@@ -25,6 +25,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/users/edit', 'UsersController@edit')->name('users.edit');
     Route::post('/users/edit', 'UsersController@update')->name('users.edit');
 
+    Route::get('/datapool', 'DataPoolController@index')->name('datapool.index');
     Route::get('/datapool/create', 'DataPoolController@create')->name('datapool.create');
     Route::post('/datapool/create', 'DataPoolController@store')->name('datapool.create');
 });
