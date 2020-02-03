@@ -2002,6 +2002,142 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/DataPoolsView.vue?vue&type=script&lang=js&":
+/*!************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/DataPoolsView.vue?vue&type=script&lang=js& ***!
+  \************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  mounted: function mounted() {
+    this.datapools = JSON.parse(this.dps);
+  },
+  props: ['dps'],
+  data: function data() {
+    return {
+      datapools: 0,
+      selectedPool: null,
+      selectedTable: null,
+      tables: null,
+      table: null
+    };
+  },
+  methods: {
+    changeSelectedPool: function changeSelectedPool(value) {
+      this.selectedPool = value;
+      this.fetchDPTables();
+    },
+    changeSelectedTable: function changeSelectedTable(value) {
+      this.selectedTable = value;
+      this.fetchTableData();
+    },
+    fetchDPTables: function fetchDPTables() {
+      var _this = this;
+
+      fetch('/api/datapools/' + this.selectedPool).then(function (res) {
+        return res.json();
+      }).then(function (res) {
+        _this.tables = res.data.tables;
+      })["catch"](function (err) {
+        return console.log(err);
+      });
+    },
+    fetchTableData: function fetchTableData() {
+      var _this2 = this;
+
+      fetch('/api/datapools/tables/' + this.selectedTable).then(function (res) {
+        return res.json();
+      }).then(function (res) {
+        _this2.table = res.data;
+      })["catch"](function (err) {
+        return console.log(err);
+      });
+    }
+  },
+  computed: {
+    currentPool: {
+      get: function get() {
+        return this.selectedPool == null ? false : this.datapools[this.selectedPool];
+      },
+      set: function set(value) {
+        this.selectedPool = value;
+      }
+    },
+    currentTable: {
+      get: function get() {
+        return this.selectedTable == null ? false : this.tables[this.selectedTable];
+      },
+      set: function set(value) {
+        this.selectedTable = value;
+      }
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/ExampleComponent.vue?vue&type=script&lang=js&":
 /*!***************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/ExampleComponent.vue?vue&type=script&lang=js& ***!
@@ -37464,6 +37600,156 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/DataPoolsView.vue?vue&type=template&id=ca85ed92&":
+/*!****************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/DataPoolsView.vue?vue&type=template&id=ca85ed92& ***!
+  \****************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "row" }, [
+    _c("div", { staticClass: "col-md-12" }, [
+      _c("div", { staticClass: "card mb-3" }, [
+        _c("div", { staticClass: "card-header" }, [_vm._v("Datapools")]),
+        _vm._v(" "),
+        _c("div", { staticClass: "card-body" }, [
+          _c(
+            "div",
+            { staticClass: "row mb-2" },
+            _vm._l(_vm.datapools, function(dp, index) {
+              return _c("div", { key: index, staticClass: "col-md-2 mb-2" }, [
+                _c(
+                  "a",
+                  {
+                    staticClass: "btn btn-secondary w-100",
+                    attrs: { href: "#/" },
+                    on: {
+                      click: function($event) {
+                        return _vm.changeSelectedPool(index)
+                      }
+                    }
+                  },
+                  [_vm._v(_vm._s(dp))]
+                )
+              ])
+            }),
+            0
+          )
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "card mb-3" }, [
+        _c("div", { staticClass: "card-header" }, [_vm._v("Tables")]),
+        _vm._v(" "),
+        _c("div", { staticClass: "card-body" }, [
+          _vm.currentPool
+            ? _c("div", { staticClass: "row mb-2" }, [
+                _c("div", { staticClass: "col-md-12" }, [
+                  _c("h4", { staticClass: "text-center" }, [
+                    _vm._v("Selected " + _vm._s(_vm.currentPool))
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    { staticClass: "row mb-2" },
+                    _vm._l(_vm.tables, function(table, index) {
+                      return _c(
+                        "div",
+                        { key: index, staticClass: "col-md-2 mb-2" },
+                        [
+                          _c(
+                            "a",
+                            {
+                              staticClass: "btn btn-secondary w-100",
+                              attrs: { href: "#/" },
+                              on: {
+                                click: function($event) {
+                                  return _vm.changeSelectedTable(index)
+                                }
+                              }
+                            },
+                            [_vm._v(_vm._s(table))]
+                          )
+                        ]
+                      )
+                    }),
+                    0
+                  )
+                ])
+              ])
+            : _c("div", { staticClass: "row" }, [_vm._m(0)])
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "card" }, [
+        _c("div", { staticClass: "card-header" }, [_vm._v("Table Data")]),
+        _vm._v(" "),
+        _c("div", { staticClass: "card-body" }, [
+          _vm.currentTable
+            ? _c("div", { staticClass: "row mb-2" }, [
+                _c("div", { staticClass: "col-md-12 text-center" }, [
+                  _c("h4", [_vm._v("Selected " + _vm._s(_vm.currentTable))]),
+                  _vm._v(" "),
+                  _c("table", { staticClass: "mx-auto" }, [
+                    _c(
+                      "tbody",
+                      _vm._l(this.table, function(row, index) {
+                        return _c(
+                          "tr",
+                          { key: index },
+                          _vm._l(row, function(col, colIndex) {
+                            return _c(
+                              "td",
+                              { key: colIndex, staticClass: "px-2 border" },
+                              [_vm._v(_vm._s(col))]
+                            )
+                          }),
+                          0
+                        )
+                      }),
+                      0
+                    )
+                  ])
+                ])
+              ])
+            : _c("div", { staticClass: "row" }, [_vm._m(1)])
+        ])
+      ])
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-md-12" }, [
+      _c("h4", { staticClass: "text-center" }, [_vm._v("No Pool selected")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-md-12" }, [
+      _c("h4", { staticClass: "text-center" }, [_vm._v("No Table selected")])
+    ])
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/ExampleComponent.vue?vue&type=template&id=299e239e&":
 /*!*******************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/ExampleComponent.vue?vue&type=template&id=299e239e& ***!
@@ -49695,6 +49981,7 @@ window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.
 
 Vue.component('example-component', __webpack_require__(/*! ./components/ExampleComponent.vue */ "./resources/js/components/ExampleComponent.vue")["default"]);
 Vue.component('db-inp', __webpack_require__(/*! ./components/DBInp.vue */ "./resources/js/components/DBInp.vue")["default"]);
+Vue.component('datapools-view', __webpack_require__(/*! ./components/DataPoolsView.vue */ "./resources/js/components/DataPoolsView.vue")["default"]);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -49816,6 +50103,75 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_DBInp_vue_vue_type_template_id_5ccda8d2___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_DBInp_vue_vue_type_template_id_5ccda8d2___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/DataPoolsView.vue":
+/*!***************************************************!*\
+  !*** ./resources/js/components/DataPoolsView.vue ***!
+  \***************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _DataPoolsView_vue_vue_type_template_id_ca85ed92___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./DataPoolsView.vue?vue&type=template&id=ca85ed92& */ "./resources/js/components/DataPoolsView.vue?vue&type=template&id=ca85ed92&");
+/* harmony import */ var _DataPoolsView_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./DataPoolsView.vue?vue&type=script&lang=js& */ "./resources/js/components/DataPoolsView.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _DataPoolsView_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _DataPoolsView_vue_vue_type_template_id_ca85ed92___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _DataPoolsView_vue_vue_type_template_id_ca85ed92___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/DataPoolsView.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/DataPoolsView.vue?vue&type=script&lang=js&":
+/*!****************************************************************************!*\
+  !*** ./resources/js/components/DataPoolsView.vue?vue&type=script&lang=js& ***!
+  \****************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_DataPoolsView_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./DataPoolsView.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/DataPoolsView.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_DataPoolsView_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/DataPoolsView.vue?vue&type=template&id=ca85ed92&":
+/*!**********************************************************************************!*\
+  !*** ./resources/js/components/DataPoolsView.vue?vue&type=template&id=ca85ed92& ***!
+  \**********************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_DataPoolsView_vue_vue_type_template_id_ca85ed92___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./DataPoolsView.vue?vue&type=template&id=ca85ed92& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/DataPoolsView.vue?vue&type=template&id=ca85ed92&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_DataPoolsView_vue_vue_type_template_id_ca85ed92___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_DataPoolsView_vue_vue_type_template_id_ca85ed92___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 

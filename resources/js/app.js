@@ -21,6 +21,7 @@ window.Vue = require('vue');
 
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 Vue.component('db-inp', require('./components/DBInp.vue').default);
+Vue.component('datapools-view', require('./components/DataPoolsView.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

@@ -1,0 +1,124 @@
+<template>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card mb-3">
+                <div class="card-header">Datapools</div>
+                <div class="card-body">
+                    <div class="row mb-2">
+                        <div class="col-md-2 mb-2" v-for="(dp, index) in datapools" :key="index">
+                            <a href="#/" class="btn btn-secondary w-100" @click="changeSelectedPool(index)">{{ dp }}</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card mb-3">
+                <div class="card-header">Tables</div>
+                <div class="card-body">
+                    <div class="row mb-2" v-if="currentPool">
+                        <div class="col-md-12">
+                            <h4 class="text-center">Selected {{ currentPool }}</h4>
+                            <div class="row mb-2">
+                                <div class="col-md-2 mb-2" v-for="(table, index) in tables" :key="index">
+                                    <a href="#/" class="btn btn-secondary w-100" @click="changeSelectedTable(index)">{{ table }}</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" v-else>
+                        <div class="col-md-12">
+                            <h4 class="text-center">No Pool selected</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">Table Data</div>
+                <div class="card-body">
+                    <div class="row mb-2" v-if="currentTable">
+                        <div class="col-md-12 text-center">
+                            <h4>Selected {{ currentTable }}</h4>
+                            <table class="mx-auto">
+                                <tbody>
+                                    <tr v-for="(row, index) in this.table" :key="index">
+                                        <td class="px-2 border" v-for="(col, colIndex) in row" :key="colIndex">{{ col }}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="row" v-else>
+                        <div class="col-md-12">
+                            <h4 class="text-center">No Table selected</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
+
+<script>
+    export default {
+        mounted() {
+            this.datapools = JSON.parse(this.dps);
+        },
+
+        props: ['dps'],
+
+        data() {
+            return {
+                datapools: 0,
+                selectedPool: null,
+                selectedTable: null,
+                tables: null,
+                table: null,
+            }
+        },
+
+        methods: {
+            changeSelectedPool(value) {
+                this.selectedPool = value;
+                this.fetchDPTables();
+            },
+            changeSelectedTable(value) {
+                this.selectedTable = value;
+                this.fetchTableData();
+            },
+            fetchDPTables() {
+                fetch('/api/datapools/' + this.selectedPool)
+                    .then(res => res.json())
+                    .then(res => {
+                        this.tables = res.data.tables;
+                    })
+                    .catch(err => console.log(err));
+            },
+            fetchTableData() {
+                fetch('/api/datapools/tables/' + this.selectedTable)
+                    .then(res => res.json())
+                    .then(res => {
+                        this.table = res.data;
+                    })
+                    .catch(err => console.log(err));
+            },
+        },
+
+        computed: {
+            currentPool: {
+                get() {
+                    return this.selectedPool == null ? false : this.datapools[this.selectedPool];
+                },
+                set(value) {
+                    this.selectedPool = value;
+                }
+            },
+            currentTable: {
+                get() {
+                    return this.selectedTable == null ? false : this.tables[this.selectedTable];
+                },
+                set(value) {
+                    this.selectedTable = value;
+                }
+            },
+        }
+    }
+</script>
