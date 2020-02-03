@@ -24,8 +24,14 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('/users/create', 'UsersController@store')->name('users.create');
     Route::get('/users/edit', 'UsersController@edit')->name('users.edit');
     Route::post('/users/edit', 'UsersController@update')->name('users.edit');
+
+    Route::get('/datapool/create', 'DataPoolController@create')->name('datapool.create');
+    Route::post('/datapool/create', 'DataPoolController@store')->name('datapool.create');
 });
 
-Route::get('test', function () {
-    dd(\DB::select('select id as identifier, name as user_name from users;'));
+Route::get('test', function (Illuminate\Http\Request $request) {
+    \DB::statement('drop table t1;');
+    \DB::statement('drop table t2;');
+    \DB::statement('drop table t3;');
+    dd("dropped t1, t2 and t3");
 });

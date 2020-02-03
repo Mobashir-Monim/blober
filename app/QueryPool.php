@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class QueryPool extends Model
+class QueryPool extends BaseModel
 {
     public function tables()
     {

@@ -5,12 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- CSRF Token -->
-    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta name="csrf-token" content="{{ csrf_token() }}" id="csrf">
 
     <title>{{ config('app.name', 'Blober') }}</title>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="https://cdn.ckeditor.com/ckeditor5/16.0.0/classic/ckeditor.js"></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -75,13 +76,13 @@
         <main class="py-4">
             <div class="container-fluid">
                 <div class="row mb-2">
-                    <div class="col-md-12">
+                    <div class="col-md-12 col-sm-12 col-12">
                         @include('layouts.messages')
                     </div>
                 </div>
                 <div class="row">
                     @auth
-                        <div class="col-md-3">
+                        <div class="col-md-3 col-sm-3 col-3">
                             <div class="card">
                                 <div class="card-header">Side Nav</div>
                                 <div class="card-body">
@@ -95,7 +96,7 @@
                             </div>
                         </div>
                     @endauth
-                    <div class="col-md">
+                    <div class="col-md col-sm col">
                         @yield('content')
                     </div>
                 </div>
