@@ -31,8 +31,6 @@ Route::group(['middleware' => ['auth']], function () {
 });
 
 Route::get('test', function (Illuminate\Http\Request $request) {
-    \DB::statement('drop table t1;');
-    \DB::statement('drop table t2;');
-    \DB::statement('drop table t3;');
+    dd(sizeof(\DB::select('select * from data_pool_table where table_id = 3 and data_pool_id = 2')));
     dd("dropped t1, t2 and t3");
 });

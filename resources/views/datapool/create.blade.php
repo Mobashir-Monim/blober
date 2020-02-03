@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="card">
-        <div class="card-header">Dashboard</div>
+        <div class="card-header">Add Datapool</div>
 
         <div class="card-body">
             @if (session('status'))

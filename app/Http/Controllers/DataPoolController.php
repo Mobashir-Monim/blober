@@ -27,7 +27,7 @@ class DataPoolController extends Controller
         $names = json_decode($request->tableNames, true);
         $tables = json_decode($request->tables, true);
         $helper = new DPH($request->dp_name, $names, $tables);
-        // $helper->createTablesWithValues();
+        $helper->createTablesWithValues();
         $helper->createDataPoolsWithTables();
 
         return back();
