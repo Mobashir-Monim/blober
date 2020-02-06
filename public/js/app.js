@@ -2070,6 +2070,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
     this.datapools = JSON.parse(this.dps);
@@ -37685,7 +37691,27 @@ var render = function() {
                   )
                 ])
               ])
-            : _c("div", { staticClass: "row" }, [_vm._m(0)])
+            : _c("div", { staticClass: "row mb-2" }, [_vm._m(0)]),
+          _vm._v(" "),
+          this.unassigned
+            ? _c("div", { staticClass: "row mb-2" }, [
+                _c("div", { staticClass: "col-md-2 mb-2" }, [
+                  _c(
+                    "a",
+                    {
+                      staticClass: "btn btn-secondary w-100",
+                      attrs: { href: "#/" },
+                      on: {
+                        click: function($event) {
+                          return _vm.changeSelectedPool(0)
+                        }
+                      }
+                    },
+                    [_vm._v("Unassigned")]
+                  )
+                ])
+              ])
+            : _vm._e()
         ])
       ]),
       _vm._v(" "),

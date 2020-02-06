@@ -24,9 +24,15 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row" v-else>
+                    <div class="row mb-2" v-else>
                         <div class="col-md-12">
                             <h4 class="text-center">No Pool selected</h4>
+                        </div>
+                    </div>
+
+                    <div class="row mb-2" v-if="this.unassigned">
+                        <div class="col-md-2 mb-2">
+                            <a href="#/" class="btn btn-secondary w-100" @click="changeSelectedPool(0)">Unassigned</a>
                         </div>
                     </div>
                 </div>

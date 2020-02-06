@@ -34,12 +34,29 @@ class DataPoolController extends Controller
         return back();
     }   
 
-    public function getPoolTables(Request $request, DataPool $pool)
+    public function getPoolTables(Request $request, $pool)
     {
+        $result = null;
+
+        if ($pool == 0) {
+            $result = Table::whereNotIn('id', array_column(json_decode(json_encode(\DB::select('select table_id from data_pool_table;')), true), 'table_id'))->get()->pluck('name', 'id')->toArray();
+        } else {
+            $result = DataPool::find($pool);
+
+            if (is_null($result)) {
+                response()->json([
+                    'success' => false,
+                    'data' => 404,
+                ]);
+            }
+
+            $result = $result->tables->pluck('name', 'id')->toArray();
+        }
+
         return response()->json([
             'success' => true,
             'data' => [
-                'tables' => $pool->tables->pluck('name', 'id')->toArray(),
+                'tables' => $result,
             ]
         ]);
     }
