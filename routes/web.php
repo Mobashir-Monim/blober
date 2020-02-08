@@ -28,9 +28,13 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/datapool', 'DataPoolController@index')->name('datapool.index');
     Route::get('/datapool/create', 'DataPoolController@create')->name('datapool.create');
     Route::post('/datapool/create', 'DataPoolController@store')->name('datapool.create');
+
+    Route::get('/query/create', 'QueryPoolController@create')->name('query.create');
+    Route::post('/query/create', 'QueryPoolController@store')->name('query.create');
 });
 
 Route::get('test', function (Illuminate\Http\Request $request) {
+    dd(json_encode(App\DataPool::all()->pluck('name', 'id')->toArray()));
     dd(\DB::select('select * from t1;'));
     dd("dropped t1, t2 and t3");
 });
