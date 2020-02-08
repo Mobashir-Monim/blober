@@ -19,4 +19,15 @@ class QueryPoolController extends Controller
 
         return back();
     }
+    
+    public function attempt()
+    {
+        return view('querypool.attempt');
+    }
+
+    public function attemptResult()
+    {
+        dd('In attempt result');
+        return;
+    }
 }

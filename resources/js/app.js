@@ -20,9 +20,14 @@ window.Vue = require('vue');
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
-Vue.component('db-inp', require('./components/DBInp.vue').default);
-Vue.component('datapools-view', require('./components/DataPoolsView.vue').default);
-Vue.component('query-inp', require('./components/QueryInput.vue').default);
+
+// DataPool Components
+Vue.component('dp-create', require('./components/DataPool/Create.vue').default);
+Vue.component('dp-view', require('./components/DataPool/View.vue').default);
+
+// QueryPool Components
+Vue.component('qp-create', require('./components/QueryPool/Create.vue').default);
+Vue.component('qp-atttempt', require('./components/QueryPool/Attempt.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
