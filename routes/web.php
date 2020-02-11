@@ -37,6 +37,7 @@ Route::group(['middleware' => ['auth']], function () {
 });
 
 Route::get('test', function (Illuminate\Http\Request $request) {
+    dd(\DB::select('select count(*) as num from lab_3 where project_marks = (select max(project_marks) from lab_3);'));
     dd(json_encode(App\DataPool::all()->pluck('name', 'id')->toArray()));
     dd(\DB::select('select * from t1;'));
     dd("dropped t1, t2 and t3");

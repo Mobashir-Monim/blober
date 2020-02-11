@@ -6,9 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class QueryPool extends BaseModel
 {
-    public function tables()
+    public function datapool()
     {
-        return $this->belongsTo('App\DataPool');
+        return $this->belongsTo('App\DataPool', 'data_pool_id');
     }
 
     public function tags()

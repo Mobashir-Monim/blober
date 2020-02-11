@@ -27,7 +27,7 @@ Vue.component('dp-view', require('./components/DataPool/View.vue').default);
 
 // QueryPool Components
 Vue.component('qp-create', require('./components/QueryPool/Create.vue').default);
-Vue.component('qp-atttempt', require('./components/QueryPool/Attempt.vue').default);
+Vue.component('qp-attempt', require('./components/QueryPool/Attempt.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
