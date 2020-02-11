@@ -43,7 +43,7 @@
                     <div class="row mb-2" v-if="currentTable">
                         <div class="col-md-12 text-center">
                             <h4>Selected {{ currentTable }}</h4>
-                            <table class="mx-auto">
+                            <table class="table table-sm table-striped">
                                 <tbody>
                                     <tr v-for="(row, index) in this.table" :key="index">
                                         <td class="px-2 border" v-for="(col, colIndex) in row" :key="colIndex">{{ col }}</td>

@@ -38938,7 +38938,7 @@ var render = function() {
                 _c("div", { staticClass: "col-md-12 text-center" }, [
                   _c("h4", [_vm._v("Selected " + _vm._s(_vm.currentTable))]),
                   _vm._v(" "),
-                  _c("table", { staticClass: "mx-auto" }, [
+                  _c("table", { staticClass: "table table-sm table-striped" }, [
                     _c(
                       "tbody",
                       _vm._l(this.table, function(row, index) {
