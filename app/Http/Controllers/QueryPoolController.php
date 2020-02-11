@@ -83,13 +83,21 @@ class QueryPoolController extends Controller
     public function verifyQuery(Request $request)
     {
         $query = QP::find($request->question);
-        $output = json_encode(\DB::select($request->answer));
+        $data = ['result' => false, 'error' => null, 'output' => null];
+
+        try { 
+            $data['output'] = \DB::select($request->answer);
+        } catch(\Illuminate\Database\QueryException $ex){
+            $data['error'] = $ex->getMessage();
+        }
+
+        if (is_null($data['error'])) {
+            $data['result'] = $query->output == json_encode($data['output'], true);
+        }
 
         return response()->json([
             'success' => true,
-            'data' => [
-                'result' => ($query->output == $output),
-            ]
+            'data' => $data,
         ]);
     }
 }

@@ -15,25 +15,6 @@
                             <div class="col-md-4">Deductible: {{ deductible }}</div>
                             <div class="col-md-4">Time: {{ time }}</div>
                         </div>
-
-                        <h3 class="border-bottom">Desired Output</h3>
-                        <div v-if="output != null">
-                            <table class="table table-sm table-striped">
-                                <thead class="thead-light">
-                                    <tr>
-                                        <th class="border px-3 py-1" scope="col" v-for="(head, headIndex) in Object.keys(output[0])" :key="headIndex"><strong>{{ head }}</strong></th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr v-for="(row, index) in output" :key="index">
-                                        <td class="border px-3 py-1" v-for="(col, colIndex) in row" :key="colIndex">{{ col }}</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                        <div v-else>
-                            N/A
-                        </div>
                     </div>
                 </div>
                 <div class="row mb-4">
@@ -62,6 +43,64 @@
                         </div>
                     </div>
                 </div>
+                <div class="row mb-2">
+                    <div class="col-md-6">
+                        <h3 class="border-bottom">Desired Output</h3>
+                        <div v-if="output != null">
+                            <table class="table table-sm table-striped">
+                                <thead class="thead-light">
+                                    <tr>
+                                        <th class="border px-3 py-1" scope="col" v-for="(head, headIndex) in Object.keys(output[0])" :key="headIndex"><strong>{{ head }}</strong></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr v-for="(row, index) in output" :key="index">
+                                        <td class="border px-3 py-1" v-for="(col, colIndex) in row" :key="colIndex">{{ col }}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div v-else>
+                            N/A
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <h3 class="border-bottom">Query Output</h3>
+                        <div v-if="qOutput != null">
+                            <table class="table table-sm table-striped">
+                                <thead class="thead-light">
+                                    <tr>
+                                        <th class="border px-3 py-1" scope="col" v-for="(head, headIndex) in Object.keys(qOutput[0])" :key="headIndex"><strong>{{ head }}</strong></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr v-for="(row, index) in qOutput" :key="index">
+                                        <td class="border px-3 py-1" v-for="(col, colIndex) in row" :key="colIndex">{{ col }}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div v-else>
+                            {{ error }}
+                        </div>
+                    </div>
+                </div>
+                <div class="row mb-2">
+                    <div class="col-md-12">
+                        <div v-if="result != null">
+                            <div class="row text-center alert alert-success push-down" v-if="result == true">
+                                <div class="col-md-12">
+                                    Hurry!! You were correct! 
+                                </div>
+                            </div>
+                            <div class="row text-center alert alert-danger push-down" v-else>
+                                <div class="col-md-12">
+                                    Oh no, seems like the query was wrong :'(
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <div class="row mb-4">
                     <div class="col-md-12">
                         <textarea name="query" class="form-control" cols="30" rows="3" placeholder="Write your query here" id="query"></textarea>
@@ -73,18 +112,6 @@
                     </div>
                     <div class="col-md-6">
                         <a href="#/" class="btn btn-success w-100" @click="submitQuery()">Submit answer</a>
-                    </div>
-                </div>
-                <div v-if="result != null">
-                    <div class="row text-center alert alert-success push-down" v-if="result == true">
-                        <div class="col-md-12">
-                            Hurry!! You were correct! 
-                        </div>
-                    </div>
-                    <div class="row text-center alert alert-danger push-down" v-else>
-                        <div class="col-md-12">
-                            Oh no, seems like the query was wrong :'(
-                        </div>
                     </div>
                 </div>
             </form>
@@ -109,6 +136,8 @@
                 currentTime: '',
                 currentTables: '',
                 currentNames: '',
+                currentError: null,
+                queryOutput: null,
                 attemptedQuestions: [],
                 attemptResult: null,
             }
@@ -154,6 +183,8 @@
                     });
                     let res = await rawResponse.json();
                     this.attemptResult = res.data.result;
+                    this.currentError = res.data.error;
+                    this.queryOutput = res.data.output;
                 })();
             }
         },
@@ -221,6 +252,22 @@
                 },
                 set(value) {
                     this.attemptResult = value;
+                }
+            },
+            error: {
+                get() {
+                    return this.currentError;
+                },
+                set(value) {
+                    this.currentError = value;
+                }
+            },
+            qOutput: {
+                get() {
+                    return this.queryOutput;
+                },
+                set(value) {
+                    this.queryOutput = value;
                 }
             }
         }

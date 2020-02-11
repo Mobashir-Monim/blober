@@ -2308,6 +2308,33 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
     this.fetchQuestion();
@@ -2322,6 +2349,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       currentTime: '',
       currentTables: '',
       currentNames: '',
+      currentError: null,
+      queryOutput: null,
       attemptedQuestions: [],
       attemptResult: null
     };
@@ -2413,8 +2442,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               case 5:
                 res = _context2.sent;
                 _this2.attemptResult = res.data.result;
+                _this2.currentError = res.data.error;
+                _this2.queryOutput = res.data.output;
 
-              case 7:
+              case 9:
               case "end":
                 return _context2.stop();
             }
@@ -2486,6 +2517,22 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       },
       set: function set(value) {
         this.attemptResult = value;
+      }
+    },
+    error: {
+      get: function get() {
+        return this.currentError;
+      },
+      set: function set(value) {
+        this.currentError = value;
+      }
+    },
+    qOutput: {
+      get: function get() {
+        return this.queryOutput;
+      },
+      set: function set(value) {
+        this.queryOutput = value;
       }
     }
   }
@@ -39080,62 +39127,7 @@ var render = function() {
               _c("div", { staticClass: "col-md-4" }, [
                 _vm._v("Time: " + _vm._s(_vm.time))
               ])
-            ]),
-            _vm._v(" "),
-            _c("h3", { staticClass: "border-bottom" }, [
-              _vm._v("Desired Output")
-            ]),
-            _vm._v(" "),
-            _vm.output != null
-              ? _c("div", [
-                  _c("table", { staticClass: "table table-sm table-striped" }, [
-                    _c("thead", { staticClass: "thead-light" }, [
-                      _c(
-                        "tr",
-                        _vm._l(Object.keys(_vm.output[0]), function(
-                          head,
-                          headIndex
-                        ) {
-                          return _c(
-                            "th",
-                            {
-                              key: headIndex,
-                              staticClass: "border px-3 py-1",
-                              attrs: { scope: "col" }
-                            },
-                            [_c("strong", [_vm._v(_vm._s(head))])]
-                          )
-                        }),
-                        0
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c(
-                      "tbody",
-                      _vm._l(_vm.output, function(row, index) {
-                        return _c(
-                          "tr",
-                          { key: index },
-                          _vm._l(row, function(col, colIndex) {
-                            return _c(
-                              "td",
-                              {
-                                key: colIndex,
-                                staticClass: "border px-3 py-1"
-                              },
-                              [_vm._v(_vm._s(col))]
-                            )
-                          }),
-                          0
-                        )
-                      }),
-                      0
-                    )
-                  ])
-                ])
-              : _c("div", [
-                  _vm._v("\n                        N/A\n                    ")
-                ])
+            ])
           ])
         ]),
         _vm._v(" "),
@@ -39216,6 +39208,164 @@ var render = function() {
           ])
         ]),
         _vm._v(" "),
+        _c("div", { staticClass: "row mb-2" }, [
+          _c("div", { staticClass: "col-md-6" }, [
+            _c("h3", { staticClass: "border-bottom" }, [
+              _vm._v("Desired Output")
+            ]),
+            _vm._v(" "),
+            _vm.output != null
+              ? _c("div", [
+                  _c("table", { staticClass: "table table-sm table-striped" }, [
+                    _c("thead", { staticClass: "thead-light" }, [
+                      _c(
+                        "tr",
+                        _vm._l(Object.keys(_vm.output[0]), function(
+                          head,
+                          headIndex
+                        ) {
+                          return _c(
+                            "th",
+                            {
+                              key: headIndex,
+                              staticClass: "border px-3 py-1",
+                              attrs: { scope: "col" }
+                            },
+                            [_c("strong", [_vm._v(_vm._s(head))])]
+                          )
+                        }),
+                        0
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c(
+                      "tbody",
+                      _vm._l(_vm.output, function(row, index) {
+                        return _c(
+                          "tr",
+                          { key: index },
+                          _vm._l(row, function(col, colIndex) {
+                            return _c(
+                              "td",
+                              {
+                                key: colIndex,
+                                staticClass: "border px-3 py-1"
+                              },
+                              [_vm._v(_vm._s(col))]
+                            )
+                          }),
+                          0
+                        )
+                      }),
+                      0
+                    )
+                  ])
+                ])
+              : _c("div", [
+                  _vm._v("\n                        N/A\n                    ")
+                ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-md-6" }, [
+            _c("h3", { staticClass: "border-bottom" }, [
+              _vm._v("Query Output")
+            ]),
+            _vm._v(" "),
+            _vm.qOutput != null
+              ? _c("div", [
+                  _c("table", { staticClass: "table table-sm table-striped" }, [
+                    _c("thead", { staticClass: "thead-light" }, [
+                      _c(
+                        "tr",
+                        _vm._l(Object.keys(_vm.qOutput[0]), function(
+                          head,
+                          headIndex
+                        ) {
+                          return _c(
+                            "th",
+                            {
+                              key: headIndex,
+                              staticClass: "border px-3 py-1",
+                              attrs: { scope: "col" }
+                            },
+                            [_c("strong", [_vm._v(_vm._s(head))])]
+                          )
+                        }),
+                        0
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c(
+                      "tbody",
+                      _vm._l(_vm.qOutput, function(row, index) {
+                        return _c(
+                          "tr",
+                          { key: index },
+                          _vm._l(row, function(col, colIndex) {
+                            return _c(
+                              "td",
+                              {
+                                key: colIndex,
+                                staticClass: "border px-3 py-1"
+                              },
+                              [_vm._v(_vm._s(col))]
+                            )
+                          }),
+                          0
+                        )
+                      }),
+                      0
+                    )
+                  ])
+                ])
+              : _c("div", [
+                  _vm._v(
+                    "\n                        " +
+                      _vm._s(_vm.error) +
+                      "\n                    "
+                  )
+                ])
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "row mb-2" }, [
+          _c("div", { staticClass: "col-md-12" }, [
+            _vm.result != null
+              ? _c("div", [
+                  _vm.result == true
+                    ? _c(
+                        "div",
+                        {
+                          staticClass:
+                            "row text-center alert alert-success push-down"
+                        },
+                        [
+                          _c("div", { staticClass: "col-md-12" }, [
+                            _vm._v(
+                              "\n                                Hurry!! You were correct! \n                            "
+                            )
+                          ])
+                        ]
+                      )
+                    : _c(
+                        "div",
+                        {
+                          staticClass:
+                            "row text-center alert alert-danger push-down"
+                        },
+                        [
+                          _c("div", { staticClass: "col-md-12" }, [
+                            _vm._v(
+                              "\n                                Oh no, seems like the query was wrong :'(\n                            "
+                            )
+                          ])
+                        ]
+                      )
+                ])
+              : _vm._e()
+          ])
+        ]),
+        _vm._v(" "),
         _vm._m(0),
         _vm._v(" "),
         _c("div", { staticClass: "row mb-2" }, [
@@ -39250,41 +39400,7 @@ var render = function() {
               [_vm._v("Submit answer")]
             )
           ])
-        ]),
-        _vm._v(" "),
-        _vm.result != null
-          ? _c("div", [
-              _vm.result == true
-                ? _c(
-                    "div",
-                    {
-                      staticClass:
-                        "row text-center alert alert-success push-down"
-                    },
-                    [
-                      _c("div", { staticClass: "col-md-12" }, [
-                        _vm._v(
-                          "\n                        Hurry!! You were correct! \n                    "
-                        )
-                      ])
-                    ]
-                  )
-                : _c(
-                    "div",
-                    {
-                      staticClass:
-                        "row text-center alert alert-danger push-down"
-                    },
-                    [
-                      _c("div", { staticClass: "col-md-12" }, [
-                        _vm._v(
-                          "\n                        Oh no, seems like the query was wrong :'(\n                    "
-                        )
-                      ])
-                    ]
-                  )
-            ])
-          : _vm._e()
+        ])
       ])
     ])
   ])
