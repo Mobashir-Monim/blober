@@ -29,6 +29,9 @@ Vue.component('dp-view', require('./components/DataPool/View.vue').default);
 Vue.component('qp-create', require('./components/QueryPool/Create.vue').default);
 Vue.component('qp-attempt', require('./components/QueryPool/Attempt.vue').default);
 
+// Profile Components
+Vue.component('profile-edit', require('./components/Profile/Edit.vue').default);
+
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application

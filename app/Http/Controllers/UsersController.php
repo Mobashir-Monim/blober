@@ -10,6 +10,21 @@ use App\Role;
 
 class UsersController extends Controller
 {
+    public function get(Request $request)
+    {
+        $user = User::find($request->user);
+
+        return response()->json([
+            'success' => true,
+            'data' => [
+                'id' => $user->id,
+                'name' => $user->name,
+                'email' => $user->email,
+                'role' => $user->highestRole()->display_name,
+            ]
+        ]);
+    }
+
     public function create()
     {
         return view('users.create');
@@ -29,5 +44,25 @@ class UsersController extends Controller
     public function edit()
     {
         return view('users.edit');
+    }
+
+    public function update(Request $request)
+    {
+        $user = User::find($request->user);
+        $user->name = $request->name;
+
+        if (User::find($request->editor)->highestRole()->level > 2) {
+            $user->email = $request->email;
+            $user->roles()->attach(Role::where('display_name', $request->role)->first()->id);
+        }
+
+        $user->save();
+
+        return response()->json([
+            'success' => true,
+            'data' => [
+                'update' => 'Profile information updated'
+            ]
+        ]);
     }
 }

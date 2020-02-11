@@ -19,5 +19,9 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::get('/datapools/{pool}', 'DataPoolController@getPoolTables')->name('datapools.tables.get');
 Route::get('/datapools/tables/{table}', 'DataPoolController@getTablesData')->name('datapools.tables.data.get');
+
 Route::post('/query/get-question', 'QueryPoolController@getQuestions')->name('querypool.get-question');
 Route::post('/query/submit-query', 'QueryPoolController@verifyQuery')->name('querypool.verify-query');
+
+Route::post('/user/get', 'UsersController@get')->name('user.get');
+Route::post('/user/update', 'UsersController@update')->name('user.get');
