@@ -18,6 +18,8 @@ class CreateQueryAttemptsTable extends Migration
             $table->unsignedInteger('user_id');
             $table->unsignedInteger('query_pool_id');
             $table->boolean('is_correct')->default(false);
+            $table->text('output');
+            $table->boolean('has_error')->default(false);
             $table->timestamps();
         });
     }
