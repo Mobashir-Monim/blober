@@ -2876,6 +2876,7 @@ __webpack_require__.r(__webpack_exports__);
   mounted: function mounted() {
     this.levels = JSON.parse(this.difficulties);
     this.dataPools = JSON.parse(this.pools);
+    this.tags = JSON.parse(this.querytags);
     var textFields = document.getElementsByClassName('editor');
 
     for (var i = 0; i < textFields.length; i++) {
@@ -2886,12 +2887,13 @@ __webpack_require__.r(__webpack_exports__);
       });
     }
   },
-  props: ['token', 'route', 'difficulties', 'pools'],
+  props: ['token', 'route', 'difficulties', 'pools', 'querytags'],
   data: function data() {
     return {
       levels: [],
       dataPools: [],
-      resultType: 'query'
+      resultType: 'query',
+      tags: []
     };
   },
   methods: {

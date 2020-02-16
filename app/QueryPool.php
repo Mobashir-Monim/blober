@@ -13,6 +13,6 @@ class QueryPool extends BaseModel
 
     public function tags()
     {
-        return $this->belongsToMany('App\Tag');
+        return $this->belongsToMany('App\Tag', 'tag_query_pool');
     }
 }

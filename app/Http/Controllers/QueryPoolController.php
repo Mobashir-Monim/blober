@@ -16,9 +16,8 @@ class QueryPoolController extends Controller
 
     public function store(Request $request)
     {
-        // dd(explode(',', $request->tags));
-
         $query = QP::create((new QPH)->generateDBInsert($request));
+        (new QPH)->attachTags($query, explode(',', $request->tags));
 
         return back();
     }
@@ -109,17 +108,7 @@ class QueryPoolController extends Controller
     public function verifyQuery(Request $request)
     {
         $query = QP::find($request->question);
-        $data = ['result' => false, 'error' => null, 'output' => null];
-
-        try { 
-            $data['output'] = \DB::select($request->answer);
-        } catch(\Illuminate\Database\QueryException $ex){
-            $data['error'] = $ex->getMessage();
-        }
-
-        if (is_null($data['error'])) {
-            $data['result'] = $query->output == json_encode($data['output'], true);
-        }
+        $data = (new QPH)->verifyQuery($request, ['result' => false, 'error' => null, 'output' => null], $query);
 
         return response()->json([
             'success' => true,

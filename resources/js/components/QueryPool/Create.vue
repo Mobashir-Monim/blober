@@ -84,6 +84,7 @@
         mounted() {
             this.levels = JSON.parse(this.difficulties);
             this.dataPools = JSON.parse(this.pools);
+            this.tags = JSON.parse(this.querytags);
 
             let textFields = document.getElementsByClassName('editor');
 
@@ -99,13 +100,14 @@
             }
         },
 
-        props: ['token', 'route', 'difficulties', 'pools'],
+        props: ['token', 'route', 'difficulties', 'pools', 'querytags'],
 
         data() {
             return {
                 levels: [],
                 dataPools: [],
                 resultType: 'query',
+                tags: [],
             }
         },
 

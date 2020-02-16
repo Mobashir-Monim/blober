@@ -8,6 +8,6 @@ class Tag extends BaseModel
 {
     public function pools()
     {
-        return $this->belongsToMany('App\QueryPool');
+        return $this->belongsToMany('App\QueryPool', 'tag_query_pool');
     }
 }
