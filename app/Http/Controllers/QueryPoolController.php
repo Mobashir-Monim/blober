@@ -16,10 +16,36 @@ class QueryPoolController extends Controller
 
     public function store(Request $request)
     {
+        dd(explode(',', $request->tags));
+
         $query = QP::create((new QPH)->generateDBInsert($request));
 
         return back();
     }
+
+    // function tdrows($elements)
+    // {
+    //     $str = "";
+    //     foreach ($elements as $element) {
+    //         $str .= $element->nodeValue . ", ";
+    //     }
+
+    //     return $str;
+    // }
+
+    // function getdata($contents)
+    // {
+    //     $DOM = new \DOMDocument;
+    //     libxml_use_internal_errors(true);
+    //     $DOM->loadHTML($contents);
+    //     libxml_clear_errors();
+
+    //     $items = $DOM->getElementsByTagName('tr');
+
+    //     foreach ($items as $node) {
+    //         echo $this->tdrows($node->childNodes) . "<br />";
+    //     }
+    // }
     
     public function attempt()
     {

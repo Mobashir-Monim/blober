@@ -2865,6 +2865,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
     this.levels = JSON.parse(this.difficulties);
@@ -2923,6 +2930,7 @@ __webpack_require__.r(__webpack_exports__);
         document.getElementById('output').value = JSON.stringify(output);
       }
 
+      $("#tags").val($("#tags-inp").tagsinput('items'));
       document.getElementById('query-form').submit();
     },
     changeResultType: function changeResultType(type) {
@@ -40126,6 +40134,8 @@ var render = function() {
             ])
           ]),
           _vm._v(" "),
+          _vm._m(4),
+          _vm._v(" "),
           _c("div", { staticClass: "row mb-2" }, [
             _c("div", { staticClass: "col-md-12" }, [
               _c(
@@ -40207,6 +40217,23 @@ var staticRenderFns = [
           placeholder: "Deductible"
         }
       })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row mb-2" }, [
+      _c("div", { staticClass: "col-md-12" }, [
+        _vm._v("\n                    Tags: "),
+        _c("br"),
+        _vm._v(" "),
+        _c("input", {
+          attrs: { type: "text", "data-role": "tagsinput", id: "tags-inp" }
+        }),
+        _vm._v(" "),
+        _c("input", { attrs: { type: "hidden", name: "tags", id: "tags" } })
+      ])
     ])
   }
 ]

@@ -64,6 +64,13 @@
                 </div>
                 <div class="row mb-2">
                     <div class="col-md-12">
+                        Tags: <br>
+                        <input type="text" data-role="tagsinput" id="tags-inp">
+                        <input type="hidden" name="tags" id="tags">
+                    </div>
+                </div>
+                <div class="row mb-2">
+                    <div class="col-md-12">
                         <a href="#/" class="btn btn-success w-100" @click="objectifyOutput()">Submit</a>
                     </div>
                 </div>
@@ -138,6 +145,7 @@
                     document.getElementById('output').value = JSON.stringify(output);
                 }
 
+                $("#tags").val($("#tags-inp").tagsinput('items'));
                 document.getElementById('query-form').submit();
             },
             changeResultType(type) {
