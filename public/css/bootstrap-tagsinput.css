@@ -55,6 +55,7 @@
 }
 .label-info {
   background-color: #5bc0de;
+  color: white !important;
 }
 .label {
   display: inline;

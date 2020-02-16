@@ -3,5 +3,6 @@
 @include('side-nav.items.view-datapools')
 @include('side-nav.items.add-query')
 @include('side-nav.items.attempt-query')
+@include('side-nav.items.tags')
 @include('side-nav.items.add-quiz')
 @include('side-nav.items.view-analytics')

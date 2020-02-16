@@ -32,6 +32,9 @@ Vue.component('qp-attempt', require('./components/QueryPool/Attempt.vue').defaul
 // Profile Components
 Vue.component('profile-edit', require('./components/Profile/Edit.vue').default);
 
+// Tags Components
+Vue.component('tags-view', require('./components/Tags/View.vue').default);
+
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application

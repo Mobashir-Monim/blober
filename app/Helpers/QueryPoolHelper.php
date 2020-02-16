@@ -17,7 +17,7 @@ class QueryPoolHelper
         return [
             'question' => strip_tags($request->question),
             'query' => strip_tags($request->result),
-            'output' => json_encode(htmlspecialchars_decode(strip_tags($request->result))),
+            'output' => json_encode(\DB::select(htmlspecialchars_decode(strip_tags($request->result)))),
             'difficulty' => $request->difficulty,
             'points' => $request->points,
             'deductible' => $request->deductible,

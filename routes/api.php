@@ -25,3 +25,6 @@ Route::post('/query/submit-query', 'QueryPoolController@verifyQuery')->name('que
 
 Route::post('/user/get', 'UsersController@get')->name('user.get');
 Route::post('/user/update', 'UsersController@update')->name('user.get');
+
+Route::post('/tags', 'TagsController@store')->name('tags.store');
+Route::post('/tags/{tag}', 'TagsController@update')->name('tags.update');
