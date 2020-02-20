@@ -2621,7 +2621,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       return el != null;
     });
   },
-  props: ['token', 'route', 'tags'],
+  props: ['token', 'route', 'tags', 'sessioncode'],
   data: function data() {
     return {
       currentQuestion: 'N/A',
@@ -2637,7 +2637,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       attemptResult: null,
       allTags: [],
       currentTags: [],
-      attemptStarted: false
+      attemptStarted: false,
+      attemptGroups: []
     };
   },
   methods: {
@@ -2695,6 +2696,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       this.currentTables = res.tables;
       this.currentNames = res.names;
       this.attemptResult = res.result;
+      this.attemptGroups.push(res.group);
     },
     submitQuery: function submitQuery() {
       var _this2 = this;
@@ -2716,7 +2718,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   },
                   body: JSON.stringify({
                     answer: document.getElementById('query').value,
-                    question: _this2.attemptedQuestions[_this2.attemptedQuestions.length - 1]
+                    question: _this2.attemptedQuestions[_this2.attemptedQuestions.length - 1],
+                    group: _this2.attemptGroups[_this2.attemptGroups.length - 1],
+                    sessioncode: _this2.sessioncode
                   })
                 });
 
@@ -2727,11 +2731,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
               case 5:
                 res = _context2.sent;
+                console.log(res);
                 _this2.attemptResult = res.data.result;
                 _this2.currentError = res.data.error;
                 _this2.queryOutput = res.data.output;
 
-              case 9:
+              case 10:
               case "end":
                 return _context2.stop();
             }
@@ -2844,12 +2849,15 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         return this.allTags;
       },
       set: function set(value) {
-        console.log(value); // this.allTags = [...value];
+        this.allTags = _toConsumableArray(value);
       }
     },
     tagsSelected: {
       get: function get() {
         return this.attemptStarted;
+      },
+      set: function set(value) {
+        this.attemptStarted = value;
       }
     }
   }

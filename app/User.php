@@ -98,4 +98,8 @@ class User extends Authenticatable
         return $pass;
     }
 
+    public static function getUser($code)
+    {
+        return self::find($code);
+    }
 }

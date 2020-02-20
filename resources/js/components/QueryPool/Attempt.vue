@@ -165,7 +165,7 @@
             });
         },
 
-        props: ['token', 'route', 'tags'],
+        props: ['token', 'route', 'tags', 'sessioncode'],
 
         data() {
             return {
@@ -183,6 +183,7 @@
                 allTags: [],
                 currentTags: [],
                 attemptStarted: false,
+                attemptGroups: [],
             }
         },
 
@@ -198,7 +199,7 @@
                         body: JSON.stringify({
                             attempted: [...this.attemptedQuestions],
                             tags: [...this.currentTags],
-                            })
+                        })
                     });
                     let res = await rawResponse.json();
                     this.setValues(res.data);
@@ -216,6 +217,7 @@
                     this.currentTables = res.tables;
                     this.currentNames = res.names;
                     this.attemptResult = res.result;
+                    this.attemptGroups.push(res.group);
             },
             submitQuery() {
                 (async () => {
@@ -225,9 +227,15 @@
                             'Accept': 'application/json',
                             'Content-Type': 'application/json'
                         },
-                        body: JSON.stringify({answer: document.getElementById('query').value, question: this.attemptedQuestions[this.attemptedQuestions.length - 1]})
+                        body: JSON.stringify({
+                            answer: document.getElementById('query').value,
+                            question: this.attemptedQuestions[this.attemptedQuestions.length - 1],
+                            group: this.attemptGroups[this.attemptGroups.length - 1],
+                            sessioncode: this.sessioncode,
+                        })
                     });
                     let res = await rawResponse.json();
+                    console.log(res);
                     this.attemptResult = res.data.result;
                     this.currentError = res.data.error;
                     this.queryOutput = res.data.output;
@@ -339,15 +347,17 @@
                     return this.allTags;
                 },
                 set(value) {
-                    console.log(value);
-                    // this.allTags = [...value];
+                    this.allTags = [...value];
                 }
             },
             tagsSelected: {
                 get() {
                     return this.attemptStarted;
                 },
-            }
+                set(value) {
+                    this.attemptStarted = value;
+                }
+            },
         }
     }
 </script>

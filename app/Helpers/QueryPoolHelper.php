@@ -4,6 +4,9 @@ namespace App\Helpers;
 
 use App\Tag;
 use App\QueryPool as QP;
+use App\AttemptGroup as AG;
+use App\QueryAttempt as QA;
+use App\User;
 
 class QueryPoolHelper
 {
@@ -63,27 +66,34 @@ class QueryPoolHelper
 
     public function returnAttemptQuery($pool)
     {
-        $tables = array();
-        $names = array();
-        
         if (is_null($pool)) {
             return $this->returnNullResponse();
         }
 
-        foreach (QP::find($pool->id)->datapool->tables as $table) {
-            array_push($tables, \DB::select('select * from ' . $table->name . ';'));
-            array_push($names, $table->name);
-        }
+        $data = $this->bringTables($pool);
 
         return response()->json([
             'success' => true,
             'data' => [
                 'query' => $pool->toArray(),
-                'tables' => $tables,
+                'tables' => $data['tables'],
                 'result' => null,
-                'names' => $names,
+                'names' => $data['names'],
+                'group' => $this->createAttemptGroup()->id,
             ],
         ]);
+    }
+
+    public function bringTables($pool)
+    {
+        $data = ['tables' => array(), 'names' => array()];
+        
+        foreach (QP::find($pool->id)->datapool->tables as $table) {
+            array_push($data['tables'], \DB::select('select * from ' . $table->name . ';'));
+            array_push($data['names'], $table->name);
+        }
+
+        return $data;
     }
 
     public function returnNullResponse()
@@ -91,19 +101,18 @@ class QueryPoolHelper
         return response()->json([
             'success' => true,
             'data' => [
-                'query' => [
-                    'id' => null,
-                    'question' => 'No more new questions',
-                    'output' => null,
-                    'time' => null,
-                    'points' => null,
-                    'deductible' => null,
-                ],
+                'query' => ['id' => null, 'question' => 'No more new questions', 'output' => null, 'time' => null, 'points' => null, 'deductible' => null],
                 'tables' => null,
                 'result' => null,
                 'names' => null,
+                'group' => null,
             ],
         ]);
+    }
+
+    public function createAttemptGroup()
+    {
+        return AG::create(['endtime' => null]);
     }
 
     public function attachTags($query, $tags)
@@ -119,6 +128,8 @@ class QueryPoolHelper
 
     public function verifyQuery($request, $data, $query)
     {
+        $attempt = $this->generateBlankAttemptArray($request);
+
         try { 
             $data['output'] = \DB::select($request->answer);
         } catch(\Illuminate\Database\QueryException $ex){
@@ -129,7 +140,45 @@ class QueryPoolHelper
             $data['result'] = $query->output == json_encode($data['output'], true);
         }
 
+        $this->createQueryAttempt($attempt, $data);
+
         return $data;
+    }
+
+    public function generateBlankAttemptArray($request)
+    {
+        return [
+            'user_id' => User::getUser($request->sessioncode)->id,
+            'query_pool_id' => $request->question,
+            'is_correct' => false,
+            'output' => null,
+            'has_error' => false,
+            'attempt_group_id' => $request->group
+        ];
+    }
+
+    public function createQueryAttempt($attempt, $data)
+    {
+        if (!is_null($data['error'])) {
+            $attempt['has_error'] = true;
+            $attempt['output'] = $data['error'];
+        } else {
+            $attempt['is_correct'] = $data['result'];
+            $attempt['output'] = json_encode($data['output'], true);
+        }
+
+        $this->flagCheckAttempGroup($attempt);
+    }
+
+    public function flagCheckAttempGroup($attempt)
+    {
+        if (AG::find($attempt['attempt_group_id'])->flaggable()) {
+            $attempt = QA::create($attempt);
+
+            if ($attempt->is_correct) {
+                $attempt->group->flag();
+            }
+        }
     }
 
     public function getQueryInTags($request)

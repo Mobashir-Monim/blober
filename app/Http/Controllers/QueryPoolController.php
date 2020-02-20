@@ -53,12 +53,6 @@ class QueryPoolController extends Controller
         return view('querypool.attempt');
     }
 
-    public function attemptResult()
-    {
-        dd('In attempt result');
-        return;
-    }
-
     public function getQuestions(Request $request)
     {
         $pool = (new QPH)->getAttemptQuery($request);
