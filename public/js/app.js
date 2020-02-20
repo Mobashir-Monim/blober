@@ -2662,7 +2662,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   },
                   body: JSON.stringify({
                     attempted: _toConsumableArray(_this.attemptedQuestions),
-                    tags: _toConsumableArray(_this.currentTags)
+                    tags: _toConsumableArray(_this.currentTags),
+                    group: _this.attemptGroups.length == 0 ? null : _this.attemptGroups[_this.attemptGroups.length - 1]
                   })
                 });
 

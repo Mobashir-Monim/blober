@@ -49,18 +49,41 @@ class QueryPoolHelper
 
     public function getAttemptQuery($request)
     {
+        $this->flagOpenGroups($request);
+
         if (sizeof($request->attempted) == 0) {
-            return QP::where('is_quiz_query', false)->
-                        whereIn('id', $this->getQueryInTags($request))->
-                        select('id', 'question', 'output', 'time', 'points', 'deductible')->
-                        get()->shuffle()->first();
+            return $this->getInitQP($request);
         }
         else {
-            return QP::where('is_quiz_query', false)->
-                        whereIn('id', $this->getQueryInTags($request))->
-                        whereNotIn('id', $request->attempted)->
-                        select('id', 'question', 'output', 'time', 'points', 'deductible')->
-                        get()->shuffle()->first();
+            return $this->getPostInitQP($request);
+        }
+    }
+
+    public function getInitQP($request)
+    {
+        return QP::where('is_quiz_query', false)->
+                    whereIn('id', $this->getQueryInTags($request))->
+                    select('id', 'question', 'output', 'time', 'points', 'deductible')->
+                    get()->shuffle()->first();
+    }
+
+    public function getPostInitQP($request)
+    {
+        return QP::where('is_quiz_query', false)->
+                    whereIn('id', $this->getQueryInTags($request))->
+                    whereNotIn('id', $request->attempted)->
+                    select('id', 'question', 'output', 'time', 'points', 'deductible')->
+                    get()->shuffle()->first();
+    }
+
+    public function flagOpenGroups($request)
+    {
+        if (!is_null($request->group)) {
+            $group = AG::find($request->group);
+
+            if ($group->flaggable()) {
+                $group->flag();
+            }
         }
     }
 

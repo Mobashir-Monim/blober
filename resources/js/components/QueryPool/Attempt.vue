@@ -199,6 +199,7 @@
                         body: JSON.stringify({
                             attempted: [...this.attemptedQuestions],
                             tags: [...this.currentTags],
+                            group: this.attemptGroups.length == 0 ? null : this.attemptGroups[this.attemptGroups.length - 1]
                         })
                     });
                     let res = await rawResponse.json();
