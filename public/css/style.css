@@ -1,3 +1,8 @@
 .hidden {
     display: none !important;
 }
+
+.tags-cont {
+    max-height: 150px;
+    overflow-y: scroll;
+}

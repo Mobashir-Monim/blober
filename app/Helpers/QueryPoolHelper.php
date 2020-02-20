@@ -66,4 +66,31 @@ class QueryPoolHelper
 
         return $data;
     }
+
+    public function getQueryInTags($request)
+    {
+        $tags = Tag::whereIn('name', $request->tags)->get()->pluck('id');
+        $statement = "select distinct query_pool_id from tag_query_pool where tag_id in (";
+
+        foreach ($tags as $key => $tag) {
+            if ($key == sizeof($tags) - 1) {
+                $statement .= $tag . ");";
+            } else {
+                $statement .= $tag . ", ";               
+            }
+        }
+
+        return $this->makeAssocArray(json_decode(json_encode(\DB::select($statement)), true));
+    }
+
+    public function makeAssocArray($results)
+    {
+        $arr = array();
+
+        foreach ($results as $item) {
+            array_push($arr, $item['query_pool_id']);
+        }
+
+        return $arr;
+    }
 }

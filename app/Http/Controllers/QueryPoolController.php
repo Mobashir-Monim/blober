@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\QueryPool as QP;
 use App\DataPool as DP;
 use App\Helpers\QueryPoolHelper as QPH;
+use App\Tag;
 
 class QueryPoolController extends Controller
 {
@@ -64,10 +65,10 @@ class QueryPoolController extends Controller
         $names = array();
 
         if (sizeof($request->attempted) == 0) {
-            $pool = QP::select('id', 'question', 'output', 'time', 'points', 'deductible')->get()->shuffle()->first();
+            $pool = QP::whereIn('id', (new QPH)->getQueryInTags($request))->select('id', 'question', 'output', 'time', 'points', 'deductible')->get()->shuffle()->first();
         }
         else {
-            $pool = QP::whereNotIn('id', $request->attempted)->select('id', 'question', 'output', 'time', 'points', 'deductible')->get()->shuffle()->first();
+            $pool = QP::whereIn('id', (new QPH)->getQueryInTags($request))->whereNotIn('id', $request->attempted)->select('id', 'question', 'output', 'time', 'points', 'deductible')->get()->shuffle()->first();
         }
 
         if (is_null($pool)) {

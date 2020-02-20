@@ -23,6 +23,7 @@ class CreateQueryPoolsTable extends Migration
             $table->integer('deductible')->nullable();
             $table->unsignedInteger('time')->nullable();
             $table->unsignedInteger('data_pool_id');
+            $table->boolean('is_quiz_query')->default(false);
             $table->timestamps();
         });
     }

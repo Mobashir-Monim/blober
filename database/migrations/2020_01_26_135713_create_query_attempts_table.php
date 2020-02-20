@@ -20,6 +20,7 @@ class CreateQueryAttemptsTable extends Migration
             $table->boolean('is_correct')->default(false);
             $table->text('output');
             $table->boolean('has_error')->default(false);
+            $table->unsignedInteger('attempt_group_id');
             $table->timestamps();
         });
     }
