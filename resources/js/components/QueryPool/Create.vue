@@ -22,7 +22,7 @@
                     </div>
                 </div>
                 <div class="row mb-2">
-                    <div class="col-md-4">
+                    <div class="col-md-3">
                         Result Entry: <br>
                         <div class="btn-group btn-group-toggle w-100" data-toggle="buttons">
                             <label class="btn btn-primary active" @click="changeResultType('query')">
@@ -33,14 +33,25 @@
                             </label>
                         </div>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-3">
+                        Query Type: <br>
+                        <div class="btn-group btn-group-toggle w-100" data-toggle="buttons">
+                            <label class="btn btn-primary active">
+                                <input type="radio" name="query_type" value="1" autocomplete="off" checked> Quiz Query
+                            </label>
+                            <label class="btn btn-primary">
+                                <input type="radio" name="query_type" value="0" autocomplete="off"> Practice Query
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-md">
                         Difficulty:
                         <select name="difficulty" class="form-control">
                             <option value="">Difficulty</option>
                             <option v-for="(difficulty, index) in levels" :key="index" :value="difficulty">{{ difficulty }}</option>
                         </select>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md">
                         Time Limit (minutes):
                         <input type="number" name="time" class="form-control" placeholder="Time Limit (minutes)">
                     </div>

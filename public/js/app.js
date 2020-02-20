@@ -2947,6 +2947,17 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
     this.levels = JSON.parse(this.difficulties);
@@ -40388,7 +40399,7 @@ var render = function() {
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "row mb-2" }, [
-            _c("div", { staticClass: "col-md-4" }, [
+            _c("div", { staticClass: "col-md-3" }, [
               _vm._v("\n                    Result Entry: "),
               _c("br"),
               _vm._v(" "),
@@ -40449,7 +40460,9 @@ var render = function() {
               )
             ]),
             _vm._v(" "),
-            _c("div", { staticClass: "col-md-4" }, [
+            _vm._m(1),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-md" }, [
               _vm._v("\n                    Difficulty:\n                    "),
               _c(
                 "select",
@@ -40471,13 +40484,13 @@ var render = function() {
               )
             ]),
             _vm._v(" "),
-            _vm._m(1)
+            _vm._m(2)
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "row mb-2" }, [
-            _vm._m(2),
-            _vm._v(" "),
             _vm._m(3),
+            _vm._v(" "),
+            _vm._m(4),
             _vm._v(" "),
             _c("div", { staticClass: "col-md-4" }, [
               _vm._v("\n                    Data Pool:\n                    "),
@@ -40505,7 +40518,7 @@ var render = function() {
             ])
           ]),
           _vm._v(" "),
-          _vm._m(4),
+          _vm._m(5),
           _vm._v(" "),
           _c("div", { staticClass: "row mb-2" }, [
             _c("div", { staticClass: "col-md-12" }, [
@@ -40548,7 +40561,50 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-md-4" }, [
+    return _c("div", { staticClass: "col-md-3" }, [
+      _vm._v("\n                    Query Type: "),
+      _c("br"),
+      _vm._v(" "),
+      _c(
+        "div",
+        {
+          staticClass: "btn-group btn-group-toggle w-100",
+          attrs: { "data-toggle": "buttons" }
+        },
+        [
+          _c("label", { staticClass: "btn btn-primary active" }, [
+            _c("input", {
+              attrs: {
+                type: "radio",
+                name: "query_type",
+                value: "1",
+                autocomplete: "off",
+                checked: ""
+              }
+            }),
+            _vm._v(" Quiz Query\n                        ")
+          ]),
+          _vm._v(" "),
+          _c("label", { staticClass: "btn btn-primary" }, [
+            _c("input", {
+              attrs: {
+                type: "radio",
+                name: "query_type",
+                value: "0",
+                autocomplete: "off"
+              }
+            }),
+            _vm._v(" Practice Query\n                        ")
+          ])
+        ]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-md" }, [
       _vm._v(
         "\n                    Time Limit (minutes):\n                    "
       ),

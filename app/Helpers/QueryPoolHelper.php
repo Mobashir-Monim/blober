@@ -3,6 +3,7 @@
 namespace App\Helpers;
 
 use App\Tag;
+use App\QueryPool as QP;
 
 class QueryPoolHelper
 {
@@ -20,6 +21,7 @@ class QueryPoolHelper
             'question' => strip_tags($request->question),
             'query' => strip_tags($request->result),
             'output' => json_encode(\DB::select(htmlspecialchars_decode(strip_tags($request->result)))),
+            'is_quiz_query' => $request->query_type,
             'difficulty' => $request->difficulty,
             'points' => $request->points,
             'deductible' => $request->deductible,
@@ -33,12 +35,75 @@ class QueryPoolHelper
         return [
             'question' => strip_tags($request->question),
             'output' => json_encode($request->output),
+            'is_quiz_query' => $request->query_type,
             'difficulty' => $request->difficulty,
             'points' => $request->points,
             'deductible' => $request->deductible,
             'time' => $request->time,
             'data_pool_id' => $request->data_pool_id,
         ];
+    }
+
+    public function getAttemptQuery($request)
+    {
+        if (sizeof($request->attempted) == 0) {
+            return QP::where('is_quiz_query', false)->
+                        whereIn('id', $this->getQueryInTags($request))->
+                        select('id', 'question', 'output', 'time', 'points', 'deductible')->
+                        get()->shuffle()->first();
+        }
+        else {
+            return QP::where('is_quiz_query', false)->
+                        whereIn('id', $this->getQueryInTags($request))->
+                        whereNotIn('id', $request->attempted)->
+                        select('id', 'question', 'output', 'time', 'points', 'deductible')->
+                        get()->shuffle()->first();
+        }
+    }
+
+    public function returnAttemptQuery($pool)
+    {
+        $tables = array();
+        $names = array();
+        
+        if (is_null($pool)) {
+            return $this->returnNullResponse();
+        }
+
+        foreach (QP::find($pool->id)->datapool->tables as $table) {
+            array_push($tables, \DB::select('select * from ' . $table->name . ';'));
+            array_push($names, $table->name);
+        }
+
+        return response()->json([
+            'success' => true,
+            'data' => [
+                'query' => $pool->toArray(),
+                'tables' => $tables,
+                'result' => null,
+                'names' => $names,
+            ],
+        ]);
+    }
+
+    public function returnNullResponse()
+    {
+        return response()->json([
+            'success' => true,
+            'data' => [
+                'query' => [
+                    'id' => null,
+                    'question' => 'No more new questions',
+                    'output' => null,
+                    'time' => null,
+                    'points' => null,
+                    'deductible' => null,
+                ],
+                'tables' => null,
+                'result' => null,
+                'names' => null,
+            ],
+        ]);
     }
 
     public function attachTags($query, $tags)
