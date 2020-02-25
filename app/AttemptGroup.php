@@ -22,4 +22,16 @@ class AttemptGroup extends BaseModel
         $this->endtime = Carbon::now()->toDateTimeString();
         $this->save();
     }
+
+    public function hasSuccess()
+    {
+        return in_array(true, $this->attempts->pluck('is_correct')->toArray());
+    }
+
+    public function trialsToSuccess()
+    {
+        $index = array_search(1, $this->attempts->pluck('is_correct')->toArray());
+
+        return $index ? $index + 1 : count($this->attempts);
+    }
 }

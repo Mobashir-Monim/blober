@@ -1,5 +1,5 @@
 <div class="row mb-2">
     <div class="col-md-12">
-        <a href="{{ route('datapool.index') }}" class="btn btn-primary w-100 disabled" disabled>View Analytics</a>
+        <a href="{{ route('analytics.tags') }}" class="btn btn-primary w-100">View Analytics</a>
     </div>
 </div>

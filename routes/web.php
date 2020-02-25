@@ -40,6 +40,9 @@ Route::group(['middleware' => ['auth']], function () {
 
     // Tags Routes
     Route::get('/tags', 'TagsController@index')->name('tags.index');
+
+    // Analytics Routes
+    Route::get('/analytics/tags', 'AnalyticsController@tags')->name('analytics.tags');
 });
 
 Route::get('test', function (Illuminate\Http\Request $request) {
