@@ -46,7 +46,7 @@ class AnalyticsHelper extends Helper
         $attempts = $this->getUserAttemptsCount($tag);
         $errors = sizeof($this->getTagAttemptErrors($tag));
 
-        return $attempts == 0 ? "NO ATTEMPTS" : $errors/$attempts;
+        return $attempts == 0 ? "NO ATTEMPTS" : number_format($errors/$attempts, 2, '.', '');
     }
 
     public function getAvgTime($tag)
