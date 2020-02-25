@@ -35,6 +35,9 @@ Vue.component('profile-edit', require('./components/Profile/Edit.vue').default);
 // Tags Components
 Vue.component('tags-view', require('./components/Tags/View.vue').default);
 
+// Analytics Components
+Vue.component('analytics-tags', require('./components/Analytics/Tags.vue').default);
+
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application

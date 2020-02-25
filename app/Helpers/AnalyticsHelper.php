@@ -12,7 +12,7 @@ class AnalyticsHelper extends Helper
 {
     public function getUserAttemptsCount($tag)
     {
-        return sizeof($this->getUserAttempts($tag));
+        return sizeof($this->getUserAttempts($tag)) . '';
     }
 
     public function getUserAttempts($tag)
@@ -22,7 +22,7 @@ class AnalyticsHelper extends Helper
 
     public function getAttemptGroupsCount($tag)
     {
-        return sizeof($this->getAttemptGroups($tag));
+        return sizeof($this->getAttemptGroups($tag)) . '';
     }
 
     public function getAttemptGroups($tag)
