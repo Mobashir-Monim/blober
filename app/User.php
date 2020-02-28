@@ -5,6 +5,8 @@ namespace App;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Carbon\Carbon;
+use App\SessionCode as SC;
 
 class User extends Authenticatable
 {
@@ -48,6 +50,11 @@ class User extends Authenticatable
     public function student()
     {
         return $this->hasOne('App\Student');
+    }
+
+    public function authCodes()
+    {
+        return $this->hasMany('App\SessionCode');
     }
 
     /**
@@ -100,6 +107,15 @@ class User extends Authenticatable
 
     public static function getUser($code)
     {
-        return self::find($code);
+        return SC::where('code', $code)->first()->user;
+    }
+
+    public function getAuth()
+    {
+        $auth = $this->authCodes()->where('user_id', $this->id)->where('expires_at', '>', Carbon::now()->toDateTimeString())->orderBy('created_at', 'DESC')->first();
+        $auth->expires_at = Carbon::now()->addMinutes(30)->toDateTimeString();
+        $auth->save();
+
+        return $auth->code;
     }
 }

@@ -6,3 +6,35 @@
     max-height: 150px;
     overflow-y: scroll;
 }
+
+.q-class-close {
+    float: right;
+    font-size: 1.2em;
+    color: white;
+    font-weight: 900;
+    border-radius: 25%;
+}
+
+.q-class-close:hover {
+    cursor: pointer;
+}
+
+.q-class-add {
+    font-size: 2.5em;
+    color: white !important;
+    border-radius: 50%;
+    height: 1.5em;
+    width: 1.5em;
+    display: inline-block;
+    text-align: center;
+    padding: 0;
+    vertical-align: middle !important;
+}
+
+.q-class-add:hover {
+    cursor: pointer;
+}
+
+.bg-secondary-2 {
+    background-color: #d4d4d485 !important;
+  }

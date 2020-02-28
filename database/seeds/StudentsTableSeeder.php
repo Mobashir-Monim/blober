@@ -15,11 +15,12 @@ class StudentsTableSeeder extends Seeder
         $now = Carbon::now();
 
         DB::table('students')->insert([
-            'user_id' => 6,
+            'user_id' => 5,
             'level_name' => 'Beginner',
             'level' => 0,
             'points' => 0,
             'enrollment' => ($now->month <= 4 ? 'Spring ' : ($now->month <= 8 ? 'Summer ' : 'Fall ')) . $now->year,
+            'section' => 2,
         ]);
     }
 }

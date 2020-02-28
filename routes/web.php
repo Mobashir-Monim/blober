@@ -15,10 +15,12 @@ Route::get('/', function () {
     return view('welcome');
 })->name('index');
 
-Auth::routes(['register' => false]);
+Route::group(['middleware' => ['auth-code']], function () {
+    Auth::routes(['register' => false]);
+});
 
-
-Route::group(['middleware' => ['auth']], function () {
+Route::group(['middleware' => ['auth', 'auth-code']], function () {
+    Route::get('/auth-code/create', 'AuthCodeController@create')->name('auth-code.create');
     Route::get('/home', 'HomeController@index')->name('home');
     Route::get('/users/create', 'UsersController@create')->name('users.create');
     Route::post('/users/create', 'UsersController@store')->name('users.create');
@@ -43,10 +45,19 @@ Route::group(['middleware' => ['auth']], function () {
 
     // Analytics Routes
     Route::get('/analytics/tags', 'AnalyticsController@tags')->name('analytics.tags');
+
+    // Quiz Routes
+    Route::get('/quiz/create', 'QuizController@create')->name('quiz.create');
+    Route::post('/quiz/create', 'QuizController@store')->name('quiz.create');
 });
 
 Route::get('test', function (Illuminate\Http\Request $request) {
-    
+    // for ($i = 0; $i < 30; $i++) {
+    //     App\SessionCode::create(['user_id' => 2, 'nonce' => $i, 'code' => $i, 'expires_at' => Carbon\Carbon::now()->addMinutes($i)->toDateTimeString(), 'created_at' => Carbon\Carbon::now()->addMinutes($i - 100)->toDateTimeString()]);
+    // }
+
+    dd(Carbon\Carbon::now()->addMinutes(120)->toDateTimeString(), App\SessionCode::getAuth('code', 29)->code, auth()->user()->getAuth()->code);
+
     try { 
         dd(\DB::select('select *'));
     } catch(\Illuminate\Database\QueryException $ex){

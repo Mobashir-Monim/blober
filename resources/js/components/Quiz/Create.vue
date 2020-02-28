@@ -1,0 +1,168 @@
+<template>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card mb-3">
+                <div class="card-header">Quiz Information</div>
+
+                <div class="card-body">
+                    <form action="#/" method="POST" id="qForm">
+                        <input type="hidden" name="_token" :value="this.token">
+                        <input type="hidden" name="qData" id="qData">
+                        <div class="row mb-3">
+                            <div class="col-md">
+                                Date:
+                                <input type="date" name="date" class="form-control">
+                            </div>
+                            <div class="col-md">
+                                Starting Time:
+                                <input type="time" name="start" class="form-control">
+                            </div>
+                            <div class="col-md">
+                                Ending Time:
+                                <input type="time" name="end" class="form-control">
+                            </div>
+                            <div class="col-md-2">
+                                Lab Section:
+                                <select name="section" class="form-control">
+                                    <option value="">Select Section</option>
+                                    <option v-for="(section, index) in this.sections" :key="index" :value="index + 1">{{ index + 1 }}</option>
+                                </select>
+                            </div>
+                        </div>
+                    </form>
+
+                    <div v-for="(obj, index) in classes" :key="index">
+                        <div class="row mb-3 border rounded mx-1">
+                            <div class="col-md-12 bg-secondary-2">
+                                <h5 class="border-bottom py-3">Questions {{ index + 1 }} Class <span class="q-class-close btn-danger px-2" @click="removeClass(index)">&#10007;</span></h5>
+                                <div class="row mb-3">
+                                    <div class="col-md">
+                                        Difficulty Range:
+                                        <input type="text" name="difficulty" class="form-control" @keyup="updateDiff(index, $event)" :value="obj.diff" placeholder="2 - 5">
+                                    </div>
+                                    <div class="col-md">
+                                        No. of Questions:
+                                        <input type="number" name="no_questions" class="form-control" placeholder="3" @keyup="updateQNo(index, $event)" :value="obj.qNo" step="1" min="1">
+                                    </div>
+                                    <div class="col-md">
+                                        Points:
+                                        <input type="number" name="points" class="form-control" placeholder="5.25" @keyup="updatePoints(index, $event)" :value="obj.points" step="0.25" min="0">
+                                    </div>
+                                </div>
+                                <div class="row mb-2">
+                                    <div class="col-md-7">
+                                        <h6 class="border-bottom">All Tags</h6>
+                                        <div class="row">
+                                            <div class="col-md-12 tags-cont">
+                                                <div class="p-2 m-1 tag label-info float-left rounded" @click="selectTag(index, rIndex)" v-for="(tag, rIndex) in obj.allTags" :key="rIndex">{{ tag }}</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md">
+                                        <h6 class="border-bottom">Selected Tags</h6>
+                                        <div class="row mb-2">
+                                            <div class="col-md-12 tags-cont">
+                                                <div class="p-2 m-1 tag label-info float-left rounded" @click="unselectTag(index, sIndex)" v-for="(tag, sIndex) in obj.tags" :key="sIndex">{{ tag }}</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12 text-right">
+                            <span class="q-class-add btn-success" @click="addClass()">&#10011;</span>
+                            <span class="q-class-add btn-secondary" @click="submitData()">&#10004;</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
+
+<script>
+    export default {
+        mounted() {
+            this.sections = JSON.parse(this.labsections);
+            this.sTags = JSON.parse(this.systemtags);
+            this.qClasses[0].allTags = this.sTags;
+        },
+        props: ['systemtags', 'labsections', 'token'],
+        data() {
+            return {
+                sections: [],
+                sTags: [],
+                qClasses: [
+                    {
+                        allTags: [],
+                        tags: [],
+                        diff: '',
+                        qNo: null,
+                        points: null,
+                    },
+                ],
+            }
+        },
+        methods: {
+            addClass() {
+                this.qClasses.push(
+                    {
+                        allTags: this.sTags,
+                        tags: [],
+                        diff: '',
+                        qNo: null,
+                        points: null,
+                    },
+                );
+            },
+            removeClass(index) {
+                this.qClasses.splice(index, 1);
+            },
+            updateDiff(index, el) {
+                this.qClasses[index].diff = el.target.value;
+            },
+            updateQNo(index, el) {
+                this.qClasses[index].qNo = el.target.value;
+            },
+            updatePoints(index, el) {
+                this.qClasses[index].points = el.target.value;
+            },
+            selectTag(index, rIndex) {
+                this.qClasses[index].tags.push(this.qClasses[index].allTags[rIndex]);
+                this.qClasses[index].allTags = Object.keys(this.qClasses[index].allTags).reduce((object, key) => {
+                    if (key != rIndex) {
+                        object[key] = this.qClasses[index].allTags[key];
+                    }
+
+                    return object
+                }, {});
+            },
+            unselectTag(index, sIndex) {
+                this.qClasses[index].allTags[Object.keys(this.qClasses[index].allTags).length] = this.qClasses[index].tags[sIndex];
+                this.qClasses[index].tags.splice(sIndex, 1);
+            },
+            submitData() {
+                document.getElementById('qData').value = JSON.stringify(this.qClasses);
+                document.getElementById('qForm').submit();
+            }
+        },
+        computed: {
+            classes: {
+                get() {
+                    return this.qClasses;
+                },
+                set(val) {
+                    this.qClasses = [...val];
+                }
+            },
+            rejectedTags: {
+                get() {
+                    
+                }
+            }
+        }
+    }
+</script>

@@ -84,7 +84,7 @@
                 let tag = document.getElementById('tag-'+id);
                 inp.classList.add('hidden');
                 tag.classList.remove('hidden');
-                document.getElementById('tag-inp-'+id).value = tags[id];
+                document.getElementById('tag-inp-'+id).value = this.currentTags[id];
             },
             updateTag(id) {
                 let inp = document.getElementById('tag-inp-'+id);
