@@ -46,7 +46,7 @@ class AnalyticsHelper extends Helper
         $attempts = $this->getUserAttemptsCount($tag);
         $errors = sizeof($this->getTagAttemptErrors($tag));
 
-        return $attempts == 0 ? "NO ATTEMPTS" : number_format($errors/$attempts, 2, '.', '');
+        return $attempts == 0 ? "No Attempts" : number_format($errors/$attempts, 2, '.', '');
     }
 
     public function getAvgTime($tag)
@@ -58,7 +58,7 @@ class AnalyticsHelper extends Helper
             $time += Carbon::parse($attempt->created_at)->diffInSeconds(Carbon::parse($attempt->endtime));
         }
 
-        return sizeof($attempts) == 0 ? "NO ATTEMPTS" : floor($time / (sizeof($attempts) * 60)) . ':' . ($time / (sizeof($attempts))) % 60;
+        return sizeof($attempts) == 0 ? "No Attempts" : floor($time / (sizeof($attempts) * 60)) . ':' . ($time / (sizeof($attempts))) % 60;
     }
 
     public function getAvgSuccess($tag)
@@ -75,7 +75,7 @@ class AnalyticsHelper extends Helper
         }
 
 
-        return count($attempts) == 0 ? "NO ATTEMPTS" : number_format($successes/count($attempts), 4, '.', '') * 100 . '%';
+        return count($attempts) == 0 ? "No Attempts" : number_format($successes/count($attempts), 4, '.', '') * 100 . '%';
     }
 
     public function getAvgTrials($tag)
@@ -92,7 +92,7 @@ class AnalyticsHelper extends Helper
         }
 
 
-        return count($attempts) == 0 ? "NO ATTEMPTS" : number_format($trials/count($attempts), 2, '.', '');
+        return count($attempts) == 0 ? "No Attempts" : number_format($trials/count($attempts), 2, '.', '');
     }
 
     public function getPoolIDs($tag)
