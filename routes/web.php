@@ -49,6 +49,8 @@ Route::group(['middleware' => ['auth', 'auth-code']], function () {
     // Quiz Routes
     Route::get('/quiz/create', 'QuizController@create')->name('quiz.create');
     Route::post('/quiz/create', 'QuizController@store')->name('quiz.create');
+    Route::get('/quiz/panel', 'QuizController@index')->name('quiz.panel');
+    Route::get('/quiz/start', 'QuizController@start')->name('quiz.start');
 });
 
 Route::get('test', function (Illuminate\Http\Request $request) {

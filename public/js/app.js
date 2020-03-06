@@ -3319,6 +3319,269 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Quiz/Start.vue?vue&type=script&lang=js&":
+/*!*********************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Quiz/Start.vue?vue&type=script&lang=js& ***!
+  \*********************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  mounted: function mounted() {},
+  data: function data() {
+    return {
+      quizStarted: false,
+      currentQuestion: 'N/A',
+      currentOutput: '',
+      currentPoints: 'N/A',
+      currentDeductible: 'N/A',
+      currentTime: 'N/A',
+      currentTables: [],
+      currentNames: [],
+      currentError: null,
+      queryOutput: null,
+      attemptedQuestions: [],
+      attemptResult: null,
+      attemptStarted: false,
+      attemptGroups: []
+    };
+  },
+  methods: {
+    startQuiz: function startQuiz() {
+      var strWindowFeatures = "height=1000,width=1000,menubar=no,toolbar=no,,personalbar=no,dialog=yes,minimizable=no";
+      window.open("http://www.cnn.com/", "CNN_WindowName", strWindowFeatures);
+    }
+  },
+  computed: {
+    quizStatus: {
+      get: function get() {
+        return this.quizStarted;
+      },
+      set: function set(val) {
+        this.quizStarted = val;
+      }
+    },
+    question: {
+      get: function get() {
+        return this.currentQuestion;
+      },
+      set: function set(value) {
+        this.currentQuestion = value;
+      }
+    },
+    output: {
+      get: function get() {
+        return this.currentOutput == '' ? null : this.currentOutput;
+      },
+      set: function set(value) {
+        this.currentOutput = value;
+      }
+    },
+    time: {
+      get: function get() {
+        return this.currentTime == '' || this.currentTime == null ? 'N/A' : this.currentTime;
+      },
+      set: function set(value) {
+        this.currentTime = value;
+      }
+    },
+    points: {
+      get: function get() {
+        return this.currentPoints == '' || this.currentPoints == null ? 'N/A' : this.currentPoints;
+      },
+      set: function set(value) {
+        this.currentPoints = value;
+      }
+    },
+    deductible: {
+      get: function get() {
+        return this.currentDeductible == '' || this.currentDeductible == null ? 'N/A' : this.currentDeductible;
+      },
+      set: function set(value) {
+        this.currentDeductible = value;
+      }
+    },
+    tableNames: {
+      get: function get() {
+        return this.currentNames == '' ? null : this.currentNames;
+      },
+      set: function set(value) {
+        this.currentNames = value;
+      }
+    },
+    tables: {
+      get: function get() {
+        return this.currentTables == '' ? null : this.currentTables;
+      },
+      set: function set(value) {
+        this.currentTables = value;
+      }
+    },
+    result: {
+      get: function get() {
+        return this.attemptResult;
+      },
+      set: function set(value) {
+        this.attemptResult = value;
+      }
+    },
+    error: {
+      get: function get() {
+        return this.currentError;
+      },
+      set: function set(value) {
+        this.currentError = value;
+      }
+    },
+    qOutput: {
+      get: function get() {
+        return this.queryOutput;
+      },
+      set: function set(value) {
+        this.queryOutput = value;
+      }
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Tags/View.vue?vue&type=script&lang=js&":
 /*!********************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Tags/View.vue?vue&type=script&lang=js& ***!
@@ -41352,6 +41615,455 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Quiz/Start.vue?vue&type=template&id=2f4750b3&":
+/*!*************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Quiz/Start.vue?vue&type=template&id=2f4750b3& ***!
+  \*************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "row" }, [
+    _c("div", { staticClass: "col-md-12" }, [
+      _c("div", { staticClass: "card" }, [
+        _c("div", { staticClass: "card-header" }, [_vm._v("Attempt Query")]),
+        _vm._v(" "),
+        _c("div", { staticClass: "card-body" }, [
+          _c("div", { staticClass: "row" }, [
+            _vm.quizStatus == false
+              ? _c("div", { staticClass: "col-md-12 text-center" }, [
+                  _c(
+                    "a",
+                    {
+                      staticClass: "btn btn-primary w-75",
+                      attrs: { href: "#/" },
+                      on: {
+                        click: function($event) {
+                          return _vm.startQuiz()
+                        }
+                      }
+                    },
+                    [_vm._v("Begin Quiz")]
+                  )
+                ])
+              : _c("div", { staticClass: "col-md-12" }, [
+                  _c(
+                    "form",
+                    { attrs: { action: this.route, method: "POST" } },
+                    [
+                      _c("input", {
+                        attrs: { type: "hidden", name: "_token" },
+                        domProps: { value: this.token }
+                      }),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "row mb-4" }, [
+                        _c("div", { staticClass: "col-md-12" }, [
+                          _c("h3", { staticClass: "border-bottom" }, [
+                            _vm._v("Question")
+                          ]),
+                          _vm._v(" "),
+                          _c("p", {
+                            domProps: { innerHTML: _vm._s(_vm.question) }
+                          }),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "row mb-3" }, [
+                            _c("div", { staticClass: "col-md-4" }, [
+                              _vm._v("Points: " + _vm._s(_vm.points))
+                            ]),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "col-md-4" }, [
+                              _vm._v("Deductible: " + _vm._s(_vm.deductible))
+                            ]),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "col-md-4" }, [
+                              _vm._v("Time: " + _vm._s(_vm.time))
+                            ])
+                          ])
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "row mb-4" }, [
+                        _c("div", { staticClass: "col-md-12" }, [
+                          _c("h3", { staticClass: "border-bottom" }, [
+                            _vm._v("Tables")
+                          ]),
+                          _vm._v(" "),
+                          _vm.tables != null
+                            ? _c(
+                                "div",
+                                _vm._l(_vm.tables, function(table, index) {
+                                  return _c("div", { key: index }, [
+                                    _c("h5", { staticClass: "text-center" }, [
+                                      _vm._v(
+                                        "Table Name: " +
+                                          _vm._s(_vm.tableNames[index])
+                                      )
+                                    ]),
+                                    _vm._v(" "),
+                                    _c(
+                                      "table",
+                                      {
+                                        staticClass:
+                                          "table table-sm table-striped"
+                                      },
+                                      [
+                                        _c("caption", [
+                                          _vm._v(
+                                            "Table Name: " +
+                                              _vm._s(_vm.tableNames[index])
+                                          )
+                                        ]),
+                                        _vm._v(" "),
+                                        _c(
+                                          "thead",
+                                          { staticClass: "thead-light" },
+                                          [
+                                            _c(
+                                              "tr",
+                                              _vm._l(
+                                                Object.keys(table[0]),
+                                                function(head, headIndex) {
+                                                  return _c(
+                                                    "th",
+                                                    {
+                                                      key: headIndex,
+                                                      staticClass:
+                                                        "border px-3 py-1",
+                                                      attrs: { scope: "col" }
+                                                    },
+                                                    [
+                                                      _c("strong", [
+                                                        _vm._v(_vm._s(head))
+                                                      ])
+                                                    ]
+                                                  )
+                                                }
+                                              ),
+                                              0
+                                            )
+                                          ]
+                                        ),
+                                        _vm._v(" "),
+                                        _c(
+                                          "tbody",
+                                          _vm._l(table, function(
+                                            row,
+                                            rowIndex
+                                          ) {
+                                            return _c(
+                                              "tr",
+                                              { key: rowIndex },
+                                              _vm._l(row, function(
+                                                col,
+                                                colIndex
+                                              ) {
+                                                return _c(
+                                                  "td",
+                                                  {
+                                                    key: colIndex,
+                                                    staticClass:
+                                                      "border px-3 py-1"
+                                                  },
+                                                  [_vm._v(_vm._s(col))]
+                                                )
+                                              }),
+                                              0
+                                            )
+                                          }),
+                                          0
+                                        )
+                                      ]
+                                    )
+                                  ])
+                                }),
+                                0
+                              )
+                            : _c("div", [
+                                _vm._v(
+                                  "\n                                        N/A\n                                    "
+                                )
+                              ])
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "row mb-2" }, [
+                        _c("div", { staticClass: "col-md-12" }, [
+                          _c("h3", { staticClass: "border-bottom" }, [
+                            _vm._v("Desired Output")
+                          ]),
+                          _vm._v(" "),
+                          _vm.output != null
+                            ? _c("div", [
+                                _c(
+                                  "table",
+                                  {
+                                    staticClass: "table table-sm table-striped"
+                                  },
+                                  [
+                                    _c(
+                                      "thead",
+                                      { staticClass: "thead-light" },
+                                      [
+                                        _c(
+                                          "tr",
+                                          _vm._l(
+                                            Object.keys(_vm.output[0]),
+                                            function(head, headIndex) {
+                                              return _c(
+                                                "th",
+                                                {
+                                                  key: headIndex,
+                                                  staticClass:
+                                                    "border px-3 py-1",
+                                                  attrs: { scope: "col" }
+                                                },
+                                                [
+                                                  _c("strong", [
+                                                    _vm._v(_vm._s(head))
+                                                  ])
+                                                ]
+                                              )
+                                            }
+                                          ),
+                                          0
+                                        )
+                                      ]
+                                    ),
+                                    _vm._v(" "),
+                                    _c(
+                                      "tbody",
+                                      _vm._l(_vm.output, function(row, index) {
+                                        return _c(
+                                          "tr",
+                                          { key: index },
+                                          _vm._l(row, function(col, colIndex) {
+                                            return _c(
+                                              "td",
+                                              {
+                                                key: colIndex,
+                                                staticClass: "border px-3 py-1"
+                                              },
+                                              [_vm._v(_vm._s(col))]
+                                            )
+                                          }),
+                                          0
+                                        )
+                                      }),
+                                      0
+                                    )
+                                  ]
+                                )
+                              ])
+                            : _c("div", [
+                                _vm._v(
+                                  "\n                                        N/A\n                                    "
+                                )
+                              ])
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "row mb-2" }, [
+                        _c("div", { staticClass: "col-md-12" }, [
+                          _c("h3", { staticClass: "border-bottom" }, [
+                            _vm._v("Query Output")
+                          ]),
+                          _vm._v(" "),
+                          _vm.qOutput != null
+                            ? _c("div", [
+                                _c(
+                                  "table",
+                                  {
+                                    staticClass: "table table-sm table-striped"
+                                  },
+                                  [
+                                    _c(
+                                      "thead",
+                                      { staticClass: "thead-light" },
+                                      [
+                                        _c(
+                                          "tr",
+                                          _vm._l(
+                                            Object.keys(_vm.qOutput[0]),
+                                            function(head, headIndex) {
+                                              return _c(
+                                                "th",
+                                                {
+                                                  key: headIndex,
+                                                  staticClass:
+                                                    "border px-3 py-1",
+                                                  attrs: { scope: "col" }
+                                                },
+                                                [
+                                                  _c("strong", [
+                                                    _vm._v(_vm._s(head))
+                                                  ])
+                                                ]
+                                              )
+                                            }
+                                          ),
+                                          0
+                                        )
+                                      ]
+                                    ),
+                                    _vm._v(" "),
+                                    _c(
+                                      "tbody",
+                                      _vm._l(_vm.qOutput, function(row, index) {
+                                        return _c(
+                                          "tr",
+                                          { key: index },
+                                          _vm._l(row, function(col, colIndex) {
+                                            return _c(
+                                              "td",
+                                              {
+                                                key: colIndex,
+                                                staticClass: "border px-3 py-1"
+                                              },
+                                              [_vm._v(_vm._s(col))]
+                                            )
+                                          }),
+                                          0
+                                        )
+                                      }),
+                                      0
+                                    )
+                                  ]
+                                )
+                              ])
+                            : _c("div", [
+                                _vm._v(
+                                  "\n                                        " +
+                                    _vm._s(_vm.error) +
+                                    "\n                                    "
+                                )
+                              ])
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "row mb-2" }, [
+                        _c("div", { staticClass: "col-md-12" }, [
+                          _vm.result != null
+                            ? _c("div", [
+                                _vm.result == true
+                                  ? _c(
+                                      "div",
+                                      {
+                                        staticClass:
+                                          "row text-center alert alert-success push-down"
+                                      },
+                                      [
+                                        _c(
+                                          "div",
+                                          { staticClass: "col-md-12" },
+                                          [
+                                            _vm._v(
+                                              "\n                                                Hurry!! You were correct! \n                                            "
+                                            )
+                                          ]
+                                        )
+                                      ]
+                                    )
+                                  : _c(
+                                      "div",
+                                      {
+                                        staticClass:
+                                          "row text-center alert alert-danger push-down"
+                                      },
+                                      [
+                                        _c(
+                                          "div",
+                                          { staticClass: "col-md-12" },
+                                          [
+                                            _vm._v(
+                                              "\n                                                Oh no, seems like the query was wrong :'(\n                                            "
+                                            )
+                                          ]
+                                        )
+                                      ]
+                                    )
+                              ])
+                            : _vm._e()
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _vm._m(0),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "row mb-2" }, [
+                        _c("div", { staticClass: "col-md-6" }, [
+                          _c(
+                            "a",
+                            {
+                              staticClass: "btn btn-secondary w-100",
+                              attrs: { href: "#/" },
+                              on: {
+                                click: function($event) {
+                                  return _vm.fetchQuestion()
+                                }
+                              }
+                            },
+                            [_vm._v("Attempt another Question")]
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "col-md-6" }, [
+                          _c(
+                            "a",
+                            {
+                              staticClass: "btn btn-success w-100",
+                              attrs: { href: "#/" },
+                              on: {
+                                click: function($event) {
+                                  return _vm.submitQuery()
+                                }
+                              }
+                            },
+                            [_vm._v("Submit answer")]
+                          )
+                        ])
+                      ])
+                    ]
+                  )
+                ])
+          ])
+        ])
+      ])
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row mb-4" }, [
+      _c("div", { staticClass: "col-md-12" }, [
+        _c("textarea", {
+          staticClass: "form-control",
+          attrs: {
+            name: "query",
+            cols: "30",
+            rows: "3",
+            placeholder: "Write your query here",
+            id: "query"
+          }
+        })
+      ])
+    ])
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Tags/View.vue?vue&type=template&id=541d27a0&":
 /*!************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Tags/View.vue?vue&type=template&id=541d27a0& ***!
@@ -53702,6 +54414,7 @@ Vue.component('tags-view', __webpack_require__(/*! ./components/Tags/View.vue */
 Vue.component('analytics-tags', __webpack_require__(/*! ./components/Analytics/Tags.vue */ "./resources/js/components/Analytics/Tags.vue")["default"]); // Quiz Components
 
 Vue.component('quiz-create', __webpack_require__(/*! ./components/Quiz/Create.vue */ "./resources/js/components/Quiz/Create.vue")["default"]);
+Vue.component('quiz-start', __webpack_require__(/*! ./components/Quiz/Start.vue */ "./resources/js/components/Quiz/Start.vue")["default"]);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -54306,6 +55019,75 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Create_vue_vue_type_template_id_6ba3f1fb___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Create_vue_vue_type_template_id_6ba3f1fb___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/Quiz/Start.vue":
+/*!************************************************!*\
+  !*** ./resources/js/components/Quiz/Start.vue ***!
+  \************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _Start_vue_vue_type_template_id_2f4750b3___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Start.vue?vue&type=template&id=2f4750b3& */ "./resources/js/components/Quiz/Start.vue?vue&type=template&id=2f4750b3&");
+/* harmony import */ var _Start_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Start.vue?vue&type=script&lang=js& */ "./resources/js/components/Quiz/Start.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _Start_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _Start_vue_vue_type_template_id_2f4750b3___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _Start_vue_vue_type_template_id_2f4750b3___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/Quiz/Start.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/Quiz/Start.vue?vue&type=script&lang=js&":
+/*!*************************************************************************!*\
+  !*** ./resources/js/components/Quiz/Start.vue?vue&type=script&lang=js& ***!
+  \*************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Start_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./Start.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Quiz/Start.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Start_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/Quiz/Start.vue?vue&type=template&id=2f4750b3&":
+/*!*******************************************************************************!*\
+  !*** ./resources/js/components/Quiz/Start.vue?vue&type=template&id=2f4750b3& ***!
+  \*******************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Start_vue_vue_type_template_id_2f4750b3___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./Start.vue?vue&type=template&id=2f4750b3& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Quiz/Start.vue?vue&type=template&id=2f4750b3&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Start_vue_vue_type_template_id_2f4750b3___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Start_vue_vue_type_template_id_2f4750b3___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 

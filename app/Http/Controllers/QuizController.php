@@ -26,4 +26,16 @@ class QuizController extends Controller
 
         return back()->with('success', 'Quiz Successfully Created');
     }
+
+    public function index()
+    {
+        return view('quiz.index');
+    }
+
+    public function start()
+    {
+        $navBool = null;
+        
+        return view('quiz.start', compact('navBool'));
+    }
 }

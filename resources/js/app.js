@@ -40,6 +40,7 @@ Vue.component('analytics-tags', require('./components/Analytics/Tags.vue').defau
 
 // Quiz Components
 Vue.component('quiz-create', require('./components/Quiz/Create.vue').default);
+Vue.component('quiz-start', require('./components/Quiz/Start.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
