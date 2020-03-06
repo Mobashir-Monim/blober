@@ -18,6 +18,8 @@ class DatabaseSeeder extends Seeder
             StudentsTableSeeder::class,
             TagsTableSeeder::class,
             DPSeeder::class,
+            QPSeeder::class,
+            QTPSeeder::class,
             // TableSeeder::class,
             // PoolTableSeeder::class,
         ]);
