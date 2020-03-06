@@ -17,7 +17,7 @@ class DatabaseSeeder extends Seeder
             RoleUserTableSeeder::class,
             StudentsTableSeeder::class,
             TagsTableSeeder::class,
-            DataPoolSeeder::class,
+            DPSeeder::class,
             // TableSeeder::class,
             // PoolTableSeeder::class,
         ]);
