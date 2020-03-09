@@ -34,7 +34,7 @@ class QuizController extends Controller
 
     public function start()
     {
-        $navBool = null;
+        $navBool = false;
         
         return view('quiz.start', compact('navBool'));
     }

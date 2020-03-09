@@ -38,3 +38,7 @@
 .bg-secondary-2 {
     background-color: #d4d4d485 !important;
   }
+
+.w-9 {
+    width: 9% !important;
+}
