@@ -41,9 +41,18 @@
         },
         methods: {
             startQuiz() {
-                console.log(screen.availWidth, screen.availHeight);
                 let strWindowFeatures = "height=" + screen.availHeight + ",width=" + screen.availWidth + "location=no,menubar=no,scrollbars=no,resizable=no,fullscreen=yes";
-                window.open(this.route, "Blober_Quiz", strWindowFeatures);
+                let win = window.open(this.route, "Blober_Quiz", strWindowFeatures);
+
+                setInterval(function () {
+                    win.onload = function () {
+                        console.log('In onload');
+                        setTimeout(() => {
+                            win.close();
+                            win.close();
+                        }, 30000);
+                    }
+                }, 100);
             },
         },
     }

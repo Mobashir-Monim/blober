@@ -3368,9 +3368,17 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     startQuiz: function startQuiz() {
-      console.log(screen.availWidth, screen.availHeight);
       var strWindowFeatures = "height=" + screen.availHeight + ",width=" + screen.availWidth + "location=no,menubar=no,scrollbars=no,resizable=no,fullscreen=yes";
-      window.open(this.route, "Blober_Quiz", strWindowFeatures);
+      var win = window.open(this.route, "Blober_Quiz", strWindowFeatures);
+      setInterval(function () {
+        win.onload = function () {
+          console.log('In onload');
+          setTimeout(function () {
+            win.close();
+            win.close();
+          }, 30000);
+        };
+      }, 100);
     }
   }
 });
@@ -3512,43 +3520,108 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  mounted: function mounted() {},
-  props: [],
-  data: function data() {
-    return {};
+  mounted: function mounted() {
+    var _this = this;
+
+    this.questionsID = JSON.parse(this.qids);
+    this.qlist = JSON.parse(this.questionslist);
+    this.arrayOfTables = JSON.parse(this.tablelist);
+    this.tnames = JSON.parse(this.names);
+    this.time = this.settime;
+
+    window.onload = function () {
+      _this.secs = document.getElementById('seconds');
+      _this.mins = document.getElementById('minutes');
+      _this.hours = document.getElementById('hours');
+      setTimeout(function () {
+        _this.decrementTime();
+      }, 1000);
+    };
   },
-  methods: {},
-  computed: {}
+  props: ['qids', 'questionslist', 'tablelist', 'names', 'settime'],
+  data: function data() {
+    return {
+      questionsID: [],
+      qlist: [],
+      arrayOfTables: [],
+      selectedQuestion: 0,
+      tnames: [],
+      qOutput: null,
+      time: 0,
+      secs: null,
+      mins: null,
+      hours: null
+    };
+  },
+  methods: {
+    nextQuestion: function nextQuestion() {
+      if (this.selectedQuestion + 1 <= this.questionsID.length) {
+        this.getQuestion(this.selectedQuestion + 1);
+      }
+    },
+    prevQuestion: function prevQuestion() {
+      if (this.selectedQuestion - 1 >= 0) {
+        this.getQuestion(this.selectedQuestion - 1);
+      }
+    },
+    getQuestion: function getQuestion(index) {
+      this.selectedQuestion = index;
+    },
+    decrementTime: function decrementTime() {
+      var _this2 = this;
+
+      if (this.time > 0) {
+        this.hours.innerText = parseInt(this.time / 3600);
+        this.mins.innerText = parseInt(this.time % 3600 / 60);
+        this.secs.innerText = this.time == 0 ? 0 : this.time % 60;
+        this.time--;
+        setTimeout(function () {
+          _this2.decrementTime();
+        }, 1000);
+      } else {
+        // let x = confirm('Quiz time is over. Answers will no longer be accepted!');
+        this.time = 0;
+        this.secs.innerText = 0;
+      }
+    }
+  },
+  computed: {
+    quesIDs: {
+      get: function get() {
+        return this.questionsID;
+      },
+      set: function set(val) {
+        this.questionsID = val;
+      }
+    },
+    currentQIndex: {
+      get: function get() {
+        return this.selectedQuestion;
+      },
+      set: function set(val) {
+        this.selectedQuestion = val;
+      }
+    },
+    allQuestions: {
+      get: function get() {
+        return this.qlist;
+      },
+      set: function set(val) {}
+    },
+    allTables: {
+      get: function get() {
+        return this.arrayOfTables;
+      },
+      set: function set(val) {}
+    },
+    allNames: {
+      get: function get() {
+        return this.tnames;
+      },
+      set: function set(val) {}
+    }
+  }
 });
 
 /***/ }),
@@ -41652,6 +41725,59 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "row" }, [
+    _c("div", { staticClass: "col-md-3" }, [
+      _c("div", { staticClass: "card" }, [
+        _c("div", { staticClass: "card-header" }, [_vm._v("Quiz Nav")]),
+        _vm._v(" "),
+        _c("div", { staticClass: "card-body" }, [
+          _c("div", { staticClass: "row mb-3" }, [
+            _c("div", { staticClass: "col-md-12" }, [
+              _vm._m(0),
+              _vm._v(" "),
+              _c("div", { staticClass: "text-center" }, [
+                _vm._v("Time Remaining")
+              ]),
+              _vm._v(" "),
+              _c(
+                "div",
+                { staticClass: "row mt-3" },
+                _vm._l(_vm.quesIDs, function(q, qid) {
+                  return _c(
+                    "div",
+                    {
+                      key: qid,
+                      staticClass: "col-md-4 text-center p-2",
+                      on: {
+                        click: function($event) {
+                          return _vm.getQuestion(qid)
+                        }
+                      }
+                    },
+                    [
+                      qid != _vm.currentQIndex
+                        ? _c(
+                            "div",
+                            { staticClass: "question-tab rounded p-2" },
+                            [_vm._v(_vm._s(qid + 1))]
+                          )
+                        : _c(
+                            "div",
+                            {
+                              staticClass: "selected-question-tab rounded p-2"
+                            },
+                            [_vm._v(_vm._s(qid + 1))]
+                          )
+                    ]
+                  )
+                }),
+                0
+              )
+            ])
+          ])
+        ])
+      ])
+    ]),
+    _vm._v(" "),
     _c("div", { staticClass: "col-md-9" }, [
       _c("div", { staticClass: "card" }, [
         _c("div", { staticClass: "card-header" }, [_vm._v("Quiz Panel")]),
@@ -41661,119 +41787,64 @@ var render = function() {
             _c("div", { staticClass: "col-md-12" }, [
               _c("h3", { staticClass: "border-bottom" }, [_vm._v("Question")]),
               _vm._v(" "),
-              _c("p", { domProps: { innerHTML: _vm._s(_vm.question) } }),
+              _c("p", {
+                domProps: {
+                  innerHTML: _vm._s(
+                    _vm.allQuestions[_vm.currentQIndex]["question"]
+                  )
+                }
+              }),
+              _vm._v(" "),
+              _c("span", { staticClass: "block-inline" }),
               _vm._v(" "),
               _c("div", { staticClass: "row mb-3" }, [
-                _c("div", { staticClass: "col-md-4" }, [
-                  _vm._v("Points: " + _vm._s(_vm.points))
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "col-md-4" }, [
-                  _vm._v("Deductible: " + _vm._s(_vm.deductible))
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "col-md-4" }, [
-                  _vm._v("Time: " + _vm._s(_vm.time))
+                _c("div", { staticClass: "col-md-12 text-right" }, [
+                  _c("strong", [
+                    _vm._v(
+                      "(" +
+                        _vm._s(_vm.allQuestions[_vm.currentQIndex]["points"]) +
+                        ")"
+                    )
+                  ])
                 ])
               ])
             ])
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "row mb-4" }, [
-            _c("div", { staticClass: "col-md-12" }, [
-              _c("h3", { staticClass: "border-bottom" }, [_vm._v("Tables")]),
-              _vm._v(" "),
-              _vm.tables != null
-                ? _c(
-                    "div",
-                    _vm._l(_vm.tables, function(table, index) {
-                      return _c("div", { key: index }, [
-                        _c("h5", { staticClass: "text-center" }, [
-                          _vm._v("Table Name: " + _vm._s(_vm.tableNames[index]))
-                        ]),
-                        _vm._v(" "),
-                        _c(
-                          "table",
-                          { staticClass: "table table-sm table-striped" },
-                          [
-                            _c("caption", [
-                              _vm._v(
-                                "Table Name: " + _vm._s(_vm.tableNames[index])
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("thead", { staticClass: "thead-light" }, [
-                              _c(
-                                "tr",
-                                _vm._l(Object.keys(table[0]), function(
-                                  head,
-                                  headIndex
-                                ) {
-                                  return _c(
-                                    "th",
-                                    {
-                                      key: headIndex,
-                                      staticClass: "border px-3 py-1",
-                                      attrs: { scope: "col" }
-                                    },
-                                    [_c("strong", [_vm._v(_vm._s(head))])]
-                                  )
-                                }),
-                                0
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c(
-                              "tbody",
-                              _vm._l(table, function(row, rowIndex) {
-                                return _c(
-                                  "tr",
-                                  { key: rowIndex },
-                                  _vm._l(row, function(col, colIndex) {
-                                    return _c(
-                                      "td",
-                                      {
-                                        key: colIndex,
-                                        staticClass: "border px-3 py-1"
-                                      },
-                                      [_vm._v(_vm._s(col))]
-                                    )
-                                  }),
-                                  0
-                                )
-                              }),
-                              0
-                            )
-                          ]
-                        )
-                      ])
-                    }),
-                    0
-                  )
-                : _c("div", [
-                    _vm._v(
-                      "\n                            N/A\n                        "
-                    )
-                  ])
-            ])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "row mb-2" }, [
-            _c("div", { staticClass: "col-md-12" }, [
-              _c("h3", { staticClass: "border-bottom" }, [
-                _vm._v("Desired Output")
-              ]),
-              _vm._v(" "),
-              _vm.output != null
-                ? _c("div", [
+            _c(
+              "div",
+              { staticClass: "col-md-12" },
+              [
+                _c("h3", { staticClass: "border-bottom" }, [_vm._v("Tables")]),
+                _vm._v(" "),
+                _vm._l(_vm.allTables[_vm.currentQIndex], function(
+                  table,
+                  index
+                ) {
+                  return _c("div", { key: index }, [
+                    _c("h5", { staticClass: "text-center" }, [
+                      _vm._v(
+                        "Table Name: " +
+                          _vm._s(_vm.allNames[_vm.currentQIndex][index])
+                      )
+                    ]),
+                    _vm._v(" "),
                     _c(
                       "table",
                       { staticClass: "table table-sm table-striped" },
                       [
+                        _c("caption", [
+                          _vm._v(
+                            "Table Name: " +
+                              _vm._s(_vm.allNames[_vm.currentQIndex][index])
+                          )
+                        ]),
+                        _vm._v(" "),
                         _c("thead", { staticClass: "thead-light" }, [
                           _c(
                             "tr",
-                            _vm._l(Object.keys(_vm.output[0]), function(
+                            _vm._l(Object.keys(table[0]), function(
                               head,
                               headIndex
                             ) {
@@ -41793,10 +41864,10 @@ var render = function() {
                         _vm._v(" "),
                         _c(
                           "tbody",
-                          _vm._l(_vm.output, function(row, index) {
+                          _vm._l(table, function(row, rowIndex) {
                             return _c(
                               "tr",
-                              { key: index },
+                              { key: rowIndex },
                               _vm._l(row, function(col, colIndex) {
                                 return _c(
                                   "td",
@@ -41815,11 +41886,79 @@ var render = function() {
                       ]
                     )
                   ])
-                : _c("div", [
-                    _vm._v(
-                      "\n                            N/A\n                        "
+                })
+              ],
+              2
+            )
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "row mb-2" }, [
+            _c("div", { staticClass: "col-md-12" }, [
+              _c("h3", { staticClass: "border-bottom" }, [
+                _vm._v("Desired Output")
+              ]),
+              _vm._v(" "),
+              true
+                ? _c("div", [
+                    _c(
+                      "table",
+                      { staticClass: "table table-sm table-striped" },
+                      [
+                        _c("thead", { staticClass: "thead-light" }, [
+                          _c(
+                            "tr",
+                            _vm._l(
+                              Object.keys(
+                                JSON.parse(
+                                  _vm.allQuestions[_vm.currentQIndex].output
+                                )[0]
+                              ),
+                              function(head, headIndex) {
+                                return _c(
+                                  "th",
+                                  {
+                                    key: headIndex,
+                                    staticClass: "border px-3 py-1",
+                                    attrs: { scope: "col" }
+                                  },
+                                  [_c("strong", [_vm._v(_vm._s(head))])]
+                                )
+                              }
+                            ),
+                            0
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c(
+                          "tbody",
+                          _vm._l(
+                            JSON.parse(
+                              _vm.allQuestions[_vm.currentQIndex].output
+                            ),
+                            function(row, index) {
+                              return _c(
+                                "tr",
+                                { key: index },
+                                _vm._l(row, function(col, colIndex) {
+                                  return _c(
+                                    "td",
+                                    {
+                                      key: colIndex,
+                                      staticClass: "border px-3 py-1"
+                                    },
+                                    [_vm._v(_vm._s(col))]
+                                  )
+                                }),
+                                0
+                              )
+                            }
+                          ),
+                          0
+                        )
+                      ]
                     )
                   ])
+                : undefined
             ])
           ]),
           _vm._v(" "),
@@ -41829,136 +41968,75 @@ var render = function() {
                 _vm._v("Query Output")
               ]),
               _vm._v(" "),
-              _vm.qOutput != null
-                ? _c("div", [
-                    _c(
-                      "table",
-                      { staticClass: "table table-sm table-striped" },
-                      [
-                        _c("thead", { staticClass: "thead-light" }, [
-                          _c(
-                            "tr",
-                            _vm._l(Object.keys(_vm.qOutput[0]), function(
-                              head,
-                              headIndex
-                            ) {
-                              return _c(
-                                "th",
-                                {
-                                  key: headIndex,
-                                  staticClass: "border px-3 py-1",
-                                  attrs: { scope: "col" }
-                                },
-                                [_c("strong", [_vm._v(_vm._s(head))])]
-                              )
-                            }),
-                            0
-                          )
-                        ]),
-                        _vm._v(" "),
-                        _c(
-                          "tbody",
-                          _vm._l(_vm.qOutput, function(row, index) {
-                            return _c(
-                              "tr",
-                              { key: index },
-                              _vm._l(row, function(col, colIndex) {
-                                return _c(
-                                  "td",
-                                  {
-                                    key: colIndex,
-                                    staticClass: "border px-3 py-1"
-                                  },
-                                  [_vm._v(_vm._s(col))]
-                                )
-                              }),
-                              0
-                            )
-                          }),
-                          0
-                        )
-                      ]
-                    )
-                  ])
-                : _c("div", [
-                    _vm._v(
-                      "\n                            " +
-                        _vm._s(_vm.error) +
-                        "\n                        "
-                    )
-                  ])
+              false
+                ? undefined
+                : _c("div")
             ])
           ]),
           _vm._v(" "),
-          _c("div", { staticClass: "row mb-2" }, [
-            _c("div", { staticClass: "col-md-12" }, [
-              _vm.result != null
-                ? _c("div", [
-                    _vm.result == true
-                      ? _c(
-                          "div",
-                          {
-                            staticClass:
-                              "row text-center alert alert-success push-down"
-                          },
-                          [
-                            _c("div", { staticClass: "col-md-12" }, [
-                              _vm._v(
-                                "\n                                    Hurry!! You were correct! \n                                "
-                              )
-                            ])
-                          ]
-                        )
-                      : _c(
-                          "div",
-                          {
-                            staticClass:
-                              "row text-center alert alert-danger push-down"
-                          },
-                          [
-                            _c("div", { staticClass: "col-md-12" }, [
-                              _vm._v(
-                                "\n                                    Oh no, seems like the query was wrong :'(\n                                "
-                              )
-                            ])
-                          ]
-                        )
-                  ])
-                : _vm._e()
-            ])
-          ]),
-          _vm._v(" "),
-          _vm._m(0),
+          _vm._m(1),
           _vm._v(" "),
           _c("div", { staticClass: "row mb-2" }, [
-            _vm._m(1),
+            _c("div", { staticClass: "col-md" }, [
+              _c(
+                "a",
+                {
+                  staticClass: "btn btn-secondary w-100",
+                  attrs: { href: "#/" },
+                  on: {
+                    click: function($event) {
+                      return _vm.prevQuestion()
+                    }
+                  }
+                },
+                [
+                  _c("i", { staticClass: "fa fas fa-caret-left" }),
+                  _c("i", { staticClass: "fa fas fa-caret-left mr-2" }),
+                  _vm._v("Prev Question")
+                ]
+              )
+            ]),
+            _vm._v(" "),
+            _vm._m(2),
             _vm._v(" "),
             _c("div", { staticClass: "col-md" }, [
               _c(
                 "a",
                 {
-                  staticClass: "btn btn-success w-100",
+                  staticClass: "btn btn-secondary w-100",
                   attrs: { href: "#/" },
                   on: {
                     click: function($event) {
-                      return _vm.submitQuery()
+                      return _vm.nextQuestion()
                     }
                   }
                 },
-                [_vm._v("Submit answer")]
+                [
+                  _vm._v("Next Question"),
+                  _c("i", { staticClass: "fa fas fa-caret-right ml-2" }),
+                  _c("i", { staticClass: "fa fas fa-caret-right" })
+                ]
               )
-            ]),
-            _vm._v(" "),
-            _vm._m(2)
+            ])
           ])
         ])
       ])
-    ]),
-    _vm._v(" "),
-    _vm._m(3)
+    ])
   ])
 }
 var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("h3", { staticClass: "text-center" }, [
+      _c("span", { attrs: { id: "hours" } }, [_vm._v("0")]),
+      _vm._v(" : "),
+      _c("span", { attrs: { id: "minutes" } }, [_vm._v("15")]),
+      _vm._v(" : "),
+      _c("span", { attrs: { id: "seconds" } }, [_vm._v("30")])
+    ])
+  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
@@ -41983,108 +42061,8 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "col-md" }, [
-      _c(
-        "a",
-        { staticClass: "btn btn-secondary w-100", attrs: { href: "#/" } },
-        [
-          _c("i", { staticClass: "fa fas fa-caret-left" }),
-          _c("i", { staticClass: "fa fas fa-caret-left mr-2" }),
-          _vm._v("Prev Question")
-        ]
-      )
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-md" }, [
-      _c(
-        "a",
-        { staticClass: "btn btn-secondary w-100", attrs: { href: "#/" } },
-        [
-          _vm._v("Next Question"),
-          _c("i", { staticClass: "fa fas fa-caret-right ml-2" }),
-          _c("i", { staticClass: "fa fas fa-caret-right" })
-        ]
-      )
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-md-3" }, [
-      _c("div", { staticClass: "card" }, [
-        _c("div", { staticClass: "card-header" }, [_vm._v("Quiz Nav")]),
-        _vm._v(" "),
-        _c("div", { staticClass: "card-body" }, [
-          _c("div", { staticClass: "row mb-3" }, [
-            _c("div", { staticClass: "col-md-12" }, [
-              _c("h3", { staticClass: "text-center" }, [
-                _c("span", { attrs: { id: "hours" } }, [_vm._v("0")]),
-                _vm._v(" : "),
-                _c("span", { attrs: { id: "minutes" } }, [_vm._v("15")]),
-                _vm._v(" : "),
-                _c("span", { attrs: { id: "seconds" } }, [_vm._v("30")])
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "text-center" }, [
-                _vm._v("Time Remaining")
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "row mt-3" }, [
-                _c("div", { staticClass: "col-md-4 text-center py-2" }, [
-                  _vm._v("1")
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "col-md-4 text-center py-2" }, [
-                  _vm._v("2")
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "col-md-4 text-center py-2" }, [
-                  _vm._v("3")
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "col-md-4 text-center py-2" }, [
-                  _vm._v("4")
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "col-md-4 text-center py-2" }, [
-                  _vm._v("5")
-                ]),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  {
-                    staticClass: "col-md-4 rounded text-center py-2 bg-primary"
-                  },
-                  [_vm._v("6")]
-                ),
-                _vm._v(" "),
-                _c("div", { staticClass: "col-md-4 text-center py-2" }, [
-                  _vm._v("7")
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "col-md-4 text-center py-2" }, [
-                  _vm._v("8")
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "col-md-4 text-center py-2" }, [
-                  _vm._v("9")
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "col-md-4 text-center py-2" }, [
-                  _vm._v("10")
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "col-md-4 text-center py-2" }, [
-                  _vm._v("11")
-                ])
-              ])
-            ])
-          ])
-        ])
+      _c("a", { staticClass: "btn btn-success w-100", attrs: { href: "#/" } }, [
+        _vm._v("Submit answer")
       ])
     ])
   }
@@ -55281,8 +55259,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /home/user/Documents/blober/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /home/user/Documents/blober/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /Users/mobashirmonim/Documents/blober/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /Users/mobashirmonim/Documents/blober/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

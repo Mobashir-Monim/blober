@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Carbon\Carbon;
 use App\Quiz;
 use App\QuizQuestions as QQ;
+use App\Helpers\QuizHelper as QH;
 
 class QuizController extends Controller
 {
@@ -35,7 +36,18 @@ class QuizController extends Controller
     public function start()
     {
         $navBool = false;
+        $helper = new QH;
+        $qids = $helper->getQids();
+        $questions = $helper->makeQuestions();
+        $temp = $helper->getTables();
+        $tables = array();
+        $names = array();
+
+        foreach ($temp as $collect) {
+            array_push($tables, $collect['tables']);
+            array_push($names, $collect['names']);
+        }
         
-        return view('quiz.start', compact('navBool'));
+        return view('quiz.start', compact('navBool', 'tables', 'questions', 'qids', 'names'));
     }
 }
