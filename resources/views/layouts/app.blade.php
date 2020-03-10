@@ -92,7 +92,7 @@
                             <div class="col-md-3 col-sm-3 col-3">
                                 <div class="row">
                                     <div class="col-md-12">
-                                        <div class="card">
+                                        <div class="card sidenav">
                                             <div class="card-header">Side Nav</div>
                                             <div class="card-body">
                                                 <div class="row mb-2">

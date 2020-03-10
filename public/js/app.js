@@ -41726,7 +41726,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "row" }, [
     _c("div", { staticClass: "col-md-3" }, [
-      _c("div", { staticClass: "card" }, [
+      _c("div", { staticClass: "card sidenav" }, [
         _c("div", { staticClass: "card-header" }, [_vm._v("Quiz Nav")]),
         _vm._v(" "),
         _c("div", { staticClass: "card-body" }, [
