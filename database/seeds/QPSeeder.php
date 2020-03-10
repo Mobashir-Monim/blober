@@ -16,5 +16,11 @@ class QPSeeder extends Seeder
         foreach ($vals as $val) {
             App\QueryPool::create($val);
         }
+
+        foreach ($vals as $val) {
+            $val['id'] += 26;
+            $val['is_quiz_query'] = 0;
+            App\QueryPool::create($val);
+        }
     }
 }

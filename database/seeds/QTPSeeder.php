@@ -17,5 +17,10 @@ class QTPSeeder extends Seeder
             $statement = 'insert into tag_query_pool values (' . $val['id'] . ', ' . $val['tag_id'] . ', ' . $val['query_pool_id'] . ', ' . (is_null($val['created_at']) ? 'null' : $val['created_at'])  . ', ' . (is_null($val['updated_at']) ? 'null' : $val['updated_at']) . ');';
             \DB::statement($statement);
         }
+
+        foreach ($vals as $val) {
+            $statement = 'insert into tag_query_pool values (' . ($val['id'] + 87) . ', ' . $val['tag_id'] . ', ' . ($val['query_pool_id'] + 26) . ', ' . (is_null($val['created_at']) ? 'null' : $val['created_at'])  . ', ' . (is_null($val['updated_at']) ? 'null' : $val['updated_at']) . ');';
+            \DB::statement($statement);
+        }
     }
 }
