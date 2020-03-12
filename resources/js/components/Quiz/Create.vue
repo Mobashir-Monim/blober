@@ -54,7 +54,9 @@
                                         <h6 class="border-bottom">All Tags</h6>
                                         <div class="row">
                                             <div class="col-md-12 tags-cont">
-                                                <div class="p-2 m-1 tag label-info float-left rounded" @click="selectTag(index, rIndex)" v-for="(tag, rIndex) in obj.allTags" :key="rIndex">{{ tag }}</div>
+                                                <div class="p-2 m-1 tag label-info float-left rounded" @click="selectTag(index, rIndex)" v-for="(tag, rIndex) in obj.allTags" :key="rIndex">
+                                                    <span v-if="tag != undefined && tag != null">{{ tag }}</span>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -62,7 +64,9 @@
                                         <h6 class="border-bottom">Selected Tags</h6>
                                         <div class="row mb-2">
                                             <div class="col-md-12 tags-cont">
-                                                <div class="p-2 m-1 tag label-info float-left rounded" @click="unselectTag(index, sIndex)" v-for="(tag, sIndex) in obj.tags" :key="sIndex">{{ tag }}</div>
+                                                <div class="p-2 m-1 tag label-info float-left rounded" @click="unselectTag(index, sIndex)" v-for="(tag, sIndex) in obj.tags" :key="sIndex">
+                                                    <span v-if="tag != undefined && tag != null">{{ tag }}</span>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -88,15 +92,17 @@
         mounted() {
             this.sections = JSON.parse(this.labsections);
             this.sTags = JSON.parse(this.systemtags);
-            this.qClasses[0].allTags = this.sTags;
+            this.qClasses[0].allTags = Object.assign({}, this.sTags);
+            this.qClasses[0].tags = new Object;
         },
         props: ['systemtags', 'labsections', 'token'],
         data() {
             return {
                 sections: [],
-                sTags: [],
+                sTags: new Object(),
                 qClasses: [
                     {
+                        diffTag: false,
                         allTags: [],
                         tags: [],
                         diff: '',
@@ -110,8 +116,9 @@
             addClass() {
                 this.qClasses.push(
                     {
-                        allTags: this.sTags,
-                        tags: [],
+                        diffTag: false,
+                        allTags: Object.assign({}, this.sTags),
+                        tags: new Object,
                         diff: '',
                         qNo: null,
                         points: null,
@@ -131,18 +138,16 @@
                 this.qClasses[index].points = el.target.value;
             },
             selectTag(index, rIndex) {
-                this.qClasses[index].tags.push(this.qClasses[index].allTags[rIndex]);
-                this.qClasses[index].allTags = Object.keys(this.qClasses[index].allTags).reduce((object, key) => {
-                    if (key != rIndex) {
-                        object[key] = this.qClasses[index].allTags[key];
-                    }
-
-                    return object
-                }, {});
+                this.qClasses[index].tags[rIndex] = this.qClasses[index].allTags[rIndex];
+                delete this.qClasses[index].allTags[rIndex];
+                this.qClasses.diffTag = !this.qClasses.diffTag;
+                this.$forceUpdate();
             },
             unselectTag(index, sIndex) {
-                this.qClasses[index].allTags[Object.keys(this.qClasses[index].allTags).length] = this.qClasses[index].tags[sIndex];
-                this.qClasses[index].tags.splice(sIndex, 1);
+                this.qClasses[index].allTags[sIndex] = this.qClasses[index].tags[sIndex];
+                delete this.qClasses[index].tags[sIndex];
+                this.qClasses.diffTag = !this.qClasses.diffTag;
+                this.$forceUpdate();
             },
             submitData() {
                 document.getElementById('qData').value = JSON.stringify(this.qClasses);

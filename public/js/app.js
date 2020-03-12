@@ -3239,18 +3239,24 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
     this.sections = JSON.parse(this.labsections);
     this.sTags = JSON.parse(this.systemtags);
-    this.qClasses[0].allTags = this.sTags;
+    this.qClasses[0].allTags = Object.assign({}, this.sTags);
+    this.qClasses[0].tags = new Object();
   },
   props: ['systemtags', 'labsections', 'token'],
   data: function data() {
     return {
       sections: [],
-      sTags: [],
+      sTags: new Object(),
       qClasses: [{
+        diffTag: false,
         allTags: [],
         tags: [],
         diff: '',
@@ -3262,8 +3268,9 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
   methods: {
     addClass: function addClass() {
       this.qClasses.push({
-        allTags: this.sTags,
-        tags: [],
+        diffTag: false,
+        allTags: Object.assign({}, this.sTags),
+        tags: new Object(),
         diff: '',
         qNo: null,
         points: null
@@ -3282,20 +3289,16 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
       this.qClasses[index].points = el.target.value;
     },
     selectTag: function selectTag(index, rIndex) {
-      var _this = this;
-
-      this.qClasses[index].tags.push(this.qClasses[index].allTags[rIndex]);
-      this.qClasses[index].allTags = Object.keys(this.qClasses[index].allTags).reduce(function (object, key) {
-        if (key != rIndex) {
-          object[key] = _this.qClasses[index].allTags[key];
-        }
-
-        return object;
-      }, {});
+      this.qClasses[index].tags[rIndex] = this.qClasses[index].allTags[rIndex];
+      delete this.qClasses[index].allTags[rIndex];
+      this.qClasses.diffTag = !this.qClasses.diffTag;
+      this.$forceUpdate();
     },
     unselectTag: function unselectTag(index, sIndex) {
-      this.qClasses[index].allTags[Object.keys(this.qClasses[index].allTags).length] = this.qClasses[index].tags[sIndex];
-      this.qClasses[index].tags.splice(sIndex, 1);
+      this.qClasses[index].allTags[sIndex] = this.qClasses[index].tags[sIndex];
+      delete this.qClasses[index].tags[sIndex];
+      this.qClasses.diffTag = !this.qClasses.diffTag;
+      this.$forceUpdate();
     },
     submitData: function submitData() {
       document.getElementById('qData').value = JSON.stringify(this.qClasses);
@@ -41530,7 +41533,11 @@ var render = function() {
                                     }
                                   }
                                 },
-                                [_vm._v(_vm._s(tag))]
+                                [
+                                  tag != undefined && tag != null
+                                    ? _c("span", [_vm._v(_vm._s(tag))])
+                                    : _vm._e()
+                                ]
                               )
                             }),
                             0
@@ -41560,7 +41567,11 @@ var render = function() {
                                     }
                                   }
                                 },
-                                [_vm._v(_vm._s(tag))]
+                                [
+                                  tag != undefined && tag != null
+                                    ? _c("span", [_vm._v(_vm._s(tag))])
+                                    : _vm._e()
+                                ]
                               )
                             }),
                             0
