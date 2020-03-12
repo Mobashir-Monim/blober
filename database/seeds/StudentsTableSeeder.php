@@ -22,5 +22,14 @@ class StudentsTableSeeder extends Seeder
             'enrollment' => ($now->month <= 4 ? 'Spring ' : ($now->month <= 8 ? 'Summer ' : 'Fall ')) . $now->year,
             'section' => 1,
         ]);
+
+        DB::table('students')->insert([
+            'user_id' => 2,
+            'level_name' => 'Beginner',
+            'level' => 0,
+            'points' => 0,
+            'enrollment' => ($now->month <= 4 ? 'Spring ' : ($now->month <= 8 ? 'Summer ' : 'Fall ')) . $now->year,
+            'section' => 1,
+        ]);
     }
 }

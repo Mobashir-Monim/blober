@@ -35,6 +35,8 @@ class QuizController extends Controller
 
     public function start()
     {
+        dd(auth()->user()->id);
+
         $navBool = false;
         $helper = new QH;
         $qids = $helper->getQids();

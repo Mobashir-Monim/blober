@@ -49,7 +49,7 @@ class User extends Authenticatable
 
     public function student()
     {
-        return $this->hasOne('App\Student');
+        return $this->hasOne('App\Student', 'user_id');
     }
 
     public function authCodes()
