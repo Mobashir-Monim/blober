@@ -20,7 +20,7 @@ class StudentsTableSeeder extends Seeder
             'level' => 0,
             'points' => 0,
             'enrollment' => ($now->month <= 4 ? 'Spring ' : ($now->month <= 8 ? 'Summer ' : 'Fall ')) . $now->year,
-            'section' => 2,
+            'section' => 1,
         ]);
     }
 }

@@ -57,7 +57,7 @@ Route::get('test', function (Illuminate\Http\Request $request) {
     // for ($i = 0; $i < 30; $i++) {
     //     App\SessionCode::create(['user_id' => 2, 'nonce' => $i, 'code' => $i, 'expires_at' => Carbon\Carbon::now()->addMinutes($i)->toDateTimeString(), 'created_at' => Carbon\Carbon::now()->addMinutes($i - 100)->toDateTimeString()]);
     // }
-
+    dd(App\Quiz::first()->toArray(), Carbon\Carbon::parse('6 am')->toDateTimeString(), Carbon\Carbon::parse('11:59 pm')->toDateTimeString());
     dd(Carbon\Carbon::now()->addMinutes(120)->toDateTimeString(), App\SessionCode::getAuth('code', 29)->code, auth()->user()->getAuth()->code);
 
     try { 

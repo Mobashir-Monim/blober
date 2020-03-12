@@ -20,7 +20,7 @@ class DatabaseSeeder extends Seeder
             DPSeeder::class,
             QPSeeder::class,
             QTPSeeder::class,
-            // TableSeeder::class,
+            QuizSeeder::class,
             // PoolTableSeeder::class,
         ]);
     }
