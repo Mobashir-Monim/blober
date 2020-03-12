@@ -4,7 +4,8 @@ namespace App\Helpers;
 
 use App\QueryPool as QP;
 
-class QuizHelper {
+class QuizHelper extends Helper
+{
     protected $selected = null;
 
     public function __construct()

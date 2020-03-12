@@ -8,7 +8,7 @@ use App\AttemptGroup as AG;
 use App\QueryAttempt as QA;
 use App\User;
 
-class QueryPoolHelper
+class QueryPoolHelper extends Helper
 {
     public function generateDBInsert($request)
     {
