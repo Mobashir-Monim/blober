@@ -50,23 +50,9 @@ Route::group(['middleware' => ['auth', 'auth-code']], function () {
     Route::get('/quiz/create', 'QuizController@create')->name('quiz.create');
     Route::post('/quiz/create', 'QuizController@store')->name('quiz.create');
     Route::get('/quiz/panel', 'QuizController@index')->name('quiz.panel');
-    Route::get('/quiz/start', 'QuizController@start')->name('quiz.start');
+    Route::get('/quiz/start', 'QuizController@start')->name('quiz.start')->middleware('has-quiz');
 });
 
 Route::get('test', function (Illuminate\Http\Request $request) {
-    // for ($i = 0; $i < 30; $i++) {
-    //     App\SessionCode::create(['user_id' => 2, 'nonce' => $i, 'code' => $i, 'expires_at' => Carbon\Carbon::now()->addMinutes($i)->toDateTimeString(), 'created_at' => Carbon\Carbon::now()->addMinutes($i - 100)->toDateTimeString()]);
-    // }
-    dd(App\Quiz::first()->toArray(), Carbon\Carbon::parse('6 am')->toDateTimeString(), Carbon\Carbon::parse('11:59 pm')->toDateTimeString());
-    dd(Carbon\Carbon::now()->addMinutes(120)->toDateTimeString(), App\SessionCode::getAuth('code', 29)->code, auth()->user()->getAuth()->code);
-
-    try { 
-        dd(\DB::select('select *'));
-    } catch(\Illuminate\Database\QueryException $ex){
-        dd($ex->getMessage()); 
-    }
-    dd(\DB::select('select count(*) as num from lab_3 where project_marks = (select max(project_marks) from lab_3);'));
-    dd(json_encode(App\DataPool::all()->pluck('name', 'id')->toArray()));
-    dd(\DB::select('select * from t1;'));
-    dd("dropped t1, t2 and t3");
+    dd('nothing in test');
 });

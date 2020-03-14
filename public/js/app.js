@@ -42043,9 +42043,9 @@ var staticRenderFns = [
     return _c("h3", { staticClass: "text-center" }, [
       _c("span", { attrs: { id: "hours" } }, [_vm._v("0")]),
       _vm._v(" : "),
-      _c("span", { attrs: { id: "minutes" } }, [_vm._v("15")]),
+      _c("span", { attrs: { id: "minutes" } }, [_vm._v("0")]),
       _vm._v(" : "),
-      _c("span", { attrs: { id: "seconds" } }, [_vm._v("30")])
+      _c("span", { attrs: { id: "seconds" } }, [_vm._v("0")])
     ])
   },
   function() {

@@ -7,6 +7,6 @@
         tablelist="{{ json_encode($tables) }}"
         qids="{{ json_encode($qids) }}"
         names="{{ json_encode($names) }}"
-        settime="{{ 30 }}"
+        settime="{{ $time }}"
         ></quiz-start>
 @endsection

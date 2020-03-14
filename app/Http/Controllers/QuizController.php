@@ -35,8 +35,6 @@ class QuizController extends Controller
 
     public function start()
     {
-        dd(auth()->user()->id);
-
         $navBool = false;
         $helper = new QH;
         $qids = $helper->getQids();
@@ -44,12 +42,13 @@ class QuizController extends Controller
         $temp = $helper->getTables();
         $tables = array();
         $names = array();
+        $time = $helper->getTime();
 
         foreach ($temp as $collect) {
             array_push($tables, $collect['tables']);
             array_push($names, $collect['names']);
         }
         
-        return view('quiz.start', compact('navBool', 'tables', 'questions', 'qids', 'names'));
+        return view('quiz.start', compact('navBool', 'tables', 'questions', 'qids', 'names', 'time'));
     }
 }

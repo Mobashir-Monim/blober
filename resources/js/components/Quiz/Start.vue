@@ -7,7 +7,7 @@
                     <div class="row mb-3">
                         <div class="col-md-12">
                             <h3 class="text-center">
-                                <span id="hours">0</span> : <span id="minutes">15</span> : <span id="seconds">30</span>
+                                <span id="hours">0</span> : <span id="minutes">0</span> : <span id="seconds">0</span>
                             </h3>
                             <div class="text-center">Time Remaining</div>
                             <div class="row mt-3">
