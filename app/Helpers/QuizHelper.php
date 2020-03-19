@@ -3,6 +3,7 @@
 namespace App\Helpers;
 
 use App\QueryPool as QP;
+use App\QuizSet as QS;
 use App\Quiz;
 use App\Tag;
 use Carbon\Carbon;

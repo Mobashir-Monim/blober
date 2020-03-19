@@ -10,4 +10,9 @@ class Quiz extends BaseModel
     {
         return $this->hasMany('App\QuizAttempt');
     }
+
+    public function sets()
+    {
+        return $this->hasMany('App\QuizSet');
+    }
 }
