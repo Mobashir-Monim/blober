@@ -17,13 +17,14 @@ class QuizHelper extends Helper
         $now = Carbon::now();
         $this->quiz = Quiz::where('section', auth()->user()->student->section)->where('start', '<=', $now)->where('end', '>', $now)->first();
         $this->getQuestions(json_decode($this->quiz->data));
+        $this->selected->shuffle();
     }
 
     public function getQuestions($classes)
     {
-        foreach ($classes as $class) {
+        foreach ($classes as $key => $class) {
             $tags = Tag::whereIn('name', $this->objToArray($class->tags, true))->get();
-            $this->addQueries($this->getCollective($tags, $this->diffRange($class->diff), $this->getRejects(), $class->qNo));
+            $this->addQueries($this->getCollective($tags, $this->diffRange($class->diff), $this->getRejects(), $class->qNo), $key);
         }
     }
 
@@ -52,8 +53,11 @@ class QuizHelper extends Helper
     public function getCollective($tags, $range, $rejects, $num)
     {
         $queries = null;
+        
         $list = $this->objToString($tags->pluck('id'), false);
-        $ids = array_column($this->objToArray(\DB::select("select query_pool_id from tag_query_pool where tag_id in ($list) group by query_pool_id having count(*) = " . count($tags) . " order by query_pool_id;"), false), 'query_pool_id');
+        $ids = implode(', ', array_column(json_decode(json_encode(\DB::select('select query_pool_id from tag_query_pool group by query_pool_id having count(query_pool_id) = ' . count($tags) . ';')), true), 'query_pool_id'));
+        $removeables = implode(', ', array_column(json_decode(json_encode(\DB::select("select * from tag_query_pool where query_pool_id in ($ids) and tag_id not in ($list);")), true), 'query_pool_id'));
+        $ids = array_column(json_decode(json_encode(\DB::select("select * from tag_query_pool where query_pool_id in ($ids) and tag_id in ($list) and query_pool_id not in ($removeables)")), true), 'query_pool_id');
 
         if (sizeof($range) == 1) {
             $queries = QP::whereIn('id', $ids)->whereNotIn('id', $rejects)->where('diff', '<=', $range[0])->where('is_quiz_query', true)->get();
@@ -61,15 +65,15 @@ class QuizHelper extends Helper
             $queries = QP::whereIn('id', $ids)->whereNotIn('id', $rejects)->where('difficulty', '>=', $range[0])->where('difficulty', '<=', $range[1])->where('is_quiz_query', true)->get();
         }
 
-        return $queries->take($num);
+        return $queries->shuffle()->take($num);
     }
 
-    public function addQueries($queries)
+    public function addQueries($queries, $key)
     {
         if (is_null($this->selected)) {
             $this->selected = $queries;
         } else {
-            $this->selected->merge($queries);
+            $this->selected = $this->selected->merge($queries);
         }
     }
 
