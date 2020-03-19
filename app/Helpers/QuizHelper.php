@@ -17,7 +17,13 @@ class QuizHelper extends Helper
     {
         $now = Carbon::now();
         $this->quiz = Quiz::where('section', auth()->user()->student->section)->where('start', '<=', $now)->where('end', '>', $now)->first();
-        $this->getQuestions(json_decode($this->quiz->data));
+        
+        if ($this->hadQuiz) {
+            $this->getQuestions(json_decode($this->quiz->data));
+        } else {
+            $this->retrieveSetData();
+        }
+
         $this->selected->shuffle();
     }
 

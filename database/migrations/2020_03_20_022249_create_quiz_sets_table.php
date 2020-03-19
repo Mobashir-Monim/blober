@@ -17,6 +17,7 @@ class CreateQuizSetsTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedInteger('user_id');
             $table->unsignedInteger('quiz_id');
+            $table->datetime('start');
             $table->text('data');
             $table->timestamps();
         });
