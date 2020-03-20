@@ -18,7 +18,8 @@ class CreateQuizSetsTable extends Migration
             $table->unsignedInteger('user_id');
             $table->unsignedInteger('quiz_id');
             $table->datetime('start');
-            $table->text('data');
+            $table->string('questions');
+            $table->string('groups')->nullable();
             $table->timestamps();
         });
     }
