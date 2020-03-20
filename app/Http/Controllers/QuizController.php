@@ -30,7 +30,12 @@ class QuizController extends Controller
 
     public function index()
     {
-        return view('quiz.index');
+        $now = Carbon::now();
+        // $quiz = Quiz::where('section', auth()->user()->student->section)->where('start', '<=', $now)->where('end', '>', $now)->first();
+        // dd($quiz);
+        $time = Quiz::where('section', auth()->user()->student->section)->where('start', '<=', $now)->where('end', '>', $now)->first()->remainingTime();
+
+        return view('quiz.index', compact('time'));
     }
 
     public function start()

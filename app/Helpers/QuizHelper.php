@@ -17,7 +17,7 @@ class QuizHelper extends Helper
 
     public function __construct()
     {
-        $now = Carbon::now()->toDateTimeString();
+        $now = Carbon::now();
         $this->quiz = Quiz::where('section', auth()->user()->student->section)->where('start', '<=', $now)->where('end', '>', $now)->first();
         $this->retrieveSetData();
         
@@ -38,7 +38,13 @@ class QuizHelper extends Helper
 
     public function createSet($start)
     {
-        $this->set = QS::create(['questions' => json_encode($this->selected->pluck('id')->toArray()), 'start' => $start, 'quiz_id' => $this->quiz->id, 'user_id' => auth()->user()->id, 'groups' => json_encode([])]);
+        $this->set = QS::create([
+            'questions' => json_encode($this->selected->pluck('id')->toArray()),
+            'start' => $start->toDateTimeString(),
+            'quiz_id' => $this->quiz->id,
+            'user_id' => auth()->user()->id,
+            'groups' => json_encode([])
+        ]);
     }
 
     public function getQuestions($classes)
@@ -128,10 +134,6 @@ class QuizHelper extends Helper
 
     public function getTime()
     {
-        if (is_null($this->time)) {
-            return Carbon::parse($this->quiz->start)->diffInSeconds(Carbon::parse($this->quiz->end));
-        } else {
-            return Carbon::parse($this->quiz->start)->diffInSeconds(Carbon::parse($this->quiz->end)) - Carbon::parse($this->time)->diffInSeconds(Carbon::now());;
-        }
+        return $this->quiz->remainingTime();
     }
 }

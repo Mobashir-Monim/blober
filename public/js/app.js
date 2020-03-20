@@ -3350,38 +3350,36 @@ __webpack_require__.r(__webpack_exports__);
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {},
-  props: ['route'],
+  props: ['route', 'time'],
   data: function data() {
-    return {
-      quizStarted: false,
-      currentQuestion: 'N/A',
-      currentOutput: '',
-      currentPoints: 'N/A',
-      currentDeductible: 'N/A',
-      currentTime: 'N/A',
-      currentTables: [],
-      currentNames: [],
-      currentError: null,
-      queryOutput: null,
-      attemptedQuestions: [],
-      attemptResult: null,
-      attemptStarted: false,
-      attemptGroups: []
+    return {// quizStarted: false,
+      // currentQuestion: 'N/A',
+      // currentOutput: '',
+      // currentPoints: 'N/A',
+      // currentDeductible: 'N/A',
+      // currentTime: 'N/A',
+      // currentTables: [],
+      // currentNames: [],
+      // currentError: null,
+      // queryOutput: null,
+      // attemptedQuestions: [],
+      // attemptResult: null,
+      // attemptStarted: false,
+      // attemptGroups: [],
     };
   },
   methods: {
     startQuiz: function startQuiz() {
       var strWindowFeatures = "height=" + screen.availHeight + ",width=" + screen.availWidth + "location=no,menubar=no,scrollbars=no,resizable=no,fullscreen=yes";
-      var win = window.open(this.route, "Blober_Quiz", strWindowFeatures);
-      setInterval(function () {
-        win.onload = function () {
-          console.log('In onload');
-          setTimeout(function () {
-            win.close();
-            win.close();
-          }, 30000);
-        };
-      }, 100);
+      var win = window.open(this.route, "Blober_Quiz", strWindowFeatures); // setInterval(function () {
+
+      win.onload = function () {
+        console.log('In onload');
+        setTimeout(function () {// win.close();
+          // win.close();
+        }, this.time * 1000);
+      }; // }, 100);
+
     }
   }
 });
@@ -55270,8 +55268,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Users/mobashirmonim/Documents/blober/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /Users/mobashirmonim/Documents/blober/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /home/user/Documents/blober/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /home/user/Documents/blober/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
