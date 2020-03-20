@@ -23,20 +23,7 @@
         props: ['route', 'time'],
         data() {
             return {
-                // quizStarted: false,
-                // currentQuestion: 'N/A',
-                // currentOutput: '',
-                // currentPoints: 'N/A',
-                // currentDeductible: 'N/A',
-                // currentTime: 'N/A',
-                // currentTables: [],
-                // currentNames: [],
-                // currentError: null,
-                // queryOutput: null,
-                // attemptedQuestions: [],
-                // attemptResult: null,
-                // attemptStarted: false,
-                // attemptGroups: [],
+                
             }
         },
         methods: {
@@ -44,15 +31,12 @@
                 let strWindowFeatures = "height=" + screen.availHeight + ",width=" + screen.availWidth + "location=no,menubar=no,scrollbars=no,resizable=no,fullscreen=yes";
                 let win = window.open(this.route, "Blober_Quiz", strWindowFeatures);
 
-                // setInterval(function () {
-                    win.onload = function () {
-                        console.log('In onload');
-                        setTimeout(() => {
-                            // win.close();
-                            // win.close();
-                        }, this.time * 1000);
-                    }
-                // }, 100);
+                win.onload = () => {
+                    setTimeout(() => {
+                        win.close();
+                        win.close();
+                    }, this.time * 1000);
+                }
             },
         },
     }

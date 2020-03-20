@@ -31,8 +31,6 @@ class QuizController extends Controller
     public function index()
     {
         $now = Carbon::now();
-        // $quiz = Quiz::where('section', auth()->user()->student->section)->where('start', '<=', $now)->where('end', '>', $now)->first();
-        // dd($quiz);
         $time = Quiz::where('section', auth()->user()->student->section)->where('start', '<=', $now)->where('end', '>', $now)->first()->remainingTime();
 
         return view('quiz.index', compact('time'));
@@ -48,12 +46,13 @@ class QuizController extends Controller
         $tables = array();
         $names = array();
         $time = $helper->getTime();
+        $groups = $helper->getGroups();
 
         foreach ($temp as $collect) {
             array_push($tables, $collect['tables']);
             array_push($names, $collect['names']);
         }
         
-        return view('quiz.start', compact('navBool', 'tables', 'questions', 'qids', 'names', 'time'));
+        return view('quiz.start', compact('navBool', 'tables', 'questions', 'qids', 'names', 'time', 'groups'));
     }
 }

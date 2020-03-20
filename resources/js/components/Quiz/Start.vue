@@ -132,18 +132,13 @@
             this.arrayOfTables = JSON.parse(this.tablelist);
             this.tnames = JSON.parse(this.names);
             this.time = this.settime;
-            
-            window.onload = () => {
-                this.secs = document.getElementById('seconds');
-                this.mins = document.getElementById('minutes');
-                this.hours = document.getElementById('hours');
+            this.attempt_groups = JSON.parse(this.attemptlist);
 
-                setTimeout(() => {
-                    this.decrementTime();
-                }, 1000);
-            }
+            setTimeout(() => {
+                this.setDomVars();
+            }, 2000);
         },
-        props: ['qids', 'questionslist', 'tablelist', 'names', 'settime'],
+        props: ['qids', 'questionslist', 'tablelist', 'names', 'settime', 'attemptlist'],
         data() {
             return {
                 questionsID: [],
@@ -156,6 +151,7 @@
                 secs: null,
                 mins: null,
                 hours: null,
+                attempt_groups: [],
             }
         },
         methods: {
@@ -171,6 +167,19 @@
             },
             getQuestion(index) {
                 this.selectedQuestion = index;
+            },
+            setDomVars() {
+                this.secs = document.getElementById('seconds');
+                this.mins = document.getElementById('minutes');
+                this.hours = document.getElementById('hours');
+
+                if (this.secs != null) {
+                    this.decrementTime();
+                } else {
+                    setTimeout(function () {
+                        this.setDomVars();
+                    }, 500);
+                }
             },
             decrementTime() {
                 if (this.time > 0) {

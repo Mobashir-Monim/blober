@@ -17,7 +17,19 @@
 <script>
     export default {
         mounted() {
-            console.log('Component mounted.')
+
+        },
+        props:[],
+        data() {
+            return {
+
+            }
+        },
+        methods: {
+
+        },
+        computed: {
+
         }
     }
 </script>

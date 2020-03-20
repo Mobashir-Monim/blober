@@ -136,4 +136,9 @@ class QuizHelper extends Helper
     {
         return $this->quiz->remainingTime();
     }
+
+    public function getGroups()
+    {
+        return $this->set->groups;
+    }
 }

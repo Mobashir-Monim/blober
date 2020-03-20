@@ -2271,9 +2271,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
-  mounted: function mounted() {
-    console.log('Component mounted.');
-  }
+  mounted: function mounted() {},
+  props: [],
+  data: function data() {
+    return {};
+  },
+  methods: {},
+  computed: {}
 });
 
 /***/ }),
@@ -3352,34 +3356,21 @@ __webpack_require__.r(__webpack_exports__);
   mounted: function mounted() {},
   props: ['route', 'time'],
   data: function data() {
-    return {// quizStarted: false,
-      // currentQuestion: 'N/A',
-      // currentOutput: '',
-      // currentPoints: 'N/A',
-      // currentDeductible: 'N/A',
-      // currentTime: 'N/A',
-      // currentTables: [],
-      // currentNames: [],
-      // currentError: null,
-      // queryOutput: null,
-      // attemptedQuestions: [],
-      // attemptResult: null,
-      // attemptStarted: false,
-      // attemptGroups: [],
-    };
+    return {};
   },
   methods: {
     startQuiz: function startQuiz() {
+      var _this = this;
+
       var strWindowFeatures = "height=" + screen.availHeight + ",width=" + screen.availWidth + "location=no,menubar=no,scrollbars=no,resizable=no,fullscreen=yes";
-      var win = window.open(this.route, "Blober_Quiz", strWindowFeatures); // setInterval(function () {
+      var win = window.open(this.route, "Blober_Quiz", strWindowFeatures);
 
       win.onload = function () {
-        console.log('In onload');
-        setTimeout(function () {// win.close();
-          // win.close();
-        }, this.time * 1000);
-      }; // }, 100);
-
+        setTimeout(function () {
+          win.close();
+          win.close();
+        }, _this.time * 1000);
+      };
     }
   }
 });
@@ -3530,17 +3521,12 @@ __webpack_require__.r(__webpack_exports__);
     this.arrayOfTables = JSON.parse(this.tablelist);
     this.tnames = JSON.parse(this.names);
     this.time = this.settime;
-
-    window.onload = function () {
-      _this.secs = document.getElementById('seconds');
-      _this.mins = document.getElementById('minutes');
-      _this.hours = document.getElementById('hours');
-      setTimeout(function () {
-        _this.decrementTime();
-      }, 1000);
-    };
+    this.attempt_groups = JSON.parse(this.attemptlist);
+    setTimeout(function () {
+      _this.setDomVars();
+    }, 2000);
   },
-  props: ['qids', 'questionslist', 'tablelist', 'names', 'settime'],
+  props: ['qids', 'questionslist', 'tablelist', 'names', 'settime', 'attemptlist'],
   data: function data() {
     return {
       questionsID: [],
@@ -3552,7 +3538,8 @@ __webpack_require__.r(__webpack_exports__);
       time: 0,
       secs: null,
       mins: null,
-      hours: null
+      hours: null,
+      attempt_groups: []
     };
   },
   methods: {
@@ -3568,6 +3555,19 @@ __webpack_require__.r(__webpack_exports__);
     },
     getQuestion: function getQuestion(index) {
       this.selectedQuestion = index;
+    },
+    setDomVars: function setDomVars() {
+      this.secs = document.getElementById('seconds');
+      this.mins = document.getElementById('minutes');
+      this.hours = document.getElementById('hours');
+
+      if (this.secs != null) {
+        this.decrementTime();
+      } else {
+        setTimeout(function () {
+          this.setDomVars();
+        }, 500);
+      }
     },
     decrementTime: function decrementTime() {
       var _this2 = this;
