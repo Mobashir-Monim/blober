@@ -26,6 +26,7 @@ class QuizHelper extends Helper
             $this->selected->shuffle();
             $this->createSet($now);
         } else {
+            $this->time = $this->set->start;
             $this->selected = QP::whereIn('id', json_decode($this->set->questions, true))->get();
         }
     }
@@ -33,7 +34,6 @@ class QuizHelper extends Helper
     public function retrieveSetData()
     {
         $this->set = QS::where('user_id', auth()->user()->id)->where('quiz_id', $this->quiz->id)->first();
-        $this->time = $this->set->start;
     }
 
     public function createSet($start)
