@@ -20,7 +20,6 @@ Route::group(['middleware' => ['auth-code']], function () {
 });
 
 Route::group(['middleware' => ['auth', 'auth-code']], function () {
-    Route::get('/auth-code/create', 'AuthCodeController@create')->name('auth-code.create');
     Route::get('/home', 'HomeController@index')->name('home');
     Route::get('/users/create', 'UsersController@create')->name('users.create');
     Route::post('/users/create', 'UsersController@store')->name('users.create');

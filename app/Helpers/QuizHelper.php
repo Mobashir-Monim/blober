@@ -4,6 +4,7 @@ namespace App\Helpers;
 
 use App\QueryPool as QP;
 use App\QuizSet as QS;
+use App\QuizAttemptGroup as QAG;
 use App\Quiz;
 use App\Tag;
 use Carbon\Carbon;
@@ -25,6 +26,8 @@ class QuizHelper extends Helper
             $this->getQuestions(json_decode($this->quiz->data));
             $this->selected->shuffle();
             $this->createSet($now);
+            $this->set->groups = $this->createGroups();
+            $this->set->save();
         } else {
             $this->time = $this->set->start;
             $this->selected = QP::whereIn('id', json_decode($this->set->questions, true))->get();
@@ -140,5 +143,17 @@ class QuizHelper extends Helper
     public function getGroups()
     {
         return $this->set->groups;
+    }
+
+    public function createGroups()
+    {
+        $groups = [];
+
+        foreach ($this->selected as $question) {
+            $group = QAG::create(['query_pool_id' => $question->id]);
+            array_push($groups, $group->id);
+        }
+
+        return json_encode($groups);
     }
 }

@@ -15,7 +15,8 @@ class CreateQuizAttemptGroupsTable extends Migration
     {
         Schema::create('quiz_attempt_groups', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->datetime('endtime');
+            $table->unsignedInteger('query_pool_id');
+            $table->datetime('endtime')->nullable();
             $table->timestamps();
         });
     }
