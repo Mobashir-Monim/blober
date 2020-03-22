@@ -1,1 +1,1 @@
-In student side panel
+@include('side-nav.items.attempt-query')
