@@ -21,6 +21,7 @@ class StudentsTableSeeder extends Seeder
             'points' => 0,
             'enrollment' => ($now->month <= 4 ? 'Spring ' : ($now->month <= 8 ? 'Summer ' : 'Fall ')) . $now->year,
             'section' => 1,
+            'student_id' => rand(10000000, 99999999),
         ]);
 
         DB::table('students')->insert([
@@ -30,6 +31,7 @@ class StudentsTableSeeder extends Seeder
             'points' => 0,
             'enrollment' => ($now->month <= 4 ? 'Spring ' : ($now->month <= 8 ? 'Summer ' : 'Fall ')) . $now->year,
             'section' => 1,
+            'student_id' => rand(10000000, 99999999),
         ]);
     }
 }

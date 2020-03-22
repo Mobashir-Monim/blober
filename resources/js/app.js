@@ -31,6 +31,8 @@ Vue.component('qp-attempt', require('./components/QueryPool/Attempt.vue').defaul
 
 // Profile Components
 Vue.component('profile-edit', require('./components/Profile/Edit.vue').default);
+Vue.component('profile-create', require('./components/Profile/Create.vue').default);
+
 
 // Tags Components
 Vue.component('tags-view', require('./components/Tags/View.vue').default);
