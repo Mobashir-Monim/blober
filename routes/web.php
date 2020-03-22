@@ -49,7 +49,7 @@ Route::group(['middleware' => ['auth', 'auth-code']], function () {
     Route::get('/quiz/create', 'QuizController@create')->name('quiz.create');
     Route::post('/quiz/create', 'QuizController@store')->name('quiz.create');
     Route::get('/quiz/panel', 'QuizController@index')->name('quiz.panel')->middleware('has-quiz');
-    Route::get('/quiz/start', 'QuizController@start')->name('quiz.start')->middleware('has-quiz');
+    Route::get('/quiz/start', 'QuizController@start')->name('quiz.start')->middleware(['has-quiz', 'valid-link']);
 });
 
 Route::get('test', function (Illuminate\Http\Request $request) {

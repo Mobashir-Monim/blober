@@ -2,7 +2,7 @@
 
 @section('content')
     <quiz-start
-        sessioncode="{{ auth()->user()->getAuth() }}"
+        sessioncode="{{ $authcode }}"
         questionslist="{{ json_encode($questions) }}"
         tablelist="{{ json_encode($tables) }}"
         qids="{{ json_encode($qids) }}"

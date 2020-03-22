@@ -3470,7 +3470,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {},
-  props: ['route', 'time'],
+  props: ['route', 'time', 'sessioncode'],
   data: function data() {
     return {};
   },
@@ -3479,7 +3479,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       var strWindowFeatures = "height=" + screen.availHeight + ",width=" + screen.availWidth + "location=no,menubar=no,scrollbars=no,resizable=no,fullscreen=yes";
-      var win = window.open(this.route, "Blober_Quiz", strWindowFeatures);
+      var win = window.open(this.route + '?sessioncode=' + this.sessioncode, "Blober_Quiz", strWindowFeatures);
 
       win.onload = function () {
         setTimeout(function () {

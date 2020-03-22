@@ -38,6 +38,7 @@ class QuizController extends Controller
 
     public function start()
     {
+        $authcode = request()->sessioncode;
         $navBool = false;
         $helper = new QH;
         $qids = $helper->getQids();
@@ -53,6 +54,6 @@ class QuizController extends Controller
             array_push($names, $collect['names']);
         }
         
-        return view('quiz.start', compact('navBool', 'tables', 'questions', 'qids', 'names', 'time', 'groups'));
+        return view('quiz.start', compact('navBool', 'tables', 'questions', 'qids', 'names', 'time', 'groups', 'authcode'));
     }
 }

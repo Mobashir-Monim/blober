@@ -20,7 +20,7 @@
         mounted() {
 
         },
-        props: ['route', 'time'],
+        props: ['route', 'time', 'sessioncode'],
         data() {
             return {
                 
@@ -29,7 +29,7 @@
         methods: {
             startQuiz() {
                 let strWindowFeatures = "height=" + screen.availHeight + ",width=" + screen.availWidth + "location=no,menubar=no,scrollbars=no,resizable=no,fullscreen=yes";
-                let win = window.open(this.route, "Blober_Quiz", strWindowFeatures);
+                let win = window.open(this.route + '?sessioncode=' + this.sessioncode, "Blober_Quiz", strWindowFeatures);
 
                 win.onload = () => {
                     setTimeout(() => {
