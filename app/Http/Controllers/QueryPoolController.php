@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\QueryPool as QP;
 use App\DataPool as DP;
 use App\Helpers\QueryPoolHelper as QPH;
+use App\Helpers\QueryChecker as QCH;
 use App\Tag;
 
 class QueryPoolController extends Controller
@@ -63,7 +64,7 @@ class QueryPoolController extends Controller
     public function verifyQuery(Request $request)
     {
         $query = QP::find($request->question);
-        $data = (new QPH)->verifyQuery($request, ['result' => false, 'error' => null, 'output' => null], $query);
+        $data = (new QCH)->verifyQuery($request, ['result' => false, 'error' => null, 'output' => null], $query);
 
         return response()->json([
             'success' => true,

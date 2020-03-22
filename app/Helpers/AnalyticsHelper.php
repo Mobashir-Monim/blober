@@ -58,7 +58,8 @@ class AnalyticsHelper extends Helper
             $time += Carbon::parse($attempt->created_at)->diffInSeconds(Carbon::parse($attempt->endtime));
         }
 
-        return sizeof($attempts) == 0 ? "No Attempts" : floor($time / (sizeof($attempts) * 60)) . ':' . ($time / (sizeof($attempts))) % 60;
+        return sizeof($attempts) == 0 ? "No Attempts" : floor($time / (sizeof($attempts) * 60)) . ':' .
+                (($time / (sizeof($attempts))) % 60 < 10 ? 0 . ($time / (sizeof($attempts))) % 60 : ($time / (sizeof($attempts))) % 60);
     }
 
     public function getAvgSuccess($tag)
