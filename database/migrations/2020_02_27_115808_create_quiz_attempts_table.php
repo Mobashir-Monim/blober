@@ -19,6 +19,7 @@ class CreateQuizAttemptsTable extends Migration
             $table->unsignedInteger('user_id');
             $table->unsignedInteger('query_pool_id');
             $table->unsignedInteger('quiz_attempt_group_id');
+            $table->text('query');
             $table->boolean('is_correct')->default(false);
             $table->text('output');
             $table->boolean('has_error')->default(false);

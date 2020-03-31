@@ -17,10 +17,11 @@ class CreateQueryAttemptsTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedInteger('user_id');
             $table->unsignedInteger('query_pool_id');
+            $table->unsignedInteger('attempt_group_id');
+            $table->text('query');
             $table->boolean('is_correct')->default(false);
             $table->text('output');
             $table->boolean('has_error')->default(false);
-            $table->unsignedInteger('attempt_group_id');
             $table->timestamps();
         });
     }

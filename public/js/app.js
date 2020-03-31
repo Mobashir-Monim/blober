@@ -3469,7 +3469,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
-  mounted: function mounted() {},
+  mounted: function mounted() {
+    console.log(this.sessioncode);
+  },
   props: ['route', 'time', 'sessioncode'],
   data: function data() {
     return {};
@@ -3502,6 +3504,25 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -3642,7 +3663,7 @@ __webpack_require__.r(__webpack_exports__);
       _this.setDomVars();
     }, 2000);
   },
-  props: ['qids', 'questionslist', 'tablelist', 'names', 'settime', 'attemptlist'],
+  props: ['qids', 'questionslist', 'tablelist', 'names', 'settime', 'attemptlist', 'quid', 'sessioncode'],
   data: function data() {
     return {
       questionsID: [],
@@ -3650,12 +3671,14 @@ __webpack_require__.r(__webpack_exports__);
       arrayOfTables: [],
       selectedQuestion: 0,
       tnames: [],
-      qOutput: null,
       time: 0,
       secs: null,
       mins: null,
       hours: null,
-      attempt_groups: []
+      attempt_groups: [],
+      currentError: null,
+      attemptResult: null,
+      queryOutput: null
     };
   },
   methods: {
@@ -3701,6 +3724,58 @@ __webpack_require__.r(__webpack_exports__);
         this.time = 0;
         this.secs.innerText = 0;
       }
+    },
+    submitQuery: function submitQuery() {
+      var _this3 = this;
+
+      _asyncToGenerator(
+      /*#__PURE__*/
+      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+        var rawResponse, res;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                _context.next = 2;
+                return fetch('/api/quiz/submit-query', {
+                  method: 'POST',
+                  headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                  },
+                  body: JSON.stringify({
+                    answer: document.getElementById('query').value,
+                    question: _this3.questionsID[_this3.selectedQuestion],
+                    group: _this3.attempt_groups[_this3.selectedQuestion],
+                    sessioncode: _this3.sessioncode,
+                    quiz_id: _this3.quid
+                  })
+                });
+
+              case 2:
+                rawResponse = _context.sent;
+                _context.next = 5;
+                return rawResponse.json();
+
+              case 5:
+                res = _context.sent;
+                _this3.attemptResult = res.data.result;
+                _this3.currentError = res.data.error;
+                _this3.queryOutput = res.data.output;
+
+              case 9:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee);
+      }))();
+    },
+    endQuiz: function endQuiz() {
+      var opener = window.opener;
+      opener.postMessage('hello world', '*');
+      self.close();
+      window.close();
     }
   },
   computed: {
@@ -3737,6 +3812,24 @@ __webpack_require__.r(__webpack_exports__);
         return this.tnames;
       },
       set: function set(val) {}
+    },
+    qOutput: {
+      get: function get() {
+        return this.queryOutput;
+      },
+      set: function set() {}
+    },
+    error: {
+      get: function get() {
+        return this.currentError;
+      },
+      set: function set() {}
+    },
+    result: {
+      get: function get() {
+        return this.attemptResult;
+      },
+      set: function set() {}
     }
   }
 });
@@ -42037,7 +42130,7 @@ var render = function() {
               _vm._v(" "),
               _c(
                 "div",
-                { staticClass: "row mt-3" },
+                { staticClass: "row my-3" },
                 _vm._l(_vm.quesIDs, function(q, qid) {
                   return _c(
                     "div",
@@ -42068,7 +42161,66 @@ var render = function() {
                   )
                 }),
                 0
-              )
+              ),
+              _vm._v(" "),
+              _c("div", { staticClass: "row mb-3" }, [
+                _c("div", { staticClass: "col-md pl-2" }, [
+                  _c(
+                    "a",
+                    {
+                      staticClass: "btn btn-secondary w-100",
+                      attrs: { href: "#/" },
+                      on: {
+                        click: function($event) {
+                          return _vm.prevQuestion()
+                        }
+                      }
+                    },
+                    [
+                      _c("i", { staticClass: "fa fas fa-caret-left" }),
+                      _c("i", { staticClass: "fa fas fa-caret-left mr-2" }),
+                      _vm._v("Prev Question")
+                    ]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-md pr-2" }, [
+                  _c(
+                    "a",
+                    {
+                      staticClass: "btn btn-secondary w-100",
+                      attrs: { href: "#/" },
+                      on: {
+                        click: function($event) {
+                          return _vm.nextQuestion()
+                        }
+                      }
+                    },
+                    [
+                      _vm._v("Next Question"),
+                      _c("i", { staticClass: "fa fas fa-caret-right ml-2" }),
+                      _c("i", { staticClass: "fa fas fa-caret-right" })
+                    ]
+                  )
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "row mt-3" }, [
+                _c("div", { staticClass: "col-md-12 px-2" }, [
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-danger w-100",
+                      on: {
+                        click: function($event) {
+                          return _vm.endQuiz()
+                        }
+                      }
+                    },
+                    [_vm._v("End Quiz")]
+                  )
+                ])
+              ])
             ])
           ])
         ])
@@ -42265,9 +42417,64 @@ var render = function() {
                 _vm._v("Query Output")
               ]),
               _vm._v(" "),
-              false
-                ? undefined
-                : _c("div")
+              _vm.qOutput != null
+                ? _c("div", [
+                    _c(
+                      "table",
+                      { staticClass: "table table-sm table-striped" },
+                      [
+                        _c("thead", { staticClass: "thead-light" }, [
+                          _c(
+                            "tr",
+                            _vm._l(Object.keys(_vm.qOutput[0]), function(
+                              head,
+                              headIndex
+                            ) {
+                              return _c(
+                                "th",
+                                {
+                                  key: headIndex,
+                                  staticClass: "border px-3 py-1",
+                                  attrs: { scope: "col" }
+                                },
+                                [_c("strong", [_vm._v(_vm._s(head))])]
+                              )
+                            }),
+                            0
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c(
+                          "tbody",
+                          _vm._l(_vm.qOutput, function(row, index) {
+                            return _c(
+                              "tr",
+                              { key: index },
+                              _vm._l(row, function(col, colIndex) {
+                                return _c(
+                                  "td",
+                                  {
+                                    key: colIndex,
+                                    staticClass: "border px-3 py-1"
+                                  },
+                                  [_vm._v(_vm._s(col))]
+                                )
+                              }),
+                              0
+                            )
+                          }),
+                          0
+                        )
+                      ]
+                    )
+                  ])
+                : _c("div", [
+                    _vm._v(
+                      "\n                            " +
+                        _vm._s(_vm.error) +
+                        "\n                        "
+                    )
+                  ])
             ])
           ]),
           _vm._v(" "),
@@ -42294,7 +42501,21 @@ var render = function() {
               )
             ]),
             _vm._v(" "),
-            _vm._m(2),
+            _c("div", { staticClass: "col-md" }, [
+              _c(
+                "a",
+                {
+                  staticClass: "btn btn-success w-100",
+                  attrs: { href: "#/" },
+                  on: {
+                    click: function($event) {
+                      return _vm.submitQuery()
+                    }
+                  }
+                },
+                [_vm._v("Submit answer")]
+              )
+            ]),
             _vm._v(" "),
             _c("div", { staticClass: "col-md" }, [
               _c(
@@ -42350,16 +42571,6 @@ var staticRenderFns = [
             id: "query"
           }
         })
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-md" }, [
-      _c("a", { staticClass: "btn btn-success w-100", attrs: { href: "#/" } }, [
-        _vm._v("Submit answer")
       ])
     ])
   }

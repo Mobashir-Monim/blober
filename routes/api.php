@@ -23,6 +23,8 @@ Route::get('/datapools/tables/{table}', 'DataPoolController@getTablesData')->nam
 Route::post('/query/get-question', 'QueryPoolController@getQuestions')->name('querypool.get-question');
 Route::post('/query/submit-query', 'QueryPoolController@verifyQuery')->name('querypool.verify-query');
 
+Route::post('/quiz/submit-query', 'QuizController@verifyQuery')->name('quiz.verify-query');
+
 Route::post('/user/get', 'UsersController@get')->name('user.get');
 Route::post('/user/update', 'UsersController@update')->name('user.get');
 

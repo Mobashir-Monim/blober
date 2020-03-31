@@ -8,7 +8,7 @@ class QuizAttempt extends BaseModel
 {
     public function group()
     {
-        return $this->belongsTo('App\QuizAttemptGroup');
+        return $this->belongsTo('App\QuizAttemptGroup', 'quiz_attempt_group_id');
     }
 
     public function user()

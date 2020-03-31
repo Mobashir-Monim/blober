@@ -4,6 +4,11 @@ namespace App\Helpers;
 
 class Helper
 {
+    public function cleanString($str)
+    {
+        return trim(preg_replace('/\s\s+/', ' ', str_replace("\n", " ", $str)));
+    }
+
     public function startsWith($string, $startString) 
     { 
         $len = strlen($startString); 

@@ -34,6 +34,20 @@ class QuizHelper extends Helper
         }
     }
 
+    public function generate()
+    {
+        return [
+            'qids' => $this->getQids(),
+            'questions' => $this->makeQuestions(),
+            'temp' => $this->getTables(),
+            'tables' => array(),
+            'names' => array(),
+            'time' => $this->getTime(),
+            'groups' => $this->getGroups(),
+            'quiz_id' => $this->quiz->id,
+        ];
+    }
+
     public function retrieveSetData()
     {
         $this->set = QS::where('user_id', auth()->user()->id)->where('quiz_id', $this->quiz->id)->first();

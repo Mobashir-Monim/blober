@@ -6,7 +6,9 @@ use Illuminate\Http\Request;
 use Carbon\Carbon;
 use App\Quiz;
 use App\QuizQuestions as QQ;
+use App\Helpers\QueryChecker as QCH;
 use App\Helpers\QuizHelper as QH;
+use App\QueryPool as QP;
 
 class QuizController extends Controller
 {
@@ -41,19 +43,24 @@ class QuizController extends Controller
         $authcode = request()->sessioncode;
         $navBool = false;
         $helper = new QH;
-        $qids = $helper->getQids();
-        $questions = $helper->makeQuestions();
-        $temp = $helper->getTables();
-        $tables = array();
-        $names = array();
-        $time = $helper->getTime();
-        $groups = $helper->getGroups();
+        $data = $helper->generate();
 
-        foreach ($temp as $collect) {
-            array_push($tables, $collect['tables']);
-            array_push($names, $collect['names']);
+        foreach ($data['temp'] as $collect) {
+            array_push($data['tables'], $collect['tables']);
+            array_push($data['names'], $collect['names']);
         }
         
-        return view('quiz.start', compact('navBool', 'tables', 'questions', 'qids', 'names', 'time', 'groups', 'authcode'));
+        return view('quiz.start', compact('navBool', 'data', 'authcode'));
+    }
+
+    public function verifyQuery(Request $request)
+    {
+        $query = QP::find($request->question);
+        $data = (new QCH)->verifyQuery($request, ['result' => false, 'error' => null, 'output' => null], $query);
+
+        return response()->json([
+            'success' => true,
+            'data' => $data,
+        ]);
     }
 }

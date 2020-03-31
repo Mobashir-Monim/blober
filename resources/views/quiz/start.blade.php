@@ -3,11 +3,13 @@
 @section('content')
     <quiz-start
         sessioncode="{{ $authcode }}"
-        questionslist="{{ json_encode($questions) }}"
-        tablelist="{{ json_encode($tables) }}"
-        qids="{{ json_encode($qids) }}"
-        names="{{ json_encode($names) }}"
-        settime="{{ $time }}"
-        attemptlist="{{ json_encode($groups) }}"
+        questionslist="{{ json_encode($data['questions']) }}"
+        tablelist="{{ json_encode($data['tables']) }}"
+        qids="{{ json_encode($data['qids']) }}"
+        names="{{ json_encode($data['names']) }}"
+        settime="{{ $data['time'] }}"
+        quid="{{ $data['quiz_id'] }}"
+        attemptlist="{{ $data['groups'] }}"
+
         ></quiz-start>
 @endsection
