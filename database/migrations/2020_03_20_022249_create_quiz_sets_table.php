@@ -20,6 +20,7 @@ class CreateQuizSetsTable extends Migration
             $table->datetime('start');
             $table->string('questions');
             $table->string('groups')->nullable();
+            $table->datetime('endtime')->nullable();
             $table->timestamps();
         });
     }

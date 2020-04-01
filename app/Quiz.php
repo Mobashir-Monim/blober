@@ -17,14 +17,19 @@ class Quiz extends BaseModel
         return $this->hasMany('App\QuizSet');
     }
 
+    public function duration()
+    {
+        return Carbon::parse($this->start)->diffInSeconds(Carbon::parse($this->end));
+    }
+
     public function remainingTime()
     {
         $set = $this->sets->where('user_id', auth()->user()->id)->first();
         
         if (is_null($set)) {
-            return Carbon::parse($this->start)->diffInSeconds(Carbon::parse($this->end));
+            return $this->duration();
         } else {
-            return Carbon::parse($this->start)->diffInSeconds(Carbon::parse($this->end)) - $set->usedTime();
+            return $this->duration() - $set->usedTime();
         }
     }
 }

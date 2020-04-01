@@ -54,6 +54,7 @@ class Kernel extends HttpKernel
         'auth' => \App\Http\Middleware\Authenticate::class,
         'auth-code' => \App\Http\Middleware\AuthCodeMiddleware::class,
         'valid-link' => \App\Http\Middleware\ValidQuizLinkMiddleware::class,
+        'valid-set' => \App\Http\Middleware\QuizSetValidityMiddleware::class,
         'has-quiz' => \App\Http\Middleware\HasQuizMiddleware::class,
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
         'bindings' => \Illuminate\Routing\Middleware\SubstituteBindings::class,

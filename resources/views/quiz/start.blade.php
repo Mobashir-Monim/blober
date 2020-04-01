@@ -7,9 +7,11 @@
         tablelist="{{ json_encode($data['tables']) }}"
         qids="{{ json_encode($data['qids']) }}"
         names="{{ json_encode($data['names']) }}"
-        settime="{{ $data['time'] }}"
+        {{-- settime="{{ $data['time'] }}" --}}
+        settime="10"
         quid="{{ $data['quiz_id'] }}"
         attemptlist="{{ $data['groups'] }}"
+        endurl="{{ route('quiz.invalid') }}"
 
         ></quiz-start>
 @endsection

@@ -63,4 +63,16 @@ class QuizController extends Controller
             'data' => $data,
         ]);
     }
+
+    public function invalid()
+    {
+        $navBool = false;
+        $message = !is_null(request()->is_voluntary);
+        $now = Carbon::now();
+        $quiz = Quiz::where('section', auth()->user()->student->section)->where('start', '<=', $now)->where('end', '>', $now)->first();
+        $set = $quiz->sets->where('user_id', auth()->user()->id)->first();
+        $set->flag();
+
+        return view('quiz.invalid', compact('navBool', 'message'));
+    }
 }

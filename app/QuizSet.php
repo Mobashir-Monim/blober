@@ -21,4 +21,21 @@ class QuizSet extends BaseModel
     {
         return Carbon::parse($this->start)->diffInSeconds(Carbon::now());
     }
+
+    public function flag()
+    {
+        if (is_null($this->endtime)) {
+            $now = Carbon::now();
+            $duration = $this->quiz->duration();
+            $end = Carbon::parse($this->created_at)->addSeconds($duration);
+
+            if ($end < $now) {
+                $this->endtime = $end->toDateTimeString();
+            } else {
+                $this->endtime = $now->toDateTimeString();
+            }
+
+            $this->save();
+        }
+    }
 }

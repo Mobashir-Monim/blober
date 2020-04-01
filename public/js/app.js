@@ -3663,7 +3663,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       _this.setDomVars();
     }, 2000);
   },
-  props: ['qids', 'questionslist', 'tablelist', 'names', 'settime', 'attemptlist', 'quid', 'sessioncode'],
+  props: ['qids', 'questionslist', 'tablelist', 'names', 'settime', 'attemptlist', 'quid', 'sessioncode', 'endurl'],
   data: function data() {
     return {
       questionsID: [],
@@ -3720,9 +3720,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           _this2.decrementTime();
         }, 1000);
       } else {
-        // let x = confirm('Quiz time is over. Answers will no longer be accepted!');
         this.time = 0;
         this.secs.innerText = 0;
+        window.open(this.endurl + '?is_voluntary=true', '_self');
       }
     },
     submitQuery: function submitQuery() {
@@ -3772,10 +3772,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }))();
     },
     endQuiz: function endQuiz() {
-      var opener = window.opener;
-      opener.postMessage('hello world', '*');
-      self.close();
-      window.close();
+      // let opener = window.opener;
+      window.open(this.endurl + '?is_voluntary=true', '_self');
+      console.log('here'); // self.close();
+      // window.close();
     }
   },
   computed: {
