@@ -12,6 +12,13 @@ use App\QueryPool as QP;
 
 class QuizController extends Controller
 {
+    public function index()
+    {
+        $quizzes = Quiz::orderBy('created_at', 'DESC')->get();
+
+        return view('quiz.index', compact('quizzes'));
+    }
+
     public function create()
     {
         return view('quiz.create');
@@ -30,12 +37,17 @@ class QuizController extends Controller
         return back()->with('success', 'Quiz Successfully Created');
     }
 
-    public function index()
+    public function panel()
     {
         $now = Carbon::now();
         $time = Quiz::where('section', auth()->user()->student->section)->where('start', '<=', $now)->where('end', '>', $now)->first()->remainingTime();
 
         return view('quiz.index', compact('time'));
+    }
+
+    public function edit($request, Quiz $quiz)
+    {
+        dd('in edit');
     }
 
     public function start()

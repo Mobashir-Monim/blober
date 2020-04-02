@@ -19,6 +19,8 @@ class CreateQuizzesTable extends Migration
             $table->datetime('end');
             $table->unsignedInteger('section');
             $table->text('data');
+            $table->unsignedInteger('created_by');
+            $table->unsignedInteger('updated_by')->nullable();
             $table->timestamps();
         });
     }
