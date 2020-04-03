@@ -27,7 +27,7 @@
 <body>
     <div id="app">
         @if (!isset($navBool))
-            <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+            <nav class="navbar navbar-expand-md navbar-dark bg-dark shadow-sm text-white">
                 <div class="container">
                     <a class="navbar-brand" href="{{ url('/') }}">
                         {{ config('app.name', 'Blober') }}

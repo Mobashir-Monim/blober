@@ -68,3 +68,7 @@
     overflow-x: hidden;
     padding: 8px 0; */
 }
+
+.card-rounded {
+    border-radius: 25px !important;
+}

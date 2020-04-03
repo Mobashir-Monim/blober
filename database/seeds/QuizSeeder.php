@@ -21,5 +21,11 @@ class QuizSeeder extends Seeder
         ];
 
         App\Quiz::create($quiz);
+        $quiz['section'] = 2;
+        $quiz['created_by'] = 1;
+        App\Quiz::create($quiz);
+        $quiz['section'] = 3;
+        $quiz['created_by'] = 3;
+        App\Quiz::create($quiz);
     }
 }

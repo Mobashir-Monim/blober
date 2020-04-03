@@ -46,6 +46,22 @@ class Quiz extends BaseModel
         return sizeof($data);
     }
 
+    public function viewableData()
+    {
+        return [
+            'id' => $this->id,
+            'section' => $this->section,
+            'qCount' => $this->questionCount(),
+            'gCount' => $this->groupCount(),
+            'duration' => Carbon::parse($this->duration())->format("H:i:s"),
+            'start' => Carbon::parse($this->start)->format("H:i a d M, Y"),
+            'creator' => $this->creator->name . ' on ' . Carbon::parse($this->created_at)->format("d M, Y"),
+            'updator' => !is_null($this->updator) ? $this->creator->name . ' on ' . Carbon::parse($this->created_at)->format("d M, Y") : 'NOT UPDATED YET',
+            'edit' => !is_null(auth()->user()),
+            'delete' => is_null(auth()->user()) ? false : $this->creator->id == auth()->user()->id,
+        ];
+    }
+
     public function duration()
     {
         return Carbon::parse($this->start)->diffInSeconds(Carbon::parse($this->end));

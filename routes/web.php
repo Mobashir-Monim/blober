@@ -63,3 +63,5 @@ Route::get('test', function (Illuminate\Http\Request $request) {
     // select * from (select * from tag_query_pool where query_pool_id in (7, 8, 21, 22, 24, 25, 33, 34, 47, 48, 50, 51)) as temp where tag_id in (1,5);
     return view('test', compact('collection'));
 });
+
+Route::get('testm/{quiz}', 'QuizController@show');

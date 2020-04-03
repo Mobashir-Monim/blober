@@ -3442,6 +3442,279 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Quiz/Index.vue?vue&type=script&lang=js&":
+/*!*********************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Quiz/Index.vue?vue&type=script&lang=js& ***!
+  \*********************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  mounted: function mounted() {
+    this.quizzes = JSON.parse(this.qlist);
+  },
+  props: ['sessioncode', 'qlist'],
+  data: function data() {
+    return {
+      quizzes: [],
+      quiz_details: null
+    };
+  },
+  methods: {
+    deleteQuiz: function deleteQuiz(id) {
+      var _this = this;
+
+      _asyncToGenerator(
+      /*#__PURE__*/
+      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+        var rawResponse, res;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                _context.next = 2;
+                return fetch('/api/quiz/' + id + '/delete', {
+                  method: 'POST',
+                  headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                  },
+                  body: JSON.stringify({
+                    sessioncode: _this.sessioncode
+                  })
+                });
+
+              case 2:
+                rawResponse = _context.sent;
+                _context.next = 5;
+                return rawResponse.json();
+
+              case 5:
+                res = _context.sent;
+                alert(res.message);
+
+                if (res.success) {
+                  document.getElementById('quiz-' + id).remove();
+                }
+
+              case 8:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee);
+      }))();
+    },
+    viewQuiz: function viewQuiz(id) {
+      var _this2 = this;
+
+      this.quiz_details = null;
+
+      _asyncToGenerator(
+      /*#__PURE__*/
+      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
+        var rawResponse, res;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                _context2.next = 2;
+                return fetch('/api/quiz/' + id + '/show', {
+                  method: 'POST',
+                  headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                  },
+                  body: JSON.stringify({
+                    sessioncode: _this2.sessioncode
+                  })
+                });
+
+              case 2:
+                rawResponse = _context2.sent;
+                _context2.next = 5;
+                return rawResponse.json();
+
+              case 5:
+                res = _context2.sent;
+
+                if (res.success) {
+                  _this2.quiz_details = res.data;
+                } else {
+                  alert('Data could not be loaded, please try again');
+                }
+
+              case 7:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2);
+      }))();
+
+      document.getElementById('modal-btn').click();
+    }
+  },
+  computed: {
+    list: {
+      get: function get() {
+        return this.quizzes;
+      },
+      set: function set(val) {
+        this.quizzes = val;
+      }
+    },
+    quiz_data: {
+      get: function get() {
+        return this.quiz_details == null ? false : this.quiz_details;
+      },
+      set: function set(val) {
+        this.quiz_details = val;
+      }
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Quiz/Panel.vue?vue&type=script&lang=js&":
 /*!*********************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Quiz/Panel.vue?vue&type=script&lang=js& ***!
@@ -42049,6 +42322,485 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Quiz/Index.vue?vue&type=template&id=7e0ffd23&":
+/*!*************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Quiz/Index.vue?vue&type=template&id=7e0ffd23& ***!
+  \*************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    {},
+    [
+      _vm._m(0),
+      _vm._v(" "),
+      _vm._l(_vm.list, function(quiz, index) {
+        return _c(
+          "div",
+          {
+            key: index,
+            staticClass: "card mb-3 text-muted",
+            staticStyle: { "border-radius": "25px" },
+            attrs: { id: "quiz-" + quiz.id }
+          },
+          [
+            _c("div", { staticClass: "card-body" }, [
+              _c("h5", { staticClass: "card-title border-bottom" }, [
+                _vm._v("Section: " + _vm._s(quiz.section))
+              ]),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  staticClass: "row mb-3",
+                  staticStyle: { "font-size": "0.9em" }
+                },
+                [
+                  _c("div", { staticClass: "col-md-6" }, [
+                    _c("div", { staticClass: "row border-bottom pt-2 ml-1" }, [
+                      _c("div", { staticClass: "col-md-6" }, [
+                        _vm._v("Total Questions:")
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-md-6 text-right" }, [
+                        _vm._v(_vm._s(quiz.qCount))
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "row border-bottom pt-2 ml-1" }, [
+                      _c("div", { staticClass: "col-md-6" }, [
+                        _vm._v("Total Groups:")
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-md-6 text-right" }, [
+                        _vm._v(_vm._s(quiz.gCount))
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "row border-bottom pt-2 ml-1" }, [
+                      _c("div", { staticClass: "col-md-6" }, [
+                        _vm._v("Duration:")
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-md-6 text-right" }, [
+                        _vm._v(_vm._s(quiz.duration))
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "row border-bottom pt-2 ml-1" }, [
+                      _c("div", { staticClass: "col-md-6" }, [
+                        _vm._v("Start Time:")
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-md-6 text-right" }, [
+                        _vm._v(_vm._s(quiz.start))
+                      ])
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "col-md-6 mt-auto text-right" }, [
+                    _c("div", { staticClass: "row" }, [
+                      _c("div", { staticClass: "col-md-12" }, [
+                        _c("div", { staticClass: "mb-3" }, [
+                          _c(
+                            "div",
+                            {
+                              staticStyle: {
+                                "font-size": "0.8em",
+                                "margin-bottom": "-3px"
+                              }
+                            },
+                            [_vm._v("Created")]
+                          ),
+                          _vm._v(" "),
+                          _c("i", [_vm._v(_vm._s(quiz.creator))]),
+                          _vm._v(" "),
+                          _c(
+                            "div",
+                            {
+                              staticStyle: {
+                                "font-size": "0.8em",
+                                "margin-bottom": "-3px"
+                              }
+                            },
+                            [_vm._v("Last Updated")]
+                          ),
+                          _vm._v(" "),
+                          _c("i", [_vm._v(_vm._s(quiz.updator))])
+                        ]),
+                        _vm._v(" "),
+                        _c(
+                          "a",
+                          {
+                            staticClass: "pl-5 text-primary",
+                            attrs: { href: "#/" },
+                            on: {
+                              click: function($event) {
+                                return _vm.viewQuiz(quiz.id)
+                              }
+                            }
+                          },
+                          [_vm._v("View Quiz")]
+                        ),
+                        _vm._v(" "),
+                        quiz.edit
+                          ? _c(
+                              "a",
+                              {
+                                staticClass: "pl-5 text-secondary",
+                                attrs: { href: "#/" }
+                              },
+                              [_vm._v("Edit Quiz")]
+                            )
+                          : _vm._e(),
+                        _vm._v(" "),
+                        quiz.delete
+                          ? _c(
+                              "a",
+                              {
+                                staticClass: "pl-5 text-danger",
+                                attrs: { href: "#/" },
+                                on: {
+                                  click: function($event) {
+                                    return _vm.deleteQuiz(quiz.id)
+                                  }
+                                }
+                              },
+                              [_vm._v("Delete Quiz")]
+                            )
+                          : _vm._e()
+                      ])
+                    ])
+                  ])
+                ]
+              )
+            ])
+          ]
+        )
+      }),
+      _vm._v(" "),
+      _c("button", {
+        staticClass: "hidden",
+        attrs: {
+          type: "button",
+          id: "modal-btn",
+          "data-toggle": "modal",
+          "data-target": ".bd-example-modal-xl"
+        }
+      }),
+      _vm._v(" "),
+      _c(
+        "div",
+        {
+          staticClass: "modal fade bd-example-modal-xl text-muted",
+          staticStyle: { "font-size": "0.9em" },
+          attrs: {
+            id: "mod",
+            tabindex: "-1",
+            role: "dialog",
+            "aria-labelledby": "myExtraLargeModalLabel",
+            "aria-hidden": "true"
+          }
+        },
+        [
+          _c(
+            "div",
+            {
+              staticClass: "modal-dialog modal-xl",
+              attrs: { role: "document" }
+            },
+            [
+              _c("div", { staticClass: "modal-content" }, [
+                _c("div", { staticClass: "modal-header" }, [
+                  _c(
+                    "h5",
+                    {
+                      staticClass: "modal-title",
+                      attrs: { id: "exampleModalLabel" }
+                    },
+                    [_vm._v("Section " + _vm._s(_vm.quiz_data.section))]
+                  ),
+                  _vm._v(" "),
+                  _vm._m(1)
+                ]),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  { staticClass: "modal-body" },
+                  [
+                    _c("div", { staticClass: "row mb-3" }, [
+                      _c("div", { staticClass: "col-md-6" }, [
+                        _c(
+                          "div",
+                          { staticClass: "row border-bottom pt-2 ml-1" },
+                          [
+                            _c("div", { staticClass: "col-md-6" }, [
+                              _vm._v("Total Questions:")
+                            ]),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "col-md-6 text-right" }, [
+                              _vm._v(_vm._s(_vm.quiz_data.qCount))
+                            ])
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          { staticClass: "row border-bottom pt-2 ml-1" },
+                          [
+                            _c("div", { staticClass: "col-md-6" }, [
+                              _vm._v("Total Groups:")
+                            ]),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "col-md-6 text-right" }, [
+                              _vm._v(_vm._s(_vm.quiz_data.gCount))
+                            ])
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          { staticClass: "row border-bottom pt-2 ml-1" },
+                          [
+                            _c("div", { staticClass: "col-md-6" }, [
+                              _vm._v("Duration:")
+                            ]),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "col-md-6 text-right" }, [
+                              _vm._v(_vm._s(_vm.quiz_data.duration))
+                            ])
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          { staticClass: "row border-bottom pt-2 ml-1" },
+                          [
+                            _c("div", { staticClass: "col-md-6" }, [
+                              _vm._v("Start Time:")
+                            ]),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "col-md-6 text-right" }, [
+                              _vm._v(_vm._s(_vm.quiz_data.start))
+                            ])
+                          ]
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        { staticClass: "col-md-6 mt-auto text-right" },
+                        [
+                          _c("div", { staticClass: "row" }, [
+                            _c("div", { staticClass: "col-md-12" }, [
+                              _c("div", { staticClass: "mb-3" }, [
+                                _c(
+                                  "div",
+                                  {
+                                    staticStyle: {
+                                      "font-size": "0.8em",
+                                      "margin-bottom": "-3px"
+                                    }
+                                  },
+                                  [_vm._v("Created")]
+                                ),
+                                _vm._v(" "),
+                                _c("i", [
+                                  _vm._v(_vm._s(_vm.quiz_data.creator))
+                                ]),
+                                _vm._v(" "),
+                                _c(
+                                  "div",
+                                  {
+                                    staticStyle: {
+                                      "font-size": "0.8em",
+                                      "margin-bottom": "-3px"
+                                    }
+                                  },
+                                  [_vm._v("Last Updated")]
+                                ),
+                                _vm._v(" "),
+                                _c("i", [_vm._v(_vm._s(_vm.quiz_data.updator))])
+                              ]),
+                              _vm._v(" "),
+                              _vm.quiz_data.edit
+                                ? _c(
+                                    "a",
+                                    {
+                                      staticClass: "pl-5 text-secondary",
+                                      attrs: { href: "#/" }
+                                    },
+                                    [_vm._v("Edit Quiz")]
+                                  )
+                                : _vm._e(),
+                              _vm._v(" "),
+                              _vm.quiz_data.delete
+                                ? _c(
+                                    "a",
+                                    {
+                                      staticClass: "pl-5 text-danger",
+                                      attrs: { href: "#/" },
+                                      on: {
+                                        click: function($event) {
+                                          return _vm.deleteQuiz(
+                                            _vm.quiz_data.id
+                                          )
+                                        }
+                                      }
+                                    },
+                                    [_vm._v("Delete Quiz")]
+                                  )
+                                : _vm._e()
+                            ])
+                          ])
+                        ]
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _vm._l(_vm.quiz_data.details, function(deet, index) {
+                      return _c(
+                        "div",
+                        {
+                          key: index,
+                          staticClass: "card card-rounded text-muted mb-2"
+                        },
+                        [
+                          _c("div", { staticClass: "card-body bg-grey" }, [
+                            _c("div", { staticClass: "row" }, [
+                              _c("div", { staticClass: "col-md-4 my-auto" }, [
+                                _c(
+                                  "div",
+                                  { staticClass: "row border-bottom" },
+                                  [
+                                    _c("div", { staticClass: "col-md-6" }, [
+                                      _vm._v(
+                                        "\n                                            Difficulty Range:\n                                        "
+                                      )
+                                    ]),
+                                    _vm._v(" "),
+                                    _c(
+                                      "div",
+                                      { staticClass: "col-md-6 text-right" },
+                                      [
+                                        _vm._v(
+                                          "\n                                            " +
+                                            _vm._s(deet.diff) +
+                                            "\n                                        "
+                                        )
+                                      ]
+                                    )
+                                  ]
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "div",
+                                  { staticClass: "row border-bottom mt-2" },
+                                  [
+                                    _c("div", { staticClass: "col-md-6" }, [
+                                      _vm._v(
+                                        "\n                                            Number of Questions:\n                                        "
+                                      )
+                                    ]),
+                                    _vm._v(" "),
+                                    _c(
+                                      "div",
+                                      { staticClass: "col-md-6 text-right" },
+                                      [
+                                        _vm._v(
+                                          "\n                                            " +
+                                            _vm._s(deet.qNo) +
+                                            "\n                                        "
+                                        )
+                                      ]
+                                    )
+                                  ]
+                                )
+                              ]),
+                              _vm._v(" "),
+                              _c(
+                                "div",
+                                { staticClass: "col-md-8 my-auto text-center" },
+                                _vm._l(deet.tags, function(tag, rIndex) {
+                                  return _c(
+                                    "div",
+                                    {
+                                      key: rIndex,
+                                      staticClass:
+                                        "p-2 m-1 tag label-info float-left rounded"
+                                    },
+                                    [
+                                      tag != undefined && tag != null
+                                        ? _c("span", [_vm._v(_vm._s(tag))])
+                                        : _vm._e()
+                                    ]
+                                  )
+                                }),
+                                0
+                              )
+                            ])
+                          ])
+                        ]
+                      )
+                    })
+                  ],
+                  2
+                )
+              ])
+            ]
+          )
+        ]
+      )
+    ],
+    2
+  )
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      {
+        staticClass: " card text-center mb-3 text-muted",
+        staticStyle: { "border-radius": "20px" }
+      },
+      [_c("div", { staticClass: "card-body h4 my-0" }, [_vm._v("All Quizzes")])]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "button",
+      {
+        staticClass: "close",
+        attrs: {
+          type: "button",
+          "data-dismiss": "modal",
+          "aria-label": "Close"
+        }
+      },
+      [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
+    )
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Quiz/Panel.vue?vue&type=template&id=55d4f555&":
 /*!*************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Quiz/Panel.vue?vue&type=template&id=55d4f555& ***!
@@ -54931,6 +55683,7 @@ Vue.component('tags-view', __webpack_require__(/*! ./components/Tags/View.vue */
 
 Vue.component('analytics-tags', __webpack_require__(/*! ./components/Analytics/Tags.vue */ "./resources/js/components/Analytics/Tags.vue")["default"]); // Quiz Components
 
+Vue.component('quiz-index', __webpack_require__(/*! ./components/Quiz/Index.vue */ "./resources/js/components/Quiz/Index.vue")["default"]);
 Vue.component('quiz-create', __webpack_require__(/*! ./components/Quiz/Create.vue */ "./resources/js/components/Quiz/Create.vue")["default"]);
 Vue.component('quiz-panel', __webpack_require__(/*! ./components/Quiz/Panel.vue */ "./resources/js/components/Quiz/Panel.vue")["default"]);
 Vue.component('quiz-start', __webpack_require__(/*! ./components/Quiz/Start.vue */ "./resources/js/components/Quiz/Start.vue")["default"]);
@@ -55607,6 +56360,75 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Create_vue_vue_type_template_id_6ba3f1fb___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Create_vue_vue_type_template_id_6ba3f1fb___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/Quiz/Index.vue":
+/*!************************************************!*\
+  !*** ./resources/js/components/Quiz/Index.vue ***!
+  \************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _Index_vue_vue_type_template_id_7e0ffd23___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Index.vue?vue&type=template&id=7e0ffd23& */ "./resources/js/components/Quiz/Index.vue?vue&type=template&id=7e0ffd23&");
+/* harmony import */ var _Index_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Index.vue?vue&type=script&lang=js& */ "./resources/js/components/Quiz/Index.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _Index_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _Index_vue_vue_type_template_id_7e0ffd23___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _Index_vue_vue_type_template_id_7e0ffd23___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/Quiz/Index.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/Quiz/Index.vue?vue&type=script&lang=js&":
+/*!*************************************************************************!*\
+  !*** ./resources/js/components/Quiz/Index.vue?vue&type=script&lang=js& ***!
+  \*************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Index_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./Index.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Quiz/Index.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Index_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/Quiz/Index.vue?vue&type=template&id=7e0ffd23&":
+/*!*******************************************************************************!*\
+  !*** ./resources/js/components/Quiz/Index.vue?vue&type=template&id=7e0ffd23& ***!
+  \*******************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Index_vue_vue_type_template_id_7e0ffd23___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./Index.vue?vue&type=template&id=7e0ffd23& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Quiz/Index.vue?vue&type=template&id=7e0ffd23&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Index_vue_vue_type_template_id_7e0ffd23___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Index_vue_vue_type_template_id_7e0ffd23___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 

@@ -24,6 +24,8 @@ Route::post('/query/get-question', 'QueryPoolController@getQuestions')->name('qu
 Route::post('/query/submit-query', 'QueryPoolController@verifyQuery')->name('querypool.verify-query');
 
 Route::post('/quiz/submit-query', 'QuizController@verifyQuery')->name('quiz.verify-query');
+Route::post('/quiz/{quiz}/delete', 'QuizController@deleteQuiz')->name('quiz.delete');
+Route::post('/quiz/{quiz}/show', 'QuizController@show')->name('quiz.show');
 
 Route::post('/user/get', 'UsersController@get')->name('user.get');
 Route::post('/user/update', 'UsersController@update')->name('user.get');

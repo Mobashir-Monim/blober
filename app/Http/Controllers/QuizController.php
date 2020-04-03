@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Carbon\Carbon;
+use App\User;
 use App\Quiz;
 use App\QuizQuestions as QQ;
 use App\Helpers\QueryChecker as QCH;
@@ -14,7 +15,13 @@ class QuizController extends Controller
 {
     public function index()
     {
-        $quizzes = Quiz::orderBy('created_at', 'DESC')->get();
+        $quizzes = array();
+        // $quizzes = Quiz::orderBy('created_at', 'DESC')->get();
+
+        foreach (Quiz::orderBy('created_at', 'DESC')->get() as $quiz) {
+            array_push($quizzes, $quiz->viewableData());
+        }
+        // dd($quizzes);
 
         return view('quiz.index', compact('quizzes'));
     }
@@ -35,6 +42,33 @@ class QuizController extends Controller
 
 
         return back()->with('success', 'Quiz Successfully Created');
+    }
+
+    public function show(Request $request, Quiz $quiz)
+    {
+        $data = $quiz->viewableData();
+        $data['details'] = json_decode($quiz->data, true);
+        $data['edit'] = !is_null(User::getUser($request->sessioncode));
+        $data['delete'] = is_null(User::getUser($request->sessioncode)) ? false : $quiz->creator->id == User::getUser($request->sessioncode)->id;
+
+        return response()->json([
+            'success' => true,
+            'data' => $data,
+        ]);
+    }
+
+    public function deleteQuiz(Request $request, Quiz $quiz)
+    {
+        $flag = User::getUser($request->sessioncode)->id == $quiz->creator->id;
+
+        if ($flag) {
+            $quiz->delete();
+        }
+
+        return response()->json([
+            'success' => $flag,
+            'message' => $flag ? 'Quiz successfully deleted' : 'You are not authorized to delete this quiz',
+        ]);
     }
 
     public function panel()
