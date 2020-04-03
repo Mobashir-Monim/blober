@@ -112,3 +112,7 @@ body {
 .modal-content {
     background-color: #f8fafc;
 }
+
+.body-bg {
+    background-color: #f8fafc !important;
+}

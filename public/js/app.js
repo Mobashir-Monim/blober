@@ -42275,161 +42275,147 @@ var render = function() {
             _vm._v(" "),
             _vm._l(_vm.classes, function(obj, index) {
               return _c("div", { key: index }, [
-                _c("div", { staticClass: "row mb-3 border rounded mx-1" }, [
-                  _c("div", { staticClass: "col-md-12 bg-secondary-2" }, [
-                    _c("h5", { staticClass: "border-bottom py-3" }, [
-                      _vm._v("Questions " + _vm._s(index + 1) + " Class "),
-                      _c(
-                        "span",
-                        {
-                          staticClass: "q-class-close btn-dark px-2",
-                          on: {
-                            click: function($event) {
-                              return _vm.removeClass(index)
-                            }
-                          }
-                        },
-                        [_vm._v("✗")]
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "row mb-3" }, [
-                      _c("div", { staticClass: "col-md" }, [
-                        _vm._v(
-                          "\n                                    Difficulty Range:\n                                    "
-                        ),
-                        _c("input", {
-                          staticClass: "form-control",
-                          attrs: {
-                            type: "text",
-                            name: "difficulty",
-                            placeholder: "2 - 5"
-                          },
-                          domProps: { value: obj.diff },
-                          on: {
-                            keyup: function($event) {
-                              return _vm.updateDiff(index, $event)
-                            }
-                          }
-                        })
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "col-md" }, [
-                        _vm._v(
-                          "\n                                    No. of Questions:\n                                    "
-                        ),
-                        _c("input", {
-                          staticClass: "form-control",
-                          attrs: {
-                            type: "number",
-                            name: "no_questions",
-                            placeholder: "3",
-                            step: "1",
-                            min: "1"
-                          },
-                          domProps: { value: obj.qNo },
-                          on: {
-                            keyup: function($event) {
-                              return _vm.updateQNo(index, $event)
-                            }
-                          }
-                        })
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "col-md" }, [
-                        _vm._v(
-                          "\n                                    Points:\n                                    "
-                        ),
-                        _c("input", {
-                          staticClass: "form-control",
-                          attrs: {
-                            type: "number",
-                            name: "points",
-                            placeholder: "5.25",
-                            step: "0.25",
-                            min: "0"
-                          },
-                          domProps: { value: obj.points },
-                          on: {
-                            keyup: function($event) {
-                              return _vm.updatePoints(index, $event)
-                            }
-                          }
-                        })
-                      ])
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "row mb-2" }, [
-                      _c("div", { staticClass: "col-md-7" }, [
-                        _c("h6", { staticClass: "border-bottom" }, [
-                          _vm._v("All Tags")
+                _c(
+                  "div",
+                  { staticClass: "row mb-3 border card-rounded mx-1" },
+                  [
+                    _c(
+                      "div",
+                      { staticClass: "col-md-12 body-bg card-rounded" },
+                      [
+                        _c("h5", { staticClass: "border-bottom py-3" }, [
+                          _vm._v("Questions " + _vm._s(index + 1) + " Class "),
+                          _c(
+                            "span",
+                            {
+                              staticClass: "q-class-close btn-dark px-2",
+                              on: {
+                                click: function($event) {
+                                  return _vm.removeClass(index)
+                                }
+                              }
+                            },
+                            [_vm._v("✗")]
+                          )
                         ]),
                         _vm._v(" "),
-                        _c("div", { staticClass: "row" }, [
-                          _c(
-                            "div",
-                            { staticClass: "col-md-12 tags-cont" },
-                            _vm._l(obj.allTags, function(tag, rIndex) {
-                              return _c(
-                                "div",
-                                {
-                                  key: rIndex,
-                                  staticClass:
-                                    "p-2 m-1 tag label-info float-left rounded",
-                                  on: {
-                                    click: function($event) {
-                                      return _vm.selectTag(index, rIndex)
-                                    }
-                                  }
-                                },
-                                [
-                                  tag != undefined && tag != null
-                                    ? _c("span", [_vm._v(_vm._s(tag))])
-                                    : _vm._e()
-                                ]
-                              )
-                            }),
-                            0
-                          )
-                        ])
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "col-md" }, [
-                        _c("h6", { staticClass: "border-bottom" }, [
-                          _vm._v("Selected Tags")
+                        _c("div", { staticClass: "row mb-3" }, [
+                          _c("div", { staticClass: "col-md" }, [
+                            _vm._v(
+                              "\n                                    Difficulty Range:\n                                    "
+                            ),
+                            _c("input", {
+                              staticClass: "form-control",
+                              attrs: {
+                                type: "text",
+                                name: "difficulty",
+                                placeholder: "2 - 5"
+                              },
+                              domProps: { value: obj.diff },
+                              on: {
+                                keyup: function($event) {
+                                  return _vm.updateDiff(index, $event)
+                                }
+                              }
+                            })
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "col-md" }, [
+                            _vm._v(
+                              "\n                                    No. of Questions:\n                                    "
+                            ),
+                            _c("input", {
+                              staticClass: "form-control",
+                              attrs: {
+                                type: "number",
+                                name: "no_questions",
+                                placeholder: "3",
+                                step: "1",
+                                min: "1"
+                              },
+                              domProps: { value: obj.qNo },
+                              on: {
+                                keyup: function($event) {
+                                  return _vm.updateQNo(index, $event)
+                                }
+                              }
+                            })
+                          ])
                         ]),
                         _vm._v(" "),
                         _c("div", { staticClass: "row mb-2" }, [
-                          _c(
-                            "div",
-                            { staticClass: "col-md-12 tags-cont" },
-                            _vm._l(obj.tags, function(tag, sIndex) {
-                              return _c(
+                          _c("div", { staticClass: "col-md-7" }, [
+                            _c("h6", { staticClass: "border-bottom" }, [
+                              _vm._v("All Tags")
+                            ]),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "row" }, [
+                              _c(
                                 "div",
-                                {
-                                  key: sIndex,
-                                  staticClass:
-                                    "p-2 m-1 tag label-info float-left rounded",
-                                  on: {
-                                    click: function($event) {
-                                      return _vm.unselectTag(index, sIndex)
-                                    }
-                                  }
-                                },
-                                [
-                                  tag != undefined && tag != null
-                                    ? _c("span", [_vm._v(_vm._s(tag))])
-                                    : _vm._e()
-                                ]
+                                { staticClass: "col-md-12 tags-cont" },
+                                _vm._l(obj.allTags, function(tag, rIndex) {
+                                  return _c(
+                                    "div",
+                                    {
+                                      key: rIndex,
+                                      staticClass:
+                                        "p-2 m-1 tag label-info float-left rounded",
+                                      on: {
+                                        click: function($event) {
+                                          return _vm.selectTag(index, rIndex)
+                                        }
+                                      }
+                                    },
+                                    [
+                                      tag != undefined && tag != null
+                                        ? _c("span", [_vm._v(_vm._s(tag))])
+                                        : _vm._e()
+                                    ]
+                                  )
+                                }),
+                                0
                               )
-                            }),
-                            0
-                          )
+                            ])
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "col-md" }, [
+                            _c("h6", { staticClass: "border-bottom" }, [
+                              _vm._v("Selected Tags")
+                            ]),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "row mb-2" }, [
+                              _c(
+                                "div",
+                                { staticClass: "col-md-12 tags-cont" },
+                                _vm._l(obj.tags, function(tag, sIndex) {
+                                  return _c(
+                                    "div",
+                                    {
+                                      key: sIndex,
+                                      staticClass:
+                                        "p-2 m-1 tag label-info float-left rounded",
+                                      on: {
+                                        click: function($event) {
+                                          return _vm.unselectTag(index, sIndex)
+                                        }
+                                      }
+                                    },
+                                    [
+                                      tag != undefined && tag != null
+                                        ? _c("span", [_vm._v(_vm._s(tag))])
+                                        : _vm._e()
+                                    ]
+                                  )
+                                }),
+                                0
+                              )
+                            ])
+                          ])
                         ])
-                      ])
-                    ])
-                  ])
-                ])
+                      ]
+                    )
+                  ]
+                )
               ])
             }),
             _vm._v(" "),

@@ -32,8 +32,8 @@
                     </form>
 
                     <div v-for="(obj, index) in classes" :key="index">
-                        <div class="row mb-3 border rounded mx-1">
-                            <div class="col-md-12 bg-secondary-2">
+                        <div class="row mb-3 border card-rounded mx-1">
+                            <div class="col-md-12 body-bg card-rounded">
                                 <h5 class="border-bottom py-3">Questions {{ index + 1 }} Class <span class="q-class-close btn-dark px-2" @click="removeClass(index)">&#10007;</span></h5>
                                 <div class="row mb-3">
                                     <div class="col-md">
@@ -44,10 +44,10 @@
                                         No. of Questions:
                                         <input type="number" name="no_questions" class="form-control" placeholder="3" @keyup="updateQNo(index, $event)" :value="obj.qNo" step="1" min="1">
                                     </div>
-                                    <div class="col-md">
+                                    <!-- <div class="col-md">
                                         Points:
                                         <input type="number" name="points" class="form-control" placeholder="5.25" @keyup="updatePoints(index, $event)" :value="obj.points" step="0.25" min="0">
-                                    </div>
+                                    </div> -->
                                 </div>
                                 <div class="row mb-2">
                                     <div class="col-md-7">
