@@ -17,6 +17,7 @@
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 
     <!-- Styles -->
@@ -79,7 +80,7 @@
             </nav>
         @endif
 
-        <main class="py-4">
+        <main class="py-1">
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-md-12 col-sm-12 col-12">
@@ -94,7 +95,12 @@
                                     <div class="col-md-12">
                                         <div class="card sidenav">
                                             <div class="card-header">Side Nav</div>
-                                            <div class="card-body">
+                                            <div class="card-body py-2">
+                                                <div class="row mb-2">
+                                                    <div class="col-md-12">
+                                                        <a href="{{ route('home') }}" class="btn btn-dark w-100">Dashboard</a>
+                                                    </div>
+                                                </div>
                                                 <div class="row mb-2">
                                                     <div class="col-md-12">
                                                         <a href="{{ route('users.edit') }}" class="btn btn-dark w-100">Update Profile</a>

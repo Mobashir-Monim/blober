@@ -5,5 +5,6 @@
 @include('side-nav.items.attempt-query')
 @include('side-nav.items.tags')
 @include('side-nav.items.add-quiz')
+@include('side-nav.items.quiz-index')
 @include('side-nav.items.view-analytics')
 @include('side-nav.items.start-quiz')

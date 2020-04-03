@@ -73,6 +73,10 @@
     border-radius: 25px !important;
 }
 
+.card-rounded-top {
+    border-radius: 25px 25px 0 0 !important;
+}
+
 .card-header {
     background-color: #343a40 !important;
     border-radius: calc(1rem - 1px) calc(1rem - 1px) 0 0 !important;
@@ -81,4 +85,30 @@
 
 .card {
     border-radius: 1rem;
+}
+
+.btn {
+    border-radius: 1.25rem !important;
+    font-size: 0.9em !important;
+}
+
+body {
+    font-family: "Montserrat", "Nunito", sans-serif !important;
+    font-size: 0.8em !important;
+}
+
+.tooltip {
+    font-family: "Montserrat", "Nunito", sans-serif !important;
+}
+
+.popover {
+    font-family: "Montserrat", "Nunito", sans-serif !important;
+}
+
+:root {
+    --font-family-sans-serif: "Montserrat", "Nunito", sans-serif;
+}
+
+.modal-content {
+    background-color: #f8fafc;
 }

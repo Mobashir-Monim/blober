@@ -18,10 +18,10 @@
                             </div>
                             <div class="row mb-3">
                                 <div class="col-md pl-2">
-                                    <a href="#/" class="btn btn-dark w-100" @click="prevQuestion()"><i class="fa fas fa-caret-left"></i><i class="fa fas fa-caret-left mr-2"></i>Prev Question</a>
+                                    <a href="#/" class="btn btn-dark w-100" @click="prevQuestion()"><i class="fa fas fa-caret-left"></i><i class="fa fas fa-caret-left mr-2"></i></a>
                                 </div>
                                 <div class="col-md pr-2">
-                                    <a href="#/" class="btn btn-dark w-100" @click="nextQuestion()">Next Question<i class="fa fas fa-caret-right ml-2"></i><i class="fa fas fa-caret-right"></i></a>
+                                    <a href="#/" class="btn btn-dark w-100" @click="nextQuestion()"><i class="fa fas fa-caret-right ml-2"></i><i class="fa fas fa-caret-right"></i></a>
                                 </div>
                             </div>
                             <div class="row mt-3">

@@ -3871,6 +3871,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
               case 5:
                 res = _context2.sent;
+                console.log(res);
 
                 if (res.success) {
                   _this2.quiz_details = res.data;
@@ -3878,7 +3879,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   alert('Data could not be loaded, please try again');
                 }
 
-              case 7:
+              case 8:
               case "end":
                 return _context2.stop();
             }
@@ -42870,134 +42871,127 @@ var render = function() {
                 _vm._v("Section: " + _vm._s(quiz.section))
               ]),
               _vm._v(" "),
-              _c(
-                "div",
-                {
-                  staticClass: "row mb-3",
-                  staticStyle: { "font-size": "0.9em" }
-                },
-                [
-                  _c("div", { staticClass: "col-md-6" }, [
-                    _c("div", { staticClass: "row border-bottom pt-2 ml-1" }, [
-                      _c("div", { staticClass: "col-md-6" }, [
-                        _vm._v("Total Questions:")
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "col-md-6 text-right" }, [
-                        _vm._v(_vm._s(quiz.qCount))
-                      ])
+              _c("div", { staticClass: "row mb-3" }, [
+                _c("div", { staticClass: "col-md-6" }, [
+                  _c("div", { staticClass: "row border-bottom pt-2 ml-1" }, [
+                    _c("div", { staticClass: "col-md-6 pl-0" }, [
+                      _vm._v("Total Questions:")
                     ]),
                     _vm._v(" "),
-                    _c("div", { staticClass: "row border-bottom pt-2 ml-1" }, [
-                      _c("div", { staticClass: "col-md-6" }, [
-                        _vm._v("Total Groups:")
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "col-md-6 text-right" }, [
-                        _vm._v(_vm._s(quiz.gCount))
-                      ])
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "row border-bottom pt-2 ml-1" }, [
-                      _c("div", { staticClass: "col-md-6" }, [
-                        _vm._v("Duration:")
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "col-md-6 text-right" }, [
-                        _vm._v(_vm._s(quiz.duration))
-                      ])
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "row border-bottom pt-2 ml-1" }, [
-                      _c("div", { staticClass: "col-md-6" }, [
-                        _vm._v("Start Time:")
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "col-md-6 text-right" }, [
-                        _vm._v(_vm._s(quiz.start))
-                      ])
+                    _c("div", { staticClass: "col-md-6 text-right pr-0" }, [
+                      _vm._v(_vm._s(quiz.qCount))
                     ])
                   ]),
                   _vm._v(" "),
-                  _c("div", { staticClass: "col-md-6 mt-auto text-right" }, [
-                    _c("div", { staticClass: "row" }, [
-                      _c("div", { staticClass: "col-md-12" }, [
-                        _c("div", { staticClass: "mb-3" }, [
-                          _c(
-                            "div",
-                            {
-                              staticStyle: {
-                                "font-size": "0.8em",
-                                "margin-bottom": "-3px"
-                              }
-                            },
-                            [_vm._v("Created")]
-                          ),
-                          _vm._v(" "),
-                          _c("i", [_vm._v(_vm._s(quiz.creator))]),
-                          _vm._v(" "),
-                          _c(
-                            "div",
-                            {
-                              staticStyle: {
-                                "font-size": "0.8em",
-                                "margin-bottom": "-3px"
-                              }
-                            },
-                            [_vm._v("Last Updated")]
-                          ),
-                          _vm._v(" "),
-                          _c("i", [_vm._v(_vm._s(quiz.updator))])
-                        ]),
-                        _vm._v(" "),
-                        _c(
-                          "a",
-                          {
-                            staticClass: "pl-5 text-primary",
-                            attrs: { href: "#/" },
-                            on: {
-                              click: function($event) {
-                                return _vm.viewQuiz(quiz.id)
-                              }
-                            }
-                          },
-                          [_vm._v("View Quiz")]
-                        ),
-                        _vm._v(" "),
-                        quiz.edit
-                          ? _c(
-                              "a",
-                              {
-                                staticClass: "pl-5 text-secondary",
-                                attrs: {
-                                  href: "/quiz/" + quiz.id + "/edit",
-                                  target: "_blank"
-                                }
-                              },
-                              [_vm._v("Edit Quiz")]
-                            )
-                          : _vm._e(),
-                        _vm._v(" "),
-                        quiz.delete
-                          ? _c(
-                              "a",
-                              {
-                                staticClass: "pl-5 text-danger",
-                                attrs: { href: "#/" },
-                                on: {
-                                  click: function($event) {
-                                    return _vm.deleteQuiz(quiz.id)
-                                  }
-                                }
-                              },
-                              [_vm._v("Delete Quiz")]
-                            )
-                          : _vm._e()
-                      ])
+                  _c("div", { staticClass: "row border-bottom pt-2 ml-1" }, [
+                    _c("div", { staticClass: "col-md-6 pl-0" }, [
+                      _vm._v("Total Groups:")
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-md-6 text-right pr-0" }, [
+                      _vm._v(_vm._s(quiz.gCount))
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "row border-bottom pt-2 ml-1" }, [
+                    _c("div", { staticClass: "col-md-6 pl-0" }, [
+                      _vm._v("Duration:")
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-md-6 text-right pr-0" }, [
+                      _vm._v(_vm._s(quiz.duration))
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "row border-bottom pt-2 ml-1" }, [
+                    _c("div", { staticClass: "col-md-6 pl-0" }, [
+                      _vm._v("Start Time:")
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-md-6 text-right pr-0" }, [
+                      _vm._v(_vm._s(quiz.start))
                     ])
                   ])
-                ]
-              )
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-md-6 mt-auto text-right" }, [
+                  _c("div", { staticClass: "row" }, [
+                    _c("div", { staticClass: "col-md-12" }, [
+                      _c("div", { staticClass: "mb-3" }, [
+                        _c(
+                          "div",
+                          {
+                            staticStyle: {
+                              "font-size": "0.8em",
+                              "margin-bottom": "-3px"
+                            }
+                          },
+                          [_vm._v("Created")]
+                        ),
+                        _vm._v(" "),
+                        _c("i", [_vm._v(_vm._s(quiz.creator))]),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          {
+                            staticStyle: {
+                              "font-size": "0.8em",
+                              "margin-bottom": "-3px"
+                            }
+                          },
+                          [_vm._v("Last Updated")]
+                        ),
+                        _vm._v(" "),
+                        _c("i", [_vm._v(_vm._s(quiz.updator))])
+                      ]),
+                      _vm._v(" "),
+                      _c(
+                        "a",
+                        {
+                          staticClass: "pl-5 text-primary",
+                          attrs: { href: "#/" },
+                          on: {
+                            click: function($event) {
+                              return _vm.viewQuiz(quiz.id)
+                            }
+                          }
+                        },
+                        [_vm._v("View Quiz")]
+                      ),
+                      _vm._v(" "),
+                      quiz.edit
+                        ? _c(
+                            "a",
+                            {
+                              staticClass: "pl-5 text-secondary",
+                              attrs: {
+                                href: "/quiz/" + quiz.id + "/edit",
+                                target: "_blank"
+                              }
+                            },
+                            [_vm._v("Edit Quiz")]
+                          )
+                        : _vm._e(),
+                      _vm._v(" "),
+                      quiz.delete
+                        ? _c(
+                            "a",
+                            {
+                              staticClass: "pl-5 text-danger",
+                              attrs: { href: "#/" },
+                              on: {
+                                click: function($event) {
+                                  return _vm.deleteQuiz(quiz.id)
+                                }
+                              }
+                            },
+                            [_vm._v("Delete Quiz")]
+                          )
+                        : _vm._e()
+                    ])
+                  ])
+                ])
+              ])
             ])
           ]
         )
@@ -43017,7 +43011,6 @@ var render = function() {
         "div",
         {
           staticClass: "modal fade bd-example-modal-xl text-muted",
-          staticStyle: { "font-size": "0.9em" },
           attrs: {
             id: "mod",
             tabindex: "-1",
@@ -43034,19 +43027,26 @@ var render = function() {
               attrs: { role: "document" }
             },
             [
-              _c("div", { staticClass: "modal-content" }, [
-                _c("div", { staticClass: "modal-header" }, [
-                  _c(
-                    "h5",
-                    {
-                      staticClass: "modal-title",
-                      attrs: { id: "exampleModalLabel" }
-                    },
-                    [_vm._v("Section " + _vm._s(_vm.quiz_data.section))]
-                  ),
-                  _vm._v(" "),
-                  _vm._m(1)
-                ]),
+              _c("div", { staticClass: "modal-content card-rounded" }, [
+                _c(
+                  "div",
+                  {
+                    staticClass:
+                      "modal-header bg-dark text-white card-rounded-top"
+                  },
+                  [
+                    _c(
+                      "h5",
+                      {
+                        staticClass: "modal-title",
+                        attrs: { id: "exampleModalLabel" }
+                      },
+                      [_vm._v("Section " + _vm._s(_vm.quiz_data.section))]
+                    ),
+                    _vm._v(" "),
+                    _vm._m(1)
+                  ]
+                ),
                 _vm._v(" "),
                 _c(
                   "div",
@@ -43153,7 +43153,8 @@ var render = function() {
                                     {
                                       staticClass: "pl-5 text-secondary",
                                       attrs: {
-                                        href: "/quiz/" + _vm.quiz.id + "/edit",
+                                        href:
+                                          "/quiz/" + _vm.quiz_data.id + "/edit",
                                         target: "_blank"
                                       }
                                     },
@@ -43189,25 +43190,31 @@ var render = function() {
                         "div",
                         {
                           key: index,
-                          staticClass: "card card-rounded text-muted mb-2"
+                          staticClass: "card card-rounded text-muted mb-3 px-3"
                         },
                         [
-                          _c("div", { staticClass: "card-body bg-grey" }, [
+                          _c("div", { staticClass: "card-body" }, [
                             _c("div", { staticClass: "row" }, [
                               _c("div", { staticClass: "col-md-4 my-auto" }, [
                                 _c(
                                   "div",
                                   { staticClass: "row border-bottom" },
                                   [
-                                    _c("div", { staticClass: "col-md-6" }, [
-                                      _vm._v(
-                                        "\n                                            Difficulty Range:\n                                        "
-                                      )
-                                    ]),
+                                    _c(
+                                      "div",
+                                      { staticClass: "col-md-6 pl-0" },
+                                      [
+                                        _vm._v(
+                                          "\n                                            Difficulty Range:\n                                        "
+                                        )
+                                      ]
+                                    ),
                                     _vm._v(" "),
                                     _c(
                                       "div",
-                                      { staticClass: "col-md-6 text-right" },
+                                      {
+                                        staticClass: "col-md-6 text-right pr-0"
+                                      },
                                       [
                                         _vm._v(
                                           "\n                                            " +
@@ -43223,15 +43230,21 @@ var render = function() {
                                   "div",
                                   { staticClass: "row border-bottom mt-2" },
                                   [
-                                    _c("div", { staticClass: "col-md-6" }, [
-                                      _vm._v(
-                                        "\n                                            Number of Questions:\n                                        "
-                                      )
-                                    ]),
+                                    _c(
+                                      "div",
+                                      { staticClass: "col-md-6 pl-0" },
+                                      [
+                                        _vm._v(
+                                          "\n                                            Number of Questions:\n                                        "
+                                        )
+                                      ]
+                                    ),
                                     _vm._v(" "),
                                     _c(
                                       "div",
-                                      { staticClass: "col-md-6 text-right" },
+                                      {
+                                        staticClass: "col-md-6 text-right pr-0"
+                                      },
                                       [
                                         _vm._v(
                                           "\n                                            " +
@@ -43302,14 +43315,20 @@ var staticRenderFns = [
     return _c(
       "button",
       {
-        staticClass: "close",
+        staticClass: "close text-white",
         attrs: {
           type: "button",
           "data-dismiss": "modal",
           "aria-label": "Close"
         }
       },
-      [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
+      [
+        _c(
+          "span",
+          { staticClass: "text-white", attrs: { "aria-hidden": "true" } },
+          [_vm._v("×")]
+        )
+      ]
     )
   }
 ]
@@ -43448,8 +43467,7 @@ var render = function() {
                     },
                     [
                       _c("i", { staticClass: "fa fas fa-caret-left" }),
-                      _c("i", { staticClass: "fa fas fa-caret-left mr-2" }),
-                      _vm._v("Prev Question")
+                      _c("i", { staticClass: "fa fas fa-caret-left mr-2" })
                     ]
                   )
                 ]),
@@ -43467,7 +43485,6 @@ var render = function() {
                       }
                     },
                     [
-                      _vm._v("Next Question"),
                       _c("i", { staticClass: "fa fas fa-caret-right ml-2" }),
                       _c("i", { staticClass: "fa fas fa-caret-right" })
                     ]

@@ -6,23 +6,23 @@
         <div class="card mb-3 text-muted" style="border-radius: 25px" :id="'quiz-' + quiz.id" v-for="(quiz, index) in list" :key="index">
             <div class="card-body">
                 <h5 class="card-title border-bottom">Section: {{ quiz.section }}</h5>
-                <div class="row mb-3" style="font-size: 0.9em">
+                <div class="row mb-3">
                     <div class="col-md-6">
                         <div class="row border-bottom pt-2 ml-1">
-                            <div class="col-md-6">Total Questions:</div>
-                            <div class="col-md-6 text-right">{{ quiz.qCount }}</div>
+                            <div class="col-md-6 pl-0">Total Questions:</div>
+                            <div class="col-md-6 text-right pr-0">{{ quiz.qCount }}</div>
                         </div>
                         <div class="row border-bottom pt-2 ml-1">
-                            <div class="col-md-6">Total Groups:</div>
-                            <div class="col-md-6 text-right">{{ quiz.gCount }}</div>
+                            <div class="col-md-6 pl-0">Total Groups:</div>
+                            <div class="col-md-6 text-right pr-0">{{ quiz.gCount }}</div>
                         </div>
                         <div class="row border-bottom pt-2 ml-1">
-                            <div class="col-md-6">Duration:</div>
-                            <div class="col-md-6 text-right">{{ quiz.duration }}</div>
+                            <div class="col-md-6 pl-0">Duration:</div>
+                            <div class="col-md-6 text-right pr-0">{{ quiz.duration }}</div>
                         </div>
                         <div class="row border-bottom pt-2 ml-1">
-                            <div class="col-md-6">Start Time:</div>
-                            <div class="col-md-6 text-right">{{ quiz.start }}</div>
+                            <div class="col-md-6 pl-0">Start Time:</div>
+                            <div class="col-md-6 text-right pr-0">{{ quiz.start }}</div>
                         </div>
                     </div>
                     <div class="col-md-6 mt-auto text-right">
@@ -46,13 +46,13 @@
 
         <button type="button" class="hidden" id="modal-btn" data-toggle="modal" data-target=".bd-example-modal-xl"></button>
 
-        <div class="modal fade bd-example-modal-xl text-muted" id="mod" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true" style="font-size: 0.9em">
+        <div class="modal fade bd-example-modal-xl text-muted" id="mod" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-xl" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
+                <div class="modal-content card-rounded">
+                    <div class="modal-header bg-dark text-white card-rounded-top">
                         <h5 class="modal-title" id="exampleModalLabel">Section {{ quiz_data.section }}</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
+                        <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true" class="text-white">&times;</span>
                         </button>
                     </div>
                     <div class="modal-body">
@@ -84,29 +84,29 @@
                                             <div style="font-size: 0.8em; margin-bottom: -3px;">Last Updated</div>
                                             <i>{{ quiz_data.updator }}</i>
                                         </div>
-                                        <a :href="'/quiz/' + quiz.id + '/edit'" target="_blank" class="pl-5 text-secondary" v-if="quiz_data.edit">Edit Quiz</a>
+                                        <a :href="'/quiz/' + quiz_data.id + '/edit'" target="_blank" class="pl-5 text-secondary" v-if="quiz_data.edit">Edit Quiz</a>
                                         <a href="#/" @click="deleteQuiz(quiz_data.id)" v-if="quiz_data.delete" class="pl-5 text-danger">Delete Quiz</a>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="card card-rounded text-muted mb-2" v-for="(deet, index) in quiz_data.details" :key="index">
-                            <div class="card-body bg-grey">
+                        <div class="card card-rounded text-muted mb-3 px-3" v-for="(deet, index) in quiz_data.details" :key="index">
+                            <div class="card-body">
                                 <div class="row">
                                     <div class="col-md-4 my-auto">
                                         <div class="row border-bottom">
-                                            <div class="col-md-6">
+                                            <div class="col-md-6 pl-0">
                                                 Difficulty Range:
                                             </div>
-                                            <div class="col-md-6 text-right">
+                                            <div class="col-md-6 text-right pr-0">
                                                 {{ deet.diff }}
                                             </div>
                                         </div>
                                         <div class="row border-bottom mt-2">
-                                            <div class="col-md-6">
+                                            <div class="col-md-6 pl-0">
                                                 Number of Questions:
                                             </div>
-                                            <div class="col-md-6 text-right">
+                                            <div class="col-md-6 text-right pr-0">
                                                 {{ deet.qNo }}
                                             </div>
                                         </div>
@@ -174,6 +174,8 @@
                         })
                     });
                     let res = await rawResponse.json();
+
+                    console.log(res);
 
                     if (res.success) {
                         this.quiz_details = res.data;
