@@ -8,7 +8,7 @@
                 <p class="text-right mt-2">{{ status }}</p>
                 <input type="hidden" name="tables" id="tables">
                 <input type="hidden" name="tableNames" id="table-names">
-                <a href="#/" class="btn btn-success w-100" @click="makeDBInps()">Submit</a>
+                <a href="#/" class="btn btn-dark w-100" @click="makeDBInps()">Submit</a>
             </div>
         </div>
     </form>

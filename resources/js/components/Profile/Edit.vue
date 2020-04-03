@@ -36,7 +36,7 @@
                     </div>
                 </div>
                 <div class="col-md-6">
-                    <a href="#/" class="btn btn-success w-100" @click="upadateProfile()">Update Personal Information</a>
+                    <a href="#/" class="btn btn-dark w-100" @click="upadateProfile()">Update Personal Information</a>
                 </div>
             </div>
 
@@ -69,7 +69,7 @@
                     </div>
                 </div>
                 <div class="col-md-6 my-auto">
-                    <button type="submit" class="btn btn-danger w-100 disabled" disabled>Update Password</button>
+                    <button type="submit" class="btn btn-dark w-100 disabled" disabled>Update Password</button>
                 </div>
             </div>
         </div>

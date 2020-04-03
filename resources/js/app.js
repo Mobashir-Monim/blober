@@ -43,6 +43,7 @@ Vue.component('analytics-tags', require('./components/Analytics/Tags.vue').defau
 // Quiz Components
 Vue.component('quiz-index', require('./components/Quiz/Index.vue').default);
 Vue.component('quiz-create', require('./components/Quiz/Create.vue').default);
+Vue.component('quiz-edit', require('./components/Quiz/Edit.vue').default);
 Vue.component('quiz-panel', require('./components/Quiz/Panel.vue').default);
 Vue.component('quiz-start', require('./components/Quiz/Start.vue').default);
 

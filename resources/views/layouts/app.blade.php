@@ -97,7 +97,7 @@
                                             <div class="card-body">
                                                 <div class="row mb-2">
                                                     <div class="col-md-12">
-                                                        <a href="{{ route('users.edit') }}" class="btn btn-primary w-100">Update Profile</a>
+                                                        <a href="{{ route('users.edit') }}" class="btn btn-dark w-100">Update Profile</a>
                                                     </div>
                                                 </div>
                                                 @include('layouts.side-nav')

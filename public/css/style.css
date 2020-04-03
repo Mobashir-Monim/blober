@@ -72,3 +72,13 @@
 .card-rounded {
     border-radius: 25px !important;
 }
+
+.card-header {
+    background-color: #343a40 !important;
+    border-radius: calc(1rem - 1px) calc(1rem - 1px) 0 0 !important;
+    color: white;
+}
+
+.card {
+    border-radius: 1rem;
+}

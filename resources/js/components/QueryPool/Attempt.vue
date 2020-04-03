@@ -20,7 +20,7 @@
                                     <div class="p-2 m-1 tag label-info float-left rounded" @click="unselectTag(index)" v-for="(tag, index) in selectedTags" :key="index">{{ tag }}</div>
                                 </div>
                             </div>
-                            <a href="#/" class="btn btn-success w-100" @click="continueWithTags()">Confirm Tags</a>
+                            <a href="#/" class="btn btn-dark w-100" @click="continueWithTags()">Confirm Tags</a>
                         </div>
                     </div>
                 </div>
@@ -136,10 +136,10 @@
                         </div>
                         <div class="row mb-2">
                             <div class="col-md-6">
-                                <a href="#/" class="btn btn-secondary w-100" @click="fetchQuestion()">Attempt another Question</a>
+                                <a href="#/" class="btn btn-dark w-100" @click="fetchQuestion()">Attempt another Question</a>
                             </div>
                             <div class="col-md-6">
-                                <a href="#/" class="btn btn-success w-100" @click="submitQuery()">Submit answer</a>
+                                <a href="#/" class="btn btn-dark w-100" @click="submitQuery()">Submit answer</a>
                             </div>
                         </div>
                     </form>

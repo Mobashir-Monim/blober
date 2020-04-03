@@ -3442,6 +3442,202 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Quiz/Edit.vue?vue&type=script&lang=js&":
+/*!********************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Quiz/Edit.vue?vue&type=script&lang=js& ***!
+  \********************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance"); }
+
+function _iterableToArray(iter) { if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  mounted: function mounted() {
+    this.sections = JSON.parse(this.labsections);
+    this.sTags = JSON.parse(this.systemtags);
+    this.qClasses = JSON.parse(this.classeslist);
+    this.vals.date = this.date;
+    this.vals.section = this.section;
+    this.vals.start = this.start;
+    this.vals.end = this.end;
+    console.log(this.vals);
+  },
+  props: ['systemtags', 'labsections', 'token', 'classeslist', 'section', 'date', 'start', 'end'],
+  data: function data() {
+    return {
+      sections: [],
+      sTags: new Object(),
+      vals: [],
+      qClasses: [{
+        diffTag: false,
+        allTags: [],
+        tags: [],
+        diff: '',
+        qNo: null,
+        points: null
+      }]
+    };
+  },
+  methods: {
+    addClass: function addClass() {
+      this.qClasses.push({
+        diffTag: false,
+        allTags: Object.assign({}, this.sTags),
+        tags: new Object(),
+        diff: '',
+        qNo: null,
+        points: null
+      });
+    },
+    removeClass: function removeClass(index) {
+      this.qClasses.splice(index, 1);
+    },
+    updateDiff: function updateDiff(index, el) {
+      this.qClasses[index].diff = el.target.value;
+    },
+    updateQNo: function updateQNo(index, el) {
+      this.qClasses[index].qNo = el.target.value;
+    },
+    updatePoints: function updatePoints(index, el) {
+      this.qClasses[index].points = el.target.value;
+    },
+    selectTag: function selectTag(index, rIndex) {
+      this.qClasses[index].tags[rIndex] = this.qClasses[index].allTags[rIndex];
+      delete this.qClasses[index].allTags[rIndex];
+      this.qClasses.diffTag = !this.qClasses.diffTag;
+      this.$forceUpdate();
+    },
+    unselectTag: function unselectTag(index, sIndex) {
+      this.qClasses[index].allTags[sIndex] = this.qClasses[index].tags[sIndex];
+      delete this.qClasses[index].tags[sIndex];
+      this.qClasses.diffTag = !this.qClasses.diffTag;
+      this.$forceUpdate();
+    },
+    submitData: function submitData() {
+      document.getElementById('qData').value = JSON.stringify(this.qClasses);
+      document.getElementById('qForm').submit();
+    }
+  },
+  computed: {
+    classes: {
+      get: function get() {
+        return this.qClasses;
+      },
+      set: function set(val) {
+        this.qClasses = _toConsumableArray(val);
+      }
+    },
+    rejectedTags: {
+      get: function get() {}
+    },
+    deets: {
+      get: function get() {
+        return this.vals;
+      },
+      set: function set() {}
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Quiz/Index.vue?vue&type=script&lang=js&":
 /*!*********************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Quiz/Index.vue?vue&type=script&lang=js& ***!
@@ -40535,7 +40731,7 @@ var render = function() {
           _c(
             "a",
             {
-              staticClass: "btn btn-success w-100",
+              staticClass: "btn btn-dark w-100",
               attrs: { href: "#/" },
               on: {
                 click: function($event) {
@@ -40586,7 +40782,7 @@ var render = function() {
                 _c(
                   "a",
                   {
-                    staticClass: "btn btn-secondary w-100",
+                    staticClass: "btn btn-dark w-100",
                     attrs: { href: "#/" },
                     on: {
                       click: function($event) {
@@ -40625,7 +40821,7 @@ var render = function() {
                           _c(
                             "a",
                             {
-                              staticClass: "btn btn-secondary w-100",
+                              staticClass: "btn btn-dark w-100",
                               attrs: { href: "#/" },
                               on: {
                                 click: function($event) {
@@ -40650,7 +40846,7 @@ var render = function() {
                   _c(
                     "a",
                     {
-                      staticClass: "btn btn-secondary w-100",
+                      staticClass: "btn btn-dark w-100",
                       attrs: { href: "#/" },
                       on: {
                         click: function($event) {
@@ -40932,7 +41128,7 @@ var staticRenderFns = [
         _c("div", { staticClass: "col-md" }, [
           _c(
             "button",
-            { staticClass: "btn btn-success w-100", attrs: { type: "submit" } },
+            { staticClass: "btn btn-dark w-100", attrs: { type: "submit" } },
             [_vm._v("Add User")]
           )
         ])
@@ -41107,7 +41303,7 @@ var render = function() {
           _c(
             "a",
             {
-              staticClass: "btn btn-success w-100",
+              staticClass: "btn btn-dark w-100",
               attrs: { href: "#/" },
               on: {
                 click: function($event) {
@@ -41210,7 +41406,7 @@ var staticRenderFns = [
         _c(
           "button",
           {
-            staticClass: "btn btn-danger w-100 disabled",
+            staticClass: "btn btn-dark w-100 disabled",
             attrs: { type: "submit", disabled: "" }
           },
           [_vm._v("Update Password")]
@@ -41307,7 +41503,7 @@ var render = function() {
               _c(
                 "a",
                 {
-                  staticClass: "btn btn-success w-100",
+                  staticClass: "btn btn-dark w-100",
                   attrs: { href: "#/" },
                   on: {
                     click: function($event) {
@@ -41614,7 +41810,7 @@ var render = function() {
                 _c(
                   "a",
                   {
-                    staticClass: "btn btn-secondary w-100",
+                    staticClass: "btn btn-dark w-100",
                     attrs: { href: "#/" },
                     on: {
                       click: function($event) {
@@ -41630,7 +41826,7 @@ var render = function() {
                 _c(
                   "a",
                   {
-                    staticClass: "btn btn-success w-100",
+                    staticClass: "btn btn-dark w-100",
                     attrs: { href: "#/" },
                     on: {
                       click: function($event) {
@@ -41745,7 +41941,7 @@ var render = function() {
                   _c(
                     "label",
                     {
-                      staticClass: "btn btn-primary active",
+                      staticClass: "btn btn-dark active",
                       on: {
                         click: function($event) {
                           return _vm.changeResultType("query")
@@ -41769,7 +41965,7 @@ var render = function() {
                   _c(
                     "label",
                     {
-                      staticClass: "btn btn-primary",
+                      staticClass: "btn btn-dark",
                       on: {
                         click: function($event) {
                           return _vm.changeResultType("output")
@@ -41857,7 +42053,7 @@ var render = function() {
               _c(
                 "a",
                 {
-                  staticClass: "btn btn-success w-100",
+                  staticClass: "btn btn-dark w-100",
                   attrs: { href: "#/" },
                   on: {
                     click: function($event) {
@@ -41904,7 +42100,7 @@ var staticRenderFns = [
           attrs: { "data-toggle": "buttons" }
         },
         [
-          _c("label", { staticClass: "btn btn-primary active" }, [
+          _c("label", { staticClass: "btn btn-dark active" }, [
             _c("input", {
               attrs: {
                 type: "radio",
@@ -41917,7 +42113,7 @@ var staticRenderFns = [
             _vm._v(" Quiz Query\n                        ")
           ]),
           _vm._v(" "),
-          _c("label", { staticClass: "btn btn-primary" }, [
+          _c("label", { staticClass: "btn btn-dark" }, [
             _c("input", {
               attrs: {
                 type: "radio",
@@ -42085,7 +42281,7 @@ var render = function() {
                       _c(
                         "span",
                         {
-                          staticClass: "q-class-close btn-danger px-2",
+                          staticClass: "q-class-close btn-dark px-2",
                           on: {
                             click: function($event) {
                               return _vm.removeClass(index)
@@ -42241,7 +42437,7 @@ var render = function() {
                 _c(
                   "span",
                   {
-                    staticClass: "q-class-add btn-success",
+                    staticClass: "q-class-add btn-dark",
                     on: {
                       click: function($event) {
                         return _vm.addClass()
@@ -42316,6 +42512,322 @@ var staticRenderFns = [
     ])
   }
 ]
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Quiz/Edit.vue?vue&type=template&id=127675c9&":
+/*!************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Quiz/Edit.vue?vue&type=template&id=127675c9& ***!
+  \************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "row" }, [
+    _c("div", { staticClass: "col-md-12" }, [
+      _c("div", { staticClass: "card mb-3" }, [
+        _c("div", { staticClass: "card-header" }, [_vm._v("Quiz Information")]),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "card-body" },
+          [
+            _c(
+              "form",
+              { attrs: { action: "#/", method: "POST", id: "qForm" } },
+              [
+                _c("input", {
+                  attrs: { type: "hidden", name: "_token" },
+                  domProps: { value: this.token }
+                }),
+                _vm._v(" "),
+                _c("input", {
+                  attrs: { type: "hidden", name: "qData", id: "qData" }
+                }),
+                _vm._v(" "),
+                _c("div", { staticClass: "row mb-3" }, [
+                  _c("div", { staticClass: "col-md" }, [
+                    _vm._v(
+                      "\n                            Date:\n                            "
+                    ),
+                    _c("input", {
+                      staticClass: "form-control",
+                      attrs: { type: "date", name: "date" },
+                      domProps: { value: _vm.deets.date }
+                    })
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "col-md" }, [
+                    _vm._v(
+                      "\n                            Starting Time:\n                            "
+                    ),
+                    _c("input", {
+                      staticClass: "form-control",
+                      attrs: { type: "time", name: "start" },
+                      domProps: { value: _vm.deets.start }
+                    })
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "col-md" }, [
+                    _vm._v(
+                      "\n                            Ending Time:\n                            "
+                    ),
+                    _c("input", {
+                      staticClass: "form-control",
+                      attrs: { type: "time", name: "end" },
+                      domProps: { value: _vm.deets.end }
+                    })
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "col-md-2" }, [
+                    _vm._v(
+                      "\n                            Lab Section:\n                            "
+                    ),
+                    _c(
+                      "select",
+                      {
+                        staticClass: "form-control",
+                        attrs: { name: "section" }
+                      },
+                      [
+                        _c(
+                          "option",
+                          { domProps: { value: _vm.deets.section } },
+                          [_vm._v(_vm._s(_vm.deets.section))]
+                        ),
+                        _vm._v(" "),
+                        _vm._l(this.sections, function(section, index) {
+                          return _vm.deets.section != index + 1
+                            ? _c(
+                                "option",
+                                { key: index, domProps: { value: index + 1 } },
+                                [_vm._v(_vm._s(index + 1))]
+                              )
+                            : _vm._e()
+                        })
+                      ],
+                      2
+                    )
+                  ])
+                ])
+              ]
+            ),
+            _vm._v(" "),
+            _vm._l(_vm.classes, function(obj, index) {
+              return _c("div", { key: index }, [
+                _c(
+                  "div",
+                  { staticClass: "row mb-3 border card-rounded mx-1" },
+                  [
+                    _c(
+                      "div",
+                      { staticClass: "col-md-12 bg-secondary-2 card-rounded" },
+                      [
+                        _c("h5", { staticClass: "border-bottom py-3" }, [
+                          _vm._v("Questions " + _vm._s(index + 1) + " Class "),
+                          _c(
+                            "span",
+                            {
+                              staticClass: "q-class-close btn-danger px-2",
+                              on: {
+                                click: function($event) {
+                                  return _vm.removeClass(index)
+                                }
+                              }
+                            },
+                            [_vm._v("✗")]
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "row mb-3" }, [
+                          _c("div", { staticClass: "col-md" }, [
+                            _vm._v(
+                              "\n                                    Difficulty Range:\n                                    "
+                            ),
+                            _c("input", {
+                              staticClass: "form-control",
+                              attrs: {
+                                type: "text",
+                                name: "difficulty",
+                                placeholder: "2 - 5"
+                              },
+                              domProps: { value: obj.diff },
+                              on: {
+                                keyup: function($event) {
+                                  return _vm.updateDiff(index, $event)
+                                }
+                              }
+                            })
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "col-md" }, [
+                            _vm._v(
+                              "\n                                    No. of Questions:\n                                    "
+                            ),
+                            _c("input", {
+                              staticClass: "form-control",
+                              attrs: {
+                                type: "number",
+                                name: "no_questions",
+                                placeholder: "3",
+                                step: "1",
+                                min: "1"
+                              },
+                              domProps: { value: obj.qNo },
+                              on: {
+                                keyup: function($event) {
+                                  return _vm.updateQNo(index, $event)
+                                }
+                              }
+                            })
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "col-md" }, [
+                            _vm._v(
+                              "\n                                    Points:\n                                    "
+                            ),
+                            _c("input", {
+                              staticClass: "form-control",
+                              attrs: {
+                                type: "number",
+                                name: "points",
+                                placeholder: "5.25",
+                                step: "0.25",
+                                min: "0"
+                              },
+                              domProps: { value: obj.points },
+                              on: {
+                                keyup: function($event) {
+                                  return _vm.updatePoints(index, $event)
+                                }
+                              }
+                            })
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "row mb-2" }, [
+                          _c("div", { staticClass: "col-md-7" }, [
+                            _c("h6", { staticClass: "border-bottom" }, [
+                              _vm._v("All Tags")
+                            ]),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "row" }, [
+                              _c(
+                                "div",
+                                { staticClass: "col-md-12 tags-cont" },
+                                _vm._l(obj.allTags, function(tag, rIndex) {
+                                  return _c(
+                                    "div",
+                                    {
+                                      key: rIndex,
+                                      staticClass:
+                                        "p-2 m-1 tag label-info float-left rounded",
+                                      on: {
+                                        click: function($event) {
+                                          return _vm.selectTag(index, rIndex)
+                                        }
+                                      }
+                                    },
+                                    [
+                                      tag != undefined && tag != null
+                                        ? _c("span", [_vm._v(_vm._s(tag))])
+                                        : _vm._e()
+                                    ]
+                                  )
+                                }),
+                                0
+                              )
+                            ])
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "col-md" }, [
+                            _c("h6", { staticClass: "border-bottom" }, [
+                              _vm._v("Selected Tags")
+                            ]),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "row mb-2" }, [
+                              _c(
+                                "div",
+                                { staticClass: "col-md-12 tags-cont" },
+                                _vm._l(obj.tags, function(tag, sIndex) {
+                                  return _c(
+                                    "div",
+                                    {
+                                      key: sIndex,
+                                      staticClass:
+                                        "p-2 m-1 tag label-info float-left rounded",
+                                      on: {
+                                        click: function($event) {
+                                          return _vm.unselectTag(index, sIndex)
+                                        }
+                                      }
+                                    },
+                                    [
+                                      tag != undefined && tag != null
+                                        ? _c("span", [_vm._v(_vm._s(tag))])
+                                        : _vm._e()
+                                    ]
+                                  )
+                                }),
+                                0
+                              )
+                            ])
+                          ])
+                        ])
+                      ]
+                    )
+                  ]
+                )
+              ])
+            }),
+            _vm._v(" "),
+            _c("div", { staticClass: "row" }, [
+              _c("div", { staticClass: "col-md-12 text-right" }, [
+                _c(
+                  "span",
+                  {
+                    staticClass: "q-class-add btn-success",
+                    on: {
+                      click: function($event) {
+                        return _vm.addClass()
+                      }
+                    }
+                  },
+                  [_vm._v("✛")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "span",
+                  {
+                    staticClass: "q-class-add btn-secondary",
+                    on: {
+                      click: function($event) {
+                        return _vm.submitData()
+                      }
+                    }
+                  },
+                  [_vm._v("✔")]
+                )
+              ])
+            ])
+          ],
+          2
+        )
+      ])
+    ])
+  ])
+}
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -42457,7 +42969,10 @@ var render = function() {
                               "a",
                               {
                                 staticClass: "pl-5 text-secondary",
-                                attrs: { href: "#/" }
+                                attrs: {
+                                  href: "/quiz/" + quiz.id + "/edit",
+                                  target: "_blank"
+                                }
                               },
                               [_vm._v("Edit Quiz")]
                             )
@@ -42637,7 +43152,10 @@ var render = function() {
                                     "a",
                                     {
                                       staticClass: "pl-5 text-secondary",
-                                      attrs: { href: "#/" }
+                                      attrs: {
+                                        href: "/quiz/" + _vm.quiz.id + "/edit",
+                                        target: "_blank"
+                                      }
                                     },
                                     [_vm._v("Edit Quiz")]
                                   )
@@ -42827,7 +43345,7 @@ var render = function() {
               _c(
                 "a",
                 {
-                  staticClass: "btn btn-primary w-75",
+                  staticClass: "btn btn-dark w-75",
                   attrs: { href: "#/" },
                   on: {
                     click: function($event) {
@@ -42920,7 +43438,7 @@ var render = function() {
                   _c(
                     "a",
                     {
-                      staticClass: "btn btn-secondary w-100",
+                      staticClass: "btn btn-dark w-100",
                       attrs: { href: "#/" },
                       on: {
                         click: function($event) {
@@ -42940,7 +43458,7 @@ var render = function() {
                   _c(
                     "a",
                     {
-                      staticClass: "btn btn-secondary w-100",
+                      staticClass: "btn btn-dark w-100",
                       attrs: { href: "#/" },
                       on: {
                         click: function($event) {
@@ -42962,7 +43480,7 @@ var render = function() {
                   _c(
                     "button",
                     {
-                      staticClass: "btn btn-danger w-100",
+                      staticClass: "btn btn-dark w-100",
                       on: {
                         click: function($event) {
                           return _vm.endQuiz()
@@ -43237,7 +43755,7 @@ var render = function() {
               _c(
                 "a",
                 {
-                  staticClass: "btn btn-secondary w-100",
+                  staticClass: "btn btn-dark w-100",
                   attrs: { href: "#/" },
                   on: {
                     click: function($event) {
@@ -43257,7 +43775,7 @@ var render = function() {
               _c(
                 "a",
                 {
-                  staticClass: "btn btn-success w-100",
+                  staticClass: "btn btn-dark w-100",
                   attrs: { href: "#/" },
                   on: {
                     click: function($event) {
@@ -43273,7 +43791,7 @@ var render = function() {
               _c(
                 "a",
                 {
-                  staticClass: "btn btn-secondary w-100",
+                  staticClass: "btn btn-dark w-100",
                   attrs: { href: "#/" },
                   on: {
                     click: function($event) {
@@ -43361,7 +43879,7 @@ var render = function() {
               _c(
                 "a",
                 {
-                  staticClass: "btn btn-success w-100",
+                  staticClass: "btn btn-dark w-100",
                   attrs: { href: "#/" },
                   on: {
                     click: function($event) {
@@ -43422,7 +43940,7 @@ var render = function() {
                           _c(
                             "a",
                             {
-                              staticClass: "btn btn-success w-100",
+                              staticClass: "btn btn-dark w-100",
                               attrs: { href: "#/" },
                               on: {
                                 click: function($event) {
@@ -43438,7 +43956,7 @@ var render = function() {
                           _c(
                             "a",
                             {
-                              staticClass: "btn btn-danger w-100",
+                              staticClass: "btn btn-dark w-100",
                               attrs: { href: "#/" },
                               on: {
                                 click: function($event) {
@@ -55685,6 +56203,7 @@ Vue.component('analytics-tags', __webpack_require__(/*! ./components/Analytics/T
 
 Vue.component('quiz-index', __webpack_require__(/*! ./components/Quiz/Index.vue */ "./resources/js/components/Quiz/Index.vue")["default"]);
 Vue.component('quiz-create', __webpack_require__(/*! ./components/Quiz/Create.vue */ "./resources/js/components/Quiz/Create.vue")["default"]);
+Vue.component('quiz-edit', __webpack_require__(/*! ./components/Quiz/Edit.vue */ "./resources/js/components/Quiz/Edit.vue")["default"]);
 Vue.component('quiz-panel', __webpack_require__(/*! ./components/Quiz/Panel.vue */ "./resources/js/components/Quiz/Panel.vue")["default"]);
 Vue.component('quiz-start', __webpack_require__(/*! ./components/Quiz/Start.vue */ "./resources/js/components/Quiz/Start.vue")["default"]);
 /**
@@ -56360,6 +56879,75 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Create_vue_vue_type_template_id_6ba3f1fb___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Create_vue_vue_type_template_id_6ba3f1fb___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/Quiz/Edit.vue":
+/*!***********************************************!*\
+  !*** ./resources/js/components/Quiz/Edit.vue ***!
+  \***********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _Edit_vue_vue_type_template_id_127675c9___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Edit.vue?vue&type=template&id=127675c9& */ "./resources/js/components/Quiz/Edit.vue?vue&type=template&id=127675c9&");
+/* harmony import */ var _Edit_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Edit.vue?vue&type=script&lang=js& */ "./resources/js/components/Quiz/Edit.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _Edit_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _Edit_vue_vue_type_template_id_127675c9___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _Edit_vue_vue_type_template_id_127675c9___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/Quiz/Edit.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/Quiz/Edit.vue?vue&type=script&lang=js&":
+/*!************************************************************************!*\
+  !*** ./resources/js/components/Quiz/Edit.vue?vue&type=script&lang=js& ***!
+  \************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Edit_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./Edit.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Quiz/Edit.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Edit_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/Quiz/Edit.vue?vue&type=template&id=127675c9&":
+/*!******************************************************************************!*\
+  !*** ./resources/js/components/Quiz/Edit.vue?vue&type=template&id=127675c9& ***!
+  \******************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Edit_vue_vue_type_template_id_127675c9___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./Edit.vue?vue&type=template&id=127675c9& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Quiz/Edit.vue?vue&type=template&id=127675c9&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Edit_vue_vue_type_template_id_127675c9___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Edit_vue_vue_type_template_id_127675c9___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 

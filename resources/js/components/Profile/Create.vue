@@ -62,7 +62,7 @@
                 <div class="col-md-6">
                     <div class="row">
                         <div class="col-md">
-                            <button type="submit" class="btn btn-success w-100">Add User</button>
+                            <button type="submit" class="btn btn-dark w-100">Add User</button>
                         </div>
                     </div>
                 </div>

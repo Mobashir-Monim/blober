@@ -6,7 +6,7 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col-md-12 text-center">
-                            <a href="#/" class="btn btn-primary w-75" @click="startQuiz()">Begin Quiz</a>
+                            <a href="#/" class="btn btn-dark w-75" @click="startQuiz()">Begin Quiz</a>
                         </div>
                     </div>
                 </div>

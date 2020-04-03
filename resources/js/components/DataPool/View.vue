@@ -6,7 +6,7 @@
                 <div class="card-body">
                     <div class="row mb-2">
                         <div class="col-md-2 mb-2" v-for="(dp, index) in datapools" :key="index">
-                            <a href="#/" class="btn btn-secondary w-100" @click="changeSelectedPool(index)">{{ dp }}</a>
+                            <a href="#/" class="btn btn-dark w-100" @click="changeSelectedPool(index)">{{ dp }}</a>
                         </div>
                     </div>
                 </div>
@@ -19,7 +19,7 @@
                             <h4 class="text-center">Selected {{ currentPool }}</h4>
                             <div class="row mb-2">
                                 <div class="col-md-2 mb-2" v-for="(table, index) in tables" :key="index">
-                                    <a href="#/" class="btn btn-secondary w-100" @click="changeSelectedTable(index)">{{ table }}</a>
+                                    <a href="#/" class="btn btn-dark w-100" @click="changeSelectedTable(index)">{{ table }}</a>
                                 </div>
                             </div>
                         </div>
@@ -32,7 +32,7 @@
 
                     <div class="row mb-2" v-if="this.unassigned">
                         <div class="col-md-2 mb-2">
-                            <a href="#/" class="btn btn-secondary w-100" @click="changeSelectedPool(0)">Unassigned</a>
+                            <a href="#/" class="btn btn-dark w-100" @click="changeSelectedPool(0)">Unassigned</a>
                         </div>
                     </div>
                 </div>

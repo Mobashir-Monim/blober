@@ -25,10 +25,10 @@
                     <div class="col-md-3">
                         Result Entry: <br>
                         <div class="btn-group btn-group-toggle w-100" data-toggle="buttons">
-                            <label class="btn btn-primary active" @click="changeResultType('query')">
+                            <label class="btn btn-dark active" @click="changeResultType('query')">
                                 <input type="radio" name="result_type" value="query" autocomplete="off" checked> Enter Query
                             </label>
-                            <label class="btn btn-primary" @click="changeResultType('output')">
+                            <label class="btn btn-dark" @click="changeResultType('output')">
                                 <input type="radio" name="result_type" value="output" autocomplete="off"> Enter Output
                             </label>
                         </div>
@@ -36,10 +36,10 @@
                     <div class="col-md-3">
                         Query Type: <br>
                         <div class="btn-group btn-group-toggle w-100" data-toggle="buttons">
-                            <label class="btn btn-primary active">
+                            <label class="btn btn-dark active">
                                 <input type="radio" name="query_type" value="1" autocomplete="off" checked> Quiz Query
                             </label>
-                            <label class="btn btn-primary">
+                            <label class="btn btn-dark">
                                 <input type="radio" name="query_type" value="0" autocomplete="off"> Practice Query
                             </label>
                         </div>
@@ -82,7 +82,7 @@
                 </div>
                 <div class="row mb-2">
                     <div class="col-md-12">
-                        <a href="#/" class="btn btn-success w-100" @click="objectifyOutput()">Submit</a>
+                        <a href="#/" class="btn btn-dark w-100" @click="objectifyOutput()">Submit</a>
                     </div>
                 </div>
             </form>

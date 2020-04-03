@@ -11,30 +11,30 @@
                         <div class="row mb-3">
                             <div class="col-md">
                                 Date:
-                                <input type="date" name="date" class="form-control">
+                                <input type="date" name="date" class="form-control" :value="deets.date">
                             </div>
                             <div class="col-md">
                                 Starting Time:
-                                <input type="time" name="start" class="form-control">
+                                <input type="time" name="start" class="form-control" :value="deets.start">
                             </div>
                             <div class="col-md">
                                 Ending Time:
-                                <input type="time" name="end" class="form-control">
+                                <input type="time" name="end" class="form-control" :value="deets.end">
                             </div>
                             <div class="col-md-2">
                                 Lab Section:
                                 <select name="section" class="form-control">
-                                    <option value="">Select Section</option>
-                                    <option v-for="(section, index) in this.sections" :key="index" :value="index + 1">{{ index + 1 }}</option>
+                                    <option :value="deets.section">{{ deets.section }}</option>
+                                    <option v-for="(section, index) in this.sections" :key="index" :value="index + 1" v-if="deets.section != index + 1">{{ index + 1 }}</option>
                                 </select>
                             </div>
                         </div>
                     </form>
 
                     <div v-for="(obj, index) in classes" :key="index">
-                        <div class="row mb-3 border rounded mx-1">
-                            <div class="col-md-12 bg-secondary-2">
-                                <h5 class="border-bottom py-3">Questions {{ index + 1 }} Class <span class="q-class-close btn-dark px-2" @click="removeClass(index)">&#10007;</span></h5>
+                        <div class="row mb-3 border card-rounded mx-1">
+                            <div class="col-md-12 bg-secondary-2 card-rounded">
+                                <h5 class="border-bottom py-3">Questions {{ index + 1 }} Class <span class="q-class-close btn-danger px-2" @click="removeClass(index)">&#10007;</span></h5>
                                 <div class="row mb-3">
                                     <div class="col-md">
                                         Difficulty Range:
@@ -77,7 +77,7 @@
 
                     <div class="row">
                         <div class="col-md-12 text-right">
-                            <span class="q-class-add btn-dark" @click="addClass()">&#10011;</span>
+                            <span class="q-class-add btn-success" @click="addClass()">&#10011;</span>
                             <span class="q-class-add btn-secondary" @click="submitData()">&#10004;</span>
                         </div>
                     </div>
@@ -92,14 +92,20 @@
         mounted() {
             this.sections = JSON.parse(this.labsections);
             this.sTags = JSON.parse(this.systemtags);
-            this.qClasses[0].allTags = Object.assign({}, this.sTags);
-            this.qClasses[0].tags = new Object;
+            this.qClasses = JSON.parse(this.classeslist);
+            this.vals.date = this.date;
+            this.vals.section = this.section;
+            this.vals.start = this.start;
+            this.vals.end = this.end;
+
+            console.log(this.vals);
         },
-        props: ['systemtags', 'labsections', 'token'],
+        props: ['systemtags', 'labsections', 'token', 'classeslist', 'section', 'date', 'start', 'end'],
         data() {
             return {
                 sections: [],
                 sTags: new Object(),
+                vals: [],
                 qClasses: [
                     {
                         diffTag: false,
@@ -165,6 +171,14 @@
             },
             rejectedTags: {
                 get() {
+                    
+                }
+            },
+            deets: {
+                get() {
+                    return this.vals;
+                },
+                set() {
                     
                 }
             }

@@ -57,6 +57,11 @@ class QuizController extends Controller
         ]);
     }
 
+    public function edit(Request $request, Quiz $quiz)
+    {
+        return view('quiz.edit', compact('quiz'));
+    }
+
     public function deleteQuiz(Request $request, Quiz $quiz)
     {
         $flag = User::getUser($request->sessioncode)->id == $quiz->creator->id;
@@ -76,12 +81,7 @@ class QuizController extends Controller
         $now = Carbon::now();
         $time = Quiz::where('section', auth()->user()->student->section)->where('start', '<=', $now)->where('end', '>', $now)->first()->remainingTime();
 
-        return view('quiz.index', compact('time'));
-    }
-
-    public function edit($request, Quiz $quiz)
-    {
-        dd('in edit');
+        return view('quiz.panel', compact('time'));
     }
 
     public function start()

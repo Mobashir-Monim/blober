@@ -10,7 +10,7 @@
                             <input type="text" name="tag" id="tag-create" class="form-control" placeholder="Tag Name">
                         </div>
                         <div class="col-md">
-                            <a href="#/" class="btn btn-success w-100" @click="addTag()">Add Tag</a>
+                            <a href="#/" class="btn btn-dark w-100" @click="addTag()">Add Tag</a>
                         </div>
                     </div>
                 </div>
@@ -26,10 +26,10 @@
                                 <input type="text" name="tag" v-bind:id="'tag-inp-'+index" class="form-control" :value="tag" placeholder="Tag Name">
                                 <div class="row mt-1">
                                     <div class="col-md-6">
-                                        <a href="#/" class="btn btn-success w-100" @click="updateTag(index)">Save</a>
+                                        <a href="#/" class="btn btn-dark w-100" @click="updateTag(index)">Save</a>
                                     </div>
                                     <div class="col-md-6">
-                                        <a href="#/" class="btn btn-danger w-100" @click="cancelEdit(index)">Cancel</a>  
+                                        <a href="#/" class="btn btn-dark w-100" @click="cancelEdit(index)">Cancel</a>  
                                     </div>
                                 </div>
                             </div>

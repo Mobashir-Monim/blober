@@ -18,14 +18,14 @@
                             </div>
                             <div class="row mb-3">
                                 <div class="col-md pl-2">
-                                    <a href="#/" class="btn btn-secondary w-100" @click="prevQuestion()"><i class="fa fas fa-caret-left"></i><i class="fa fas fa-caret-left mr-2"></i>Prev Question</a>
+                                    <a href="#/" class="btn btn-dark w-100" @click="prevQuestion()"><i class="fa fas fa-caret-left"></i><i class="fa fas fa-caret-left mr-2"></i>Prev Question</a>
                                 </div>
                                 <div class="col-md pr-2">
-                                    <a href="#/" class="btn btn-secondary w-100" @click="nextQuestion()">Next Question<i class="fa fas fa-caret-right ml-2"></i><i class="fa fas fa-caret-right"></i></a>
+                                    <a href="#/" class="btn btn-dark w-100" @click="nextQuestion()">Next Question<i class="fa fas fa-caret-right ml-2"></i><i class="fa fas fa-caret-right"></i></a>
                                 </div>
                             </div>
                             <div class="row mt-3">
-                                <div class="col-md-12 px-2"><button class="btn btn-danger w-100" @click="endQuiz()">End Quiz</button></div>
+                                <div class="col-md-12 px-2"><button class="btn btn-dark w-100" @click="endQuiz()">End Quiz</button></div>
                             </div>
                         </div>
                     </div>
@@ -120,13 +120,13 @@
                     </div>
                     <div class="row mb-2">
                         <div class="col-md">
-                            <a href="#/" class="btn btn-secondary w-100" @click="prevQuestion()"><i class="fa fas fa-caret-left"></i><i class="fa fas fa-caret-left mr-2"></i>Prev Question</a>
+                            <a href="#/" class="btn btn-dark w-100" @click="prevQuestion()"><i class="fa fas fa-caret-left"></i><i class="fa fas fa-caret-left mr-2"></i>Prev Question</a>
                         </div>
                         <div class="col-md">
-                            <a href="#/" class="btn btn-success w-100" @click="submitQuery()">Submit answer</a>
+                            <a href="#/" class="btn btn-dark w-100" @click="submitQuery()">Submit answer</a>
                         </div>
                         <div class="col-md">
-                            <a href="#/" class="btn btn-secondary w-100" @click="nextQuestion()">Next Question<i class="fa fas fa-caret-right ml-2"></i><i class="fa fas fa-caret-right"></i></a>
+                            <a href="#/" class="btn btn-dark w-100" @click="nextQuestion()">Next Question<i class="fa fas fa-caret-right ml-2"></i><i class="fa fas fa-caret-right"></i></a>
                         </div>
                     </div>
                 </div>
