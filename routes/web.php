@@ -21,6 +21,7 @@ Route::group(['middleware' => ['auth-code']], function () {
 
 Route::group(['middleware' => ['auth', 'auth-code']], function () {
     Route::get('/home', 'HomeController@index')->name('home');
+    Route::get('/users', 'UsersController@index')->name('users.index');
     Route::get('/users/create', 'UsersController@create')->name('users.create');
     Route::post('/users/create', 'UsersController@store')->name('users.create');
     Route::get('/users/edit', 'UsersController@edit')->name('users.edit');
@@ -32,6 +33,7 @@ Route::group(['middleware' => ['auth', 'auth-code']], function () {
     Route::post('/datapool/create', 'DataPoolController@store')->name('datapool.create');
 
     // Query Pool Routes
+    Route::get('/queries', 'QueryPoolController@index')->name('query.index');
     Route::get('/query/create', 'QueryPoolController@create')->name('query.create');
     Route::post('/query/create', 'QueryPoolController@store')->name('query.create');
 
@@ -46,7 +48,7 @@ Route::group(['middleware' => ['auth', 'auth-code']], function () {
     Route::get('/analytics/tags', 'AnalyticsController@tags')->name('analytics.tags');
 
     // Quiz Routes
-    Route::get('/quizzes', 'QuizController@index')->name('quiz');
+    Route::get('/quizzes', 'QuizController@index')->name('quiz.index');
     Route::get('/quiz/create', 'QuizController@create')->name('quiz.create');
     Route::post('/quiz/create', 'QuizController@store')->name('quiz.create');
     Route::get('/quiz/{quiz}/edit', 'QuizController@edit')->name('quiz.edit');
@@ -59,7 +61,7 @@ Route::group(['middleware' => ['auth', 'auth-code']], function () {
 Route::get('test', function (Illuminate\Http\Request $request) {
     // dd(json_decode(json_encode(\DB::select('select tag_id, query_pool_id from (select * from )')), true));
     // dd(App\Quiz::first()->data);
-    dd(Carbon\Carbon::parse(App\Quiz::first()->start)->format('H:i:s a'));
+    dd(auth()->user()->id);
     $collection = App\QueryPool::where('is_quiz_query', true)->orderBy('difficulty')->get();
     // 7, 8, 21, 24, 33, 34, 47, 50
     // select * from (select * from tag_query_pool where query_pool_id in (7, 8, 21, 22, 24, 25, 33, 34, 47, 48, 50, 51)) as temp where tag_id in (1,5);

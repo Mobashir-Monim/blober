@@ -12,6 +12,11 @@ use App\Student;
 
 class UsersController extends Controller
 {
+    public function index()
+    {
+        dd('Under Development');
+    }
+
     public function get(Request $request)
     {
         $user = User::find($request->user);

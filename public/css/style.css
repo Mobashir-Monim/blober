@@ -68,6 +68,10 @@
     overflow-x: hidden;
     padding: 8px 0; */
 }
+.sidenav-btn {
+    width: 5% !important;
+    position: fixed;
+}
 
 .card-rounded {
     border-radius: 25px !important;

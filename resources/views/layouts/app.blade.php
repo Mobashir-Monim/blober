@@ -90,11 +90,11 @@
                 <div class="row">
                     @auth
                         @if (!isset($navBool))
-                            <div class="col-md-3 col-sm-3 col-3">
+                            {{-- <div class="col-md-3 col-sm-3 col-3" id="s-nav">
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="card sidenav">
-                                            <div class="card-header">Side Nav</div>
+                                            <div class="card-header text-white">Side Nav <span><span class="float-right"><i class="fa fas fa-angle-left"></i><i class="fa fas fa-angle-left"></i></span></span></div>
                                             <div class="card-body py-2">
                                                 <div class="row mb-2">
                                                     <div class="col-md-12">
@@ -102,8 +102,8 @@
                                                     </div>
                                                 </div>
                                                 <div class="row mb-2">
-                                                    <div class="col-md-12">
-                                                        <a href="{{ route('users.edit') }}" class="btn btn-dark w-100">Update Profile</a>
+                                                    <div class="col-md-12 text-right">
+                                                        <a href="{{ route('users.edit') }}" class="btn btn-dark w-75">Update Profile</a>
                                                     </div>
                                                 </div>
                                                 @include('layouts.side-nav')
@@ -111,7 +111,8 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div> --}}
+                            <sidenav items="{{ json_encode((new App\Helpers\SideNavHelper(auth()->user()))->items) }}"></sidenav>
                         @endif
                     @endauth
                     <div class="col-md col-sm col">

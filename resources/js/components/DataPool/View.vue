@@ -4,9 +4,9 @@
             <div class="card mb-3">
                 <div class="card-header">Datapools</div>
                 <div class="card-body">
-                    <div class="row mb-2">
-                        <div class="col-md-2 mb-2" v-for="(dp, index) in datapools" :key="index">
-                            <a href="#/" class="btn btn-dark w-100" @click="changeSelectedPool(index)">{{ dp }}</a>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <a href="#/" class="btn btn-dark mr-4 mb-2" v-for="(dp, index) in datapools" :key="index" @click="changeSelectedPool(index)">{{ dp }}</a>
                         </div>
                     </div>
                 </div>
@@ -17,9 +17,9 @@
                     <div class="row mb-2" v-if="currentPool">
                         <div class="col-md-12">
                             <h4 class="text-center">Selected {{ currentPool }}</h4>
-                            <div class="row mb-2">
-                                <div class="col-md-2 mb-2" v-for="(table, index) in tables" :key="index">
-                                    <a href="#/" class="btn btn-dark w-100" @click="changeSelectedTable(index)">{{ table }}</a>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <a href="#/" class="btn btn-dark mr-4 mb-2" v-for="(table, index) in tables" :key="index" @click="changeSelectedTable(index)">{{ table }}</a>
                                 </div>
                             </div>
                         </div>
@@ -40,7 +40,7 @@
             <div class="card">
                 <div class="card-header">Table Data</div>
                 <div class="card-body">
-                    <div class="row mb-2" v-if="currentTable">
+                    <div class="row" v-if="currentTable">
                         <div class="col-md-12 text-center">
                             <h4>Selected {{ currentTable }}</h4>
                             <table class="table table-sm table-striped">

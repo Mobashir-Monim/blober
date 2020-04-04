@@ -15,7 +15,7 @@ class StudentsTableSeeder extends Seeder
         $now = Carbon::now();
 
         DB::table('students')->insert([
-            'user_id' => 5,
+            'user_id' => 6,
             'level_name' => 'Beginner',
             'level' => 0,
             'points' => 0,

@@ -8,13 +8,16 @@
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
 
         <!-- Styles -->
+        <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/style.css') }}" rel="stylesheet">
         <style>
             html, body {
                 background-color: #fff;
                 color: #636b6f;
-                font-family: 'Nunito', sans-serif;
+                font-family: 'Montserrat', 'Nunito', sans-serif;
                 font-weight: 200;
                 height: 100vh;
                 margin: 0;
@@ -60,6 +63,9 @@
 
             .lg-font {
                 font-size: 2em;
+                width: 50vw;
+                padding-left: 10% !important;
+                padding-right: 10% !important;
             }
 
             .m-b-md {
@@ -72,9 +78,9 @@
             @if (Route::has('login'))
                 <div class="top-right links">
                     @auth
-                        <a href="{{ url('/home') }}">Home</a>
+                        <a href="{{ url('/home') }}" class="bg-dark text-white card-rounded px-5 py-1">Home</a>
                     @else
-                        <a href="{{ route('login') }}">Login</a>
+                        <a href="{{ route('login') }}" class="bg-dark text-white card-rounded px-5 py-1">Login</a>
 
                         @if (Route::has('register'))
                             <a href="{{ route('register') }}">Register</a>
@@ -88,7 +94,7 @@
                     Blober
                 </div>
 
-                <div class="lg-font">Learn SQL queries from scratch</div>
+                <div class="lg-font bg-dark text-white card-rounded px-5">Proficiency in MySQL Queries</div>
 
                 {{-- <div class="links">
                     <a href="https://laravel.com/docs">Docs</a>

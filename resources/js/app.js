@@ -47,6 +47,9 @@ Vue.component('quiz-edit', require('./components/Quiz/Edit.vue').default);
 Vue.component('quiz-panel', require('./components/Quiz/Panel.vue').default);
 Vue.component('quiz-start', require('./components/Quiz/Start.vue').default);
 
+// Side Nav Components
+Vue.component('sidenav', require('./components/SideNav/Index.vue').default);
+
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
