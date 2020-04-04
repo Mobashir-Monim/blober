@@ -8,6 +8,7 @@ use App\DataPool as DP;
 use App\Helpers\QueryPoolHelper as QPH;
 use App\Helpers\QueryChecker as QCH;
 use App\Tag;
+use App\User;
 
 class QueryPoolController extends Controller
 {
@@ -46,6 +47,15 @@ class QueryPoolController extends Controller
     {
         $query = QP::find($request->question);
         $data = (new QCH)->verifyQuery($request, ['result' => false, 'error' => null, 'output' => null], $query);
+        $student = User::getUser($request->sessioncode)->student;
+
+        if ($data['result']) {
+            $student->points += $query->points;
+        } else {
+            $student->points -=  $query->deductible;
+        }
+
+        $student->save();
 
         return response()->json([
             'success' => true,
