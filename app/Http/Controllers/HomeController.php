@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\User;
 
 class HomeController extends Controller
 {
@@ -33,15 +34,19 @@ class HomeController extends Controller
         return view('home', compact('user', 'dataset'));
     }
 
-    public function dashboard(Request $request)
+    public function dashboard(Request $request, $email)
     {
-        $user = User::find($request->user);
+        $user = User::where('email', $email)->first();
         $dataset = null;
+
+        if (is_null($user)) {
+            return redirect(route('home'))->with('error', 'User does not exist on the system.');
+        }
 
         if ($user->hasRole('student')) {
             $dataset = $user->student->generateGraphAnalytics();
         }
 
-        return view('home', compact('user', 'dataset'));   
+        return view('home', compact('user', 'dataset'));
     }
 }

@@ -21,6 +21,7 @@ Route::group(['middleware' => ['auth-code']], function () {
 
 Route::group(['middleware' => ['auth', 'auth-code']], function () {
     Route::get('/home', 'HomeController@index')->name('home');
+    Route::get('/home/{email}', 'HomeController@dashboard')->name('home.user');
     Route::get('/users', 'UsersController@index')->name('users.index');
     Route::get('/users/create', 'UsersController@create')->name('users.create');
     Route::post('/users/create', 'UsersController@store')->name('users.create');

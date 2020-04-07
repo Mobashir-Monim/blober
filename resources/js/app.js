@@ -33,6 +33,7 @@ Vue.component('qp-attempt', require('./components/QueryPool/Attempt.vue').defaul
 Vue.component('profile-edit', require('./components/Profile/Edit.vue').default);
 Vue.component('profile-create', require('./components/Profile/Create.vue').default);
 Vue.component('profile-student', require('./components/Profile/Student.vue').default)
+Vue.component('profile-index', require('./components/Profile/Index.vue').default)
 
 
 // Tags Components

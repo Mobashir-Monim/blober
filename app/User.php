@@ -21,6 +21,8 @@ class User extends Authenticatable
         'name', 'email', 'password',
     ];
 
+    protected $appends = ['last_activity', 'member_since'];
+
     /**
      * The attributes that should be hidden for arrays.
      *
@@ -129,7 +131,7 @@ class User extends Authenticatable
         return $auth->code;
     }
 
-    public function lastActivity()
+    public function getlastActivityAttribute()
     {
         $now = Carbon::now();
         $expiration = SC::where('user_id', $this->id)->orderBy('created_at', 'DESC')->first();
@@ -140,14 +142,19 @@ class User extends Authenticatable
             if ($expiration > $now) {
                 return 'Session ongoing';
             } elseif ($now->diffInDays($expiration) >= 1) {
-                return 'Active ' . $now->diffInDays($expiration) . $now->diffInDays($expiration) == 1 ? ' day' : ' days' .' ago';
+                return  $now->diffInDays($expiration) . ($now->diffInDays($expiration) == 1 ? ' day' : ' days' .' ago');
             } elseif ($now->diffInHours($expiration) >= 1) {
-                return 'Active ' . $now->diffInHours($expiration) . $now->diffInHours($expiration) == 1 ? ' hour' : ' hours' .' ago';
+                return $now->diffInHours($expiration) . ($now->diffInHours($expiration) == 1 ? ' hour' : ' hours' .' ago');
             } else {
-                return 'Active ' . $now->diffInMinutes($expiration) . $now->diffInMinutes($expiration) == 1 ? ' minute' : ' minutes' .' ago';
+                return $now->diffInMinutes($expiration) .( $now->diffInMinutes($expiration) == 1 ? ' minute' : ' minutes' .' ago');
             }
         }
 
         return 'Account never logged into';
+    }
+
+    public function getMemberSinceAttribute()
+    {
+        return Carbon::parse($this->created_at)->format('d M, Y');
     }
 }

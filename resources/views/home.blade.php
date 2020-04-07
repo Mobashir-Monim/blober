@@ -21,7 +21,7 @@
                                             Member Since: <b>{{ Carbon\Carbon::parse($user->created_at)->format('d M, Y') }}</b>
                                         </div>
                                         <div class="col-md-6 text-muted text-right font-italic mt-auto" style="font-size: 0.8em">
-                                            Last Activity: {{ $user->lastActivity() }}
+                                            Last Activity: {{ $user->lastActivity }}
                                         </div>
                                     </div>
                                 </div>

@@ -14,7 +14,19 @@ class UsersController extends Controller
 {
     public function index()
     {
-        dd('Under Development');
+        $users = array();
+        $roles = auth()->user()->highestRole()->level == 6 ? Role::where('level', '<=', auth()->user()->highestRole()->level)->get() : Role::where('level', '<=', auth()->user()->highestRole()->level)->get();
+
+        foreach ($roles as $key => $role) {
+            $users[$role->name] = User::select('name', 'email')->whereIn('id', $role->users->pluck('id')->toArray())->get()->toArray();
+            $roles[$key] = ucwords($role->name, '-');
+        }
+
+        $roles = $roles->toArray();
+
+        // dd($users);
+
+        return view('users.index', compact('users', 'roles'));
     }
 
     public function get(Request $request)

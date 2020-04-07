@@ -120,3 +120,11 @@ body {
 .body-bg {
     background-color: #f8fafc !important;
 }
+
+.body-bg-hoverable {
+    background-color: #f8fafc !important;
+}
+
+.body-bg-hoverable:hover {
+    background-color: #efefef !important;
+}
