@@ -10,4 +10,9 @@ class QueryAttempt extends BaseModel
     {
         return $this->belongsTo('App\AttemptGroup', 'attempt_group_id');
     }
+
+    public function pool()
+    {
+        return $this->belongsTo('App\QueryPool', 'query_pool_id');
+    }
 }

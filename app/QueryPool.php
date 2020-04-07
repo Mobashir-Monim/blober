@@ -16,6 +16,11 @@ class QueryPool extends BaseModel
         return $this->belongsToMany('App\Tag', 'tag_query_pool');
     }
 
+    public function attempts()
+    {
+        return $this->hasMany('App\QueryAttempt', 'query_pool_id');
+    }
+
     public function quizGroup()
     {
         return $this->hasMany('App\QuizAttemptGroup');

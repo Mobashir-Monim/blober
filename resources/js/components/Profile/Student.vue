@@ -1,31 +1,44 @@
 <script>
-    import { Line } from 'vue-chartjs'
+    import { Bar } from 'vue-chartjs'
 
     export default {
-        extends: Line,
+        extends: Bar,
         mounted() {
+            this.chartdata.labels = JSON.parse(this.labelsset);
+            this.chartdata.datasets[0].data = JSON.parse(this.pointsset);
+            this.chartdata.datasets[1].data = JSON.parse(this.errorsset);
+            this.chartdata.datasets[2].data = JSON.parse(this.trialsset);
+            this.chartdata.datasets[3].data = JSON.parse(this.queriesset);
+            
+            console.log(this.chartdata);
+
             this.renderChart(this.chartdata, this.options)
         },
-        props:[],
+        props:['pointsset', 'labelsset', 'errorsset', 'trialsset', 'queriesset'],
         data() {
             return {
                 chartdata: {
-                    labels: ['January', 'February'],
+                    labels: [],
                     datasets: [
                         {
-                            label: 'Data One',
-                            backgroundColor: '#f87979',
-                            data: [40]
+                            label: 'Points Change',
+                            backgroundColor: '#6EB3FF',
+                            data: []
                         },
                         {
-                            label: 'Data Two',
+                            label: 'Trial Errors',
                             backgroundColor: '#f87979',
-                            data: [30]
+                            data: []
                         },
                         {
-                            label: 'Data Three',
-                            backgroundColor: '#f87979',
-                            data: [100]
+                            label: 'Trials Count',
+                            backgroundColor: '#64E8C3',
+                            data: []
+                        },
+                        {
+                            label: 'Queries Atttempted',
+                            backgroundColor: '#4E89CC',
+                            data: []
                         },
                     ]
                 },

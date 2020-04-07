@@ -24,7 +24,12 @@ class HomeController extends Controller
     public function index()
     {
         $user = auth()->user();
+        $dataset = null;
 
-        return view('home', compact('user'));
+        if ($user->hasRole('student')) {
+            $dataset = $user->student->generateGraphAnalytics();
+        }
+
+        return view('home', compact('user', 'dataset'));
     }
 }

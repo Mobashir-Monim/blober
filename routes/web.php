@@ -61,6 +61,7 @@ Route::group(['middleware' => ['auth', 'auth-code']], function () {
 Route::get('test', function (Illuminate\Http\Request $request) {
     // dd(json_decode(json_encode(\DB::select('select tag_id, query_pool_id from (select * from )')), true));
     // dd(App\Quiz::first()->data);
+    dd(Carbon\Carbon::parse('12:00:00 am')->addWeeks(-1)->toDateTimeString());
     dd(auth()->user()->id);
     $collection = App\QueryPool::where('is_quiz_query', true)->orderBy('difficulty')->get();
     // 7, 8, 21, 24, 33, 34, 47, 50

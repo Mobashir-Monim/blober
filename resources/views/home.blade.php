@@ -42,7 +42,13 @@
                     <div class="col-md-7">
                         <div class="card body-bg card-rounded">
                             <div class="card-body body-bg card-rounded">
-                                <profile-student></profile-student>
+                                <profile-student
+                                    pointsset="{{ json_encode($dataset['points']) }}"
+                                    labelsset="{{ json_encode($dataset['dates']) }}"
+                                    errorsset="{{ json_encode($dataset['errors']) }}"
+                                    trialsset="{{ json_encode($dataset['trials']) }}"
+                                    queriesset="{{ json_encode($dataset['queries']) }}"
+                                    ></profile-student>
                             </div>
                         </div>
                     </div>
