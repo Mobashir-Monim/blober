@@ -8,13 +8,24 @@
             <div class="card card-rounded">
                 <div class="card-body card-rounded body-bg">
                     <div class="row">
-                        <div class="col-md-2 text-center border-right my-auto">
+                        <div class="col-md-2 text-center my-auto border-right">
                             <i class="fa fas fa-user-circle fa-5x text-dark"></i>
                         </div>
                         <div class="col-md-10 my-auto">
                             <div class="row mb-1 border-bottom"><div class="col-md-12"><b>{{ $user->name }}</b></div></div>
                             <div class="row mb-1"><div class="col-md-12">Status: <b>{{ strtoupper($user->highestRole()->name) }}</b></div></div>
-                            <div class="row mb-1"><div class="col-md-12">Member Since: <b>{{ Carbon\Carbon::parse($user->created_at)->format('d M, Y') }}</b></div></div>
+                            <div class="row mb-1">
+                                <div class="col-md-12">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            Member Since: <b>{{ Carbon\Carbon::parse($user->created_at)->format('d M, Y') }}</b>
+                                        </div>
+                                        <div class="col-md-6 text-muted text-right font-italic mt-auto" style="font-size: 0.8em">
+                                            Last Activity: {{ $user->lastActivity() }}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

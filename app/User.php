@@ -128,4 +128,26 @@ class User extends Authenticatable
 
         return $auth->code;
     }
+
+    public function lastActivity()
+    {
+        $now = Carbon::now();
+        $expiration = SC::where('user_id', $this->id)->orderBy('created_at', 'DESC')->first();
+        
+        if (!is_null($expiration)) {
+            $expiration = Carbon::parse($expiration->expires_at);
+
+            if ($expiration > $now) {
+                return 'Session ongoing';
+            } elseif ($now->diffInDays($expiration) >= 1) {
+                return 'Active ' . $now->diffInDays($expiration) . $now->diffInDays($expiration) == 1 ? ' day' : ' days' .' ago';
+            } elseif ($now->diffInHours($expiration) >= 1) {
+                return 'Active ' . $now->diffInHours($expiration) . $now->diffInHours($expiration) == 1 ? ' hour' : ' hours' .' ago';
+            } else {
+                return 'Active ' . $now->diffInMinutes($expiration) . $now->diffInMinutes($expiration) == 1 ? ' minute' : ' minutes' .' ago';
+            }
+        }
+
+        return 'Account never logged into';
+    }
 }

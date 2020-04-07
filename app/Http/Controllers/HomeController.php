@@ -32,4 +32,16 @@ class HomeController extends Controller
 
         return view('home', compact('user', 'dataset'));
     }
+
+    public function dashboard(Request $request)
+    {
+        $user = User::find($request->user);
+        $dataset = null;
+
+        if ($user->hasRole('student')) {
+            $dataset = $user->student->generateGraphAnalytics();
+        }
+
+        return view('home', compact('user', 'dataset'));   
+    }
 }
