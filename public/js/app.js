@@ -76633,18 +76633,15 @@ var render = function() {
                       [
                         _c("h5", { staticClass: "border-bottom py-3" }, [
                           _vm._v("Questions " + _vm._s(index + 1) + " Class "),
-                          _c(
-                            "span",
-                            {
-                              staticClass: "q-class-close btn-dark px-2",
-                              on: {
-                                click: function($event) {
-                                  return _vm.removeClass(index)
-                                }
+                          _c("span", {
+                            staticClass:
+                              "q-cancel-sm q-class-close btn-dark px-2",
+                            on: {
+                              click: function($event) {
+                                return _vm.removeClass(index)
                               }
-                            },
-                            [_vm._v("✗")]
-                          )
+                            }
+                          })
                         ]),
                         _vm._v(" "),
                         _c("div", { staticClass: "row mb-3" }, [
@@ -76769,31 +76766,23 @@ var render = function() {
             _vm._v(" "),
             _c("div", { staticClass: "row" }, [
               _c("div", { staticClass: "col-md-12 text-right" }, [
-                _c(
-                  "span",
-                  {
-                    staticClass: "q-class-add btn-dark",
-                    on: {
-                      click: function($event) {
-                        return _vm.addClass()
-                      }
+                _c("span", {
+                  staticClass: "q-add-lg btn-dark",
+                  on: {
+                    click: function($event) {
+                      return _vm.addClass()
                     }
-                  },
-                  [_vm._v("✛")]
-                ),
+                  }
+                }),
                 _vm._v(" "),
-                _c(
-                  "span",
-                  {
-                    staticClass: "q-class-add btn-secondary",
-                    on: {
-                      click: function($event) {
-                        return _vm.submitData()
-                      }
+                _c("span", {
+                  staticClass: "q-tick-lg btn-secondary",
+                  on: {
+                    click: function($event) {
+                      return _vm.submitData()
                     }
-                  },
-                  [_vm._v("✔")]
-                )
+                  }
+                })
               ])
             ])
           ],

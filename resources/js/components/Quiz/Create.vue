@@ -34,7 +34,7 @@
                     <div v-for="(obj, index) in classes" :key="index">
                         <div class="row mb-3 border card-rounded mx-1">
                             <div class="col-md-12 body-bg card-rounded">
-                                <h5 class="border-bottom py-3">Questions {{ index + 1 }} Class <span class="q-class-close btn-dark px-2" @click="removeClass(index)">&#10007;</span></h5>
+                                <h5 class="border-bottom py-3">Questions {{ index + 1 }} Class <span class="q-cancel-sm q-class-close btn-dark px-2" @click="removeClass(index)"></span></h5>
                                 <div class="row mb-3">
                                     <div class="col-md">
                                         Difficulty Range:
@@ -77,8 +77,8 @@
 
                     <div class="row">
                         <div class="col-md-12 text-right">
-                            <span class="q-class-add btn-dark" @click="addClass()">&#10011;</span>
-                            <span class="q-class-add btn-secondary" @click="submitData()">&#10004;</span>
+                            <span class="q-add-lg btn-dark" @click="addClass()"></span>
+                            <span class="q-tick-lg btn-secondary" @click="submitData()"></span>
                         </div>
                     </div>
                 </div>
