@@ -37,7 +37,7 @@ class QueryPoolHelper extends Helper
     {
         return [
             'question' => strip_tags($request->question),
-            'output' => json_encode($request->output),
+            'output' => $this->processOutput($request->result),
             'is_quiz_query' => $request->query_type,
             'difficulty' => $request->difficulty,
             'points' => $request->points,
@@ -45,6 +45,20 @@ class QueryPoolHelper extends Helper
             'time' => $request->time,
             'data_pool_id' => $request->data_pool_id,
         ];
+    }
+
+    public function processOutput($output)
+    {
+        $returnee = array();
+
+        foreach (explode('||', strtoupper($this->cleanString(html_entity_decode(strip_tags($output))))) as $item) {
+            $item = trim(implode(';', explode('; ', iconv('UTF-8', 'ASCII//IGNORE',  $item))));
+            array_push($returnee, $item);
+        }
+
+        $returnee = implode('||', $returnee);
+
+        return $returnee;
     }
 
     public function getAttemptQuery($request)

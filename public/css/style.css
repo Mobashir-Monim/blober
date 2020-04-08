@@ -61,7 +61,7 @@
 .sidenav {
     width: 24% !important;
     position: fixed;
-    /* z-index: 1; */
+    z-index: 1;
     /* top: 20px;
     left: 10px; */
     /* background: #eee;
@@ -127,4 +127,18 @@ body {
 
 .body-bg-hoverable:hover {
     background-color: #efefef !important;
+}
+
+.btn-group > .btn:not(:first-child):not(:last-child) {
+    border-radius: 0 !important;
+}
+
+.btn-group > .btn:first-child {
+    border-top-right-radius: 0 !important;
+    border-bottom-right-radius: 0 !important;
+}
+
+.btn-group > .btn:last-child {
+    border-top-left-radius: 0 !important;
+    border-bottom-left-radius: 0 !important;
 }
