@@ -119,8 +119,8 @@ class Student extends BaseModel
         $now = Carbon::now();
         $dates = array();
 
-        for ($i = 0; $i <= 6; $i++){
-            array_push($dates, $now->copy()->addDays(-1 * $i)->toDateString());
+        for ($i = -6; $i <= 0; $i++){
+            array_push($dates, $now->copy()->addDays($i)->toDateString());
         }
 
         return $dates;
