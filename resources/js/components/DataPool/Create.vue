@@ -20,7 +20,7 @@
             ClassicEditor
                 .create( document.querySelector( '.editor' ) )
                 .then( editor => {
-                    console.log( 'Done' );
+                    // console.log( 'Done' );
                 } )
                 .catch( error => {
                     console.error( error );

@@ -97,8 +97,6 @@
             this.vals.section = this.section;
             this.vals.start = this.start;
             this.vals.end = this.end;
-
-            console.log(this.vals);
         },
         props: ['systemtags', 'labsections', 'token', 'classeslist', 'section', 'date', 'start', 'end'],
         data() {

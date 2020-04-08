@@ -103,7 +103,7 @@
                 ClassicEditor
                     .create( textFields[i] )
                     .then( editor => {
-                        console.log( 'Done' );
+                        // console.log( 'Done' );
                     } )
                     .catch( error => {
                         console.error( error );

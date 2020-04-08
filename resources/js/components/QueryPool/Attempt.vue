@@ -236,7 +236,6 @@
                         })
                     });
                     let res = await rawResponse.json();
-                    console.log(res);
                     this.attemptResult = res.data.result;
                     this.currentError = res.data.error;
                     this.queryOutput = res.data.output;

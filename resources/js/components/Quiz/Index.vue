@@ -175,8 +175,6 @@
                     });
                     let res = await rawResponse.json();
 
-                    console.log(res);
-
                     if (res.success) {
                         this.quiz_details = res.data;
                     } else {

@@ -2027,8 +2027,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
-    ClassicEditor.create(document.querySelector('.editor')).then(function (editor) {
-      console.log('Done');
+    ClassicEditor.create(document.querySelector('.editor')).then(function (editor) {// console.log( 'Done' );
     })["catch"](function (error) {
       console.error(error);
     });
@@ -2728,7 +2727,6 @@ __webpack_require__.r(__webpack_exports__);
     this.chartdata.datasets[1].data = JSON.parse(this.errorsset);
     this.chartdata.datasets[2].data = JSON.parse(this.trialsset);
     this.chartdata.datasets[3].data = JSON.parse(this.queriesset);
-    console.log(this.chartdata);
     this.renderChart(this.chartdata, this.options);
   },
   props: ['pointsset', 'labelsset', 'errorsset', 'trialsset', 'queriesset'],
@@ -3067,12 +3065,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
               case 5:
                 res = _context2.sent;
-                console.log(res);
                 _this2.attemptResult = res.data.result;
                 _this2.currentError = res.data.error;
                 _this2.queryOutput = res.data.output;
 
-              case 10:
+              case 9:
               case "end":
                 return _context2.stop();
             }
@@ -3310,8 +3307,7 @@ __webpack_require__.r(__webpack_exports__);
     var textFields = document.getElementsByClassName('editor');
 
     for (var i = 0; i < textFields.length; i++) {
-      ClassicEditor.create(textFields[i]).then(function (editor) {
-        console.log('Done');
+      ClassicEditor.create(textFields[i]).then(function (editor) {// console.log( 'Done' );
       })["catch"](function (error) {
         console.error(error);
       });
@@ -3683,7 +3679,6 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
     this.vals.section = this.section;
     this.vals.start = this.start;
     this.vals.end = this.end;
-    console.log(this.vals);
   },
   props: ['systemtags', 'labsections', 'token', 'classeslist', 'section', 'date', 'start', 'end'],
   data: function data() {
@@ -3997,7 +3992,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
               case 5:
                 res = _context2.sent;
-                console.log(res);
 
                 if (res.success) {
                   _this2.quiz_details = res.data;
@@ -4005,7 +3999,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   alert('Data could not be loaded, please try again');
                 }
 
-              case 8:
+              case 7:
               case "end":
                 return _context2.stop();
             }
@@ -4065,9 +4059,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
-  mounted: function mounted() {
-    console.log(this.sessioncode);
-  },
+  mounted: function mounted() {},
   props: ['route', 'time', 'sessioncode'],
   data: function data() {
     return {};
