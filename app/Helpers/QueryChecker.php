@@ -4,6 +4,7 @@ namespace App\Helpers;
 
 use Carbon\Carbon;
 use App\Tag;
+use App\Helpers\QueryPoolHelper as QPH;
 use App\QuizAttemptGroup as QAG;
 use App\QuizAttempt as QiA;
 use App\AttemptGroup as AG;
@@ -25,21 +26,43 @@ class QueryChecker extends Helper
         $this->is_quiz = !is_null($request->quiz_id);
         $attempt = $this->generateBlankAttemptArray($request);
 
-        if ($this->startsWith(strtolower(explode(" ", $attempt['query'])[0]), 'show')) {
+        if (is_null($query->query)) {
+            $data = $this->runMutatingCmd($request, $data, $query);
+        } elseif ($this->startsWith(strtolower(explode(" ", $attempt['query'])[0]), 'show')) {
             $data = $this->runShowCmd($attempt['query'], $data, $query);
         } elseif ($this->startsWith(strtolower(explode(" ", $attempt['query'])[0]), 'select')) {
             $data = $this->runSelectCmd($request, $data, $query);
         } else {
-            // handle all other commands
-            // this would be multivalued
             $data['output'] = [['output' => 'The system cannot handle these kind of commands as of yet']];
             $data['error'] = true;
         }
 
-
         $this->createQueryAttempt($attempt, $data);
 
         return $data;
+    }
+
+    public function runMutatingCmd($request, $data, $query)
+    {
+        if  ($this->tableExists($request)) {
+            $outputs = explode('||', $query->output);
+            $answer = (new QPH)->processOutput($request->answer);
+            $data['error'] = false;
+            
+            foreach ($outputs as $output) {
+                if ($output == $answer) {
+                    $data['output'] = [['output' => 'Changes made']];
+                    $data['result'] = true;
+
+                    return $data;
+                }
+            }
+
+            $data['output'] = [['output' => 'Incorrect/Erroneous Query']];
+        } else {
+            $data['output'] = [['output' => 'Table does not exist']];
+            $data['error'] = true;
+        }
     }
 
     public function runShowCmd($query, $data, $question)
@@ -84,7 +107,8 @@ class QueryChecker extends Helper
         $str = $this->cleanString(strtolower($request->answer));
 
         foreach ($this->system_tables as $name) {
-            if (strpos($str, 'from ' . $name) !== false || strpos($str, 'on ' . $name) !== false) {
+            if (strpos($str, 'from ' . $name) !== false || strpos($str, 'on ' . $name) !== false || strpos($str, 'table ' . $name) !== false ||
+                strpos($str, 'into ' . $name) !== false || strpos($str, 'update ' . $name) !== false) {
                 return false;
             }
         }
