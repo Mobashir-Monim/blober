@@ -230,3 +230,7 @@ body {
     border-top-left-radius: 0 !important;
     border-bottom-left-radius: 0 !important;
 }
+
+.form-control {
+    font-size: 0.9em !important;
+}

@@ -60,15 +60,7 @@ Route::group(['middleware' => ['auth', 'auth-code']], function () {
 });
 
 Route::get('test', function (Illuminate\Http\Request $request) {
-    $word = "fox jum";
-    $mystring = "The quick brown fox jumps over the lazy dog";
-    
-    // Test if string contains the word 
-    if(strpos($mystring, $word) !== false){
-        echo "Word Found!";
-    } else{
-        echo "Word Not Found!";
-    }
+    // dd(session());
 });
 
 Route::get('testm/{quiz}', 'QuizController@show');
