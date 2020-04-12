@@ -257,3 +257,24 @@ body {
 .add-btn:hover {
     box-shadow: 5px 5px 10px #6cb2eb;
 }
+
+.top-fixed {
+    position: fixed;
+    z-index: 1;
+    width: 73%;
+}
+
+#search {
+    background-color: #f8fafc !important;
+    border-right: none !important;
+    border-left: none !important;
+    border-top: none !important;
+    border-radius: 25px !important;
+    outline: #f8fafc !important;
+}
+
+#search:focus {
+    font-size: 1em !important;
+    outline-style: none !important;
+    outline-color: #f8fafc !important;
+}

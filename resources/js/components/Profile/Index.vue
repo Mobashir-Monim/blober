@@ -1,7 +1,13 @@
 <template>
     <div class="row">
         <div class="col-md-12">
-            <div class="card mb-2" v-for="(ulist, index) in cards" :key="index">
+            <div class="card card-rounded top-fixed">
+                <div class="card-body card-rounded body-bg">
+                    <input type="text" name="search" class="form-control" placeholder="Search" id="search" @keyup="updateTable()">
+                </div>
+            </div>
+            <br class=""><br class=""><br class=""><br class="">
+            <div class="card mb-3" v-for="(ulist, index) in cards" :key="index">
                 <div class="card-header">{{ index.charAt(0).toUpperCase() + index.slice(1) }} List</div>
                 <div class="card-body">
                     <div class="row">
@@ -33,6 +39,23 @@
             this.users = JSON.parse(this.userlist);
             this.filtered = JSON.parse(this.userlist);
             this.roles = JSON.parse(this.systemroles);
+            Object.size = function(obj) {
+                var size = 0, key;
+                for (key in obj) {
+                    if (obj.hasOwnProperty(key)) size++;
+                }
+                return size;
+            };
+
+            Object.key = function(obj, n) {
+                var size = 0, key;
+                for (key in obj) {
+                    if (obj.hasOwnProperty(key)) {
+                        if (size == n) return key;
+                        size++;
+                    }
+                }
+            };
         },
         props:['userlist', 'systemroles'],
         data() {
@@ -40,11 +63,47 @@
                 users: [],
                 filtered: [],
                 roles: [],
+                prevSeach: '',
             }
         },
         methods: {
             gotoStudent(email) {
                 window.open('/home/' + email, '_self')
+            },
+            updateTable() {                
+                let val = document.getElementById('search').value;
+                this.filtered = {};
+
+                if (val != '') {
+                    if (this.prevSeach != val) {
+                        for (let i = 0; i < Object.size(this.users); i++) {
+                            let role = Object.key(this.users, i);
+
+                            for (let j = 0; j < Object.size(this.users[role]); j++) {
+                                if (this.checkUser(role, j, val)) {
+                                    if (!this.filtered.hasOwnProperty(role)) {
+                                        this.filtered[role] = [];
+                                    }
+
+                                    this.filtered[role].push(this.users[role][j]);
+                                }
+                            }
+                        }
+
+                        this.prevSeach = val;
+                    }
+                } else {
+                    this.filtered = this.users;
+                }
+            },
+            checkUser(role, j, val) {
+                let x = false;
+
+                x |= this.users[role][j].email.toLowerCase().includes(val.toLowerCase());
+                x |= this.users[role][j].last_activity.toLowerCase().includes(val.toLowerCase());
+                x |= this.users[role][j].name.toLowerCase().includes(val.toLowerCase());
+
+                return x;
             }
         },
         computed: {

@@ -2678,23 +2678,86 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
     this.users = JSON.parse(this.userlist);
     this.filtered = JSON.parse(this.userlist);
     this.roles = JSON.parse(this.systemroles);
+
+    Object.size = function (obj) {
+      var size = 0,
+          key;
+
+      for (key in obj) {
+        if (obj.hasOwnProperty(key)) size++;
+      }
+
+      return size;
+    };
+
+    Object.key = function (obj, n) {
+      var size = 0,
+          key;
+
+      for (key in obj) {
+        if (obj.hasOwnProperty(key)) {
+          if (size == n) return key;
+          size++;
+        }
+      }
+    };
   },
   props: ['userlist', 'systemroles'],
   data: function data() {
     return {
       users: [],
       filtered: [],
-      roles: []
+      roles: [],
+      prevSeach: ''
     };
   },
   methods: {
     gotoStudent: function gotoStudent(email) {
       window.open('/home/' + email, '_self');
+    },
+    updateTable: function updateTable() {
+      var val = document.getElementById('search').value;
+      this.filtered = {};
+
+      if (val != '') {
+        if (this.prevSeach != val) {
+          for (var i = 0; i < Object.size(this.users); i++) {
+            var role = Object.key(this.users, i);
+
+            for (var j = 0; j < Object.size(this.users[role]); j++) {
+              if (this.checkUser(role, j, val)) {
+                if (!this.filtered.hasOwnProperty(role)) {
+                  this.filtered[role] = [];
+                }
+
+                this.filtered[role].push(this.users[role][j]);
+              }
+            }
+          }
+
+          this.prevSeach = val;
+        }
+      } else {
+        this.filtered = this.users;
+      }
+    },
+    checkUser: function checkUser(role, j, val) {
+      var x = false;
+      x |= this.users[role][j].email.toLowerCase().includes(val.toLowerCase());
+      x |= this.users[role][j].last_activity.toLowerCase().includes(val.toLowerCase());
+      x |= this.users[role][j].name.toLowerCase().includes(val.toLowerCase());
+      return x;
     }
   },
   computed: {
@@ -75686,73 +75749,99 @@ var render = function() {
     _c(
       "div",
       { staticClass: "col-md-12" },
-      _vm._l(_vm.cards, function(ulist, index) {
-        return _c("div", { key: index, staticClass: "card mb-2" }, [
-          _c("div", { staticClass: "card-header" }, [
-            _vm._v(
-              _vm._s(index.charAt(0).toUpperCase() + index.slice(1)) + " List"
-            )
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "card-body" }, [
-            _c(
-              "div",
-              { staticClass: "row" },
-              _vm._l(ulist, function(user, uindex) {
-                return _c(
-                  "div",
-                  {
-                    key: uindex,
-                    staticClass: "col-md-6 mb-2",
-                    on: {
-                      click: function($event) {
-                        return _vm.gotoStudent(user.email)
+      [
+        _c("div", { staticClass: "card card-rounded top-fixed" }, [
+          _c("div", { staticClass: "card-body card-rounded body-bg" }, [
+            _c("input", {
+              staticClass: "form-control",
+              attrs: {
+                type: "text",
+                name: "search",
+                placeholder: "Search",
+                id: "search"
+              },
+              on: {
+                keyup: function($event) {
+                  return _vm.updateTable()
+                }
+              }
+            })
+          ])
+        ]),
+        _vm._v(" "),
+        _c("br", {}),
+        _c("br", {}),
+        _c("br", {}),
+        _c("br", {}),
+        _vm._v(" "),
+        _vm._l(_vm.cards, function(ulist, index) {
+          return _c("div", { key: index, staticClass: "card mb-3" }, [
+            _c("div", { staticClass: "card-header" }, [
+              _vm._v(
+                _vm._s(index.charAt(0).toUpperCase() + index.slice(1)) + " List"
+              )
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "card-body" }, [
+              _c(
+                "div",
+                { staticClass: "row" },
+                _vm._l(ulist, function(user, uindex) {
+                  return _c(
+                    "div",
+                    {
+                      key: uindex,
+                      staticClass: "col-md-6 mb-2",
+                      on: {
+                        click: function($event) {
+                          return _vm.gotoStudent(user.email)
+                        }
                       }
-                    }
-                  },
-                  [
-                    _c("div", { staticClass: "card card-rounded" }, [
-                      _c(
-                        "div",
-                        {
-                          staticClass:
-                            "card-body card-rounded body-bg-hoverable"
-                        },
-                        [
-                          _c("div", { staticClass: "row" }, [
-                            _vm._m(0, true),
-                            _vm._v(" "),
-                            _c("div", { staticClass: "col-md-9 my-auto" }, [
-                              _c(
-                                "div",
-                                { staticClass: "row mb-1 border-bottom" },
-                                [
-                                  _c("div", { staticClass: "col-md-12" }, [
-                                    _c("b", [_vm._v(_vm._s(user.name))])
-                                  ])
-                                ]
-                              ),
+                    },
+                    [
+                      _c("div", { staticClass: "card card-rounded" }, [
+                        _c(
+                          "div",
+                          {
+                            staticClass:
+                              "card-body card-rounded body-bg-hoverable"
+                          },
+                          [
+                            _c("div", { staticClass: "row" }, [
+                              _vm._m(0, true),
                               _vm._v(" "),
-                              _c("div", { staticClass: "row mb-1" }, [
-                                _c("div", { staticClass: "col-md-12" }, [
-                                  _vm._v("Member Since: "),
-                                  _c("b", [_vm._v(_vm._s(user.member_since))])
+                              _c("div", { staticClass: "col-md-9 my-auto" }, [
+                                _c(
+                                  "div",
+                                  { staticClass: "row mb-1 border-bottom" },
+                                  [
+                                    _c("div", { staticClass: "col-md-12" }, [
+                                      _c("b", [_vm._v(_vm._s(user.name))])
+                                    ])
+                                  ]
+                                ),
+                                _vm._v(" "),
+                                _c("div", { staticClass: "row mb-1" }, [
+                                  _c("div", { staticClass: "col-md-12" }, [
+                                    _vm._v("Member Since: "),
+                                    _c("b", [_vm._v(_vm._s(user.member_since))])
+                                  ])
                                 ])
                               ])
                             ])
-                          ])
-                        ]
-                      )
-                    ])
-                  ]
-                )
-              }),
-              0
-            )
+                          ]
+                        )
+                      ])
+                    ]
+                  )
+                }),
+                0
+              )
+            ])
           ])
-        ])
-      }),
-      0
+        })
+      ],
+      2
     )
   ])
 }
