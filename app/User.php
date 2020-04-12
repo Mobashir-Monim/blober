@@ -69,6 +69,11 @@ class User extends Authenticatable
         return $this->hasMany('App\QuizAttempt');
     }
 
+    public function sections()
+    {
+        return $this->hasMany('App\Section');
+    }
+
     /**
      * Validator Functions
     */

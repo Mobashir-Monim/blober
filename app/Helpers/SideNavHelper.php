@@ -53,7 +53,7 @@ class SideNavHelper extends Helper
         array_push($this->items, ['route' => route('quiz.index'), 'name' => 'Quizzes', 'width' => $this->widths[rand(0,1)], 'alignment' => $this->floats[rand(0, 1)]]);
     }
 
-    public function senior_faculty()
+    public function lab_coordinator()
     {
         array_push($this->items, ['route' => route('users.index'), 'name' => 'Users', 'width' => $this->widths[rand(0,1)], 'alignment' => $this->floats[rand(0, 1)]]);
         array_push($this->items, ['route' => route('datapool.index'), 'name' => 'Datapools', 'width' => $this->widths[rand(0,1)], 'alignment' => $this->floats[rand(0, 1)]]);
@@ -64,7 +64,7 @@ class SideNavHelper extends Helper
         array_push($this->items, ['route' => route('quiz.index'), 'name' => 'Quizzes', 'width' => $this->widths[rand(0,1)], 'alignment' => $this->floats[rand(0, 1)]]);
     }
 
-    public function junior_faculty()
+    public function lab_instructor()
     {
         array_push($this->items, ['route' => route('users.index'), 'name' => 'Users', 'width' => $this->widths[rand(0,1)], 'alignment' => $this->floats[rand(0, 1)]]);
         array_push($this->items, ['route' => route('datapool.index'), 'name' => 'Datapools', 'width' => $this->widths[rand(0,1)], 'alignment' => $this->floats[rand(0, 1)]]);
