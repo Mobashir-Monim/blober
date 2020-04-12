@@ -6,7 +6,7 @@
                     <div class="card-header text-white">Side Nav <span @click="toggleNav()"><span class="float-right"><i class="fa fas fa-angle-left"></i><i class="fa fas fa-angle-left"></i></span></span></div>
                     <div class="card-body py-2">
                         <div class="row mb-2" v-for="(item, index) in navItems" :key="index">
-                            <div class="col-md-12 text-right">
+                            <div :class="'col-md-12 ' + item.alignment">
                                 <a :href="item.route" :class="'btn btn-dark ' + item.width">{{ item.name }}</a>
                             </div>
                         </div>

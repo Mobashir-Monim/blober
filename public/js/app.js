@@ -78243,7 +78243,7 @@ var render = function() {
                   { staticClass: "card-body py-2" },
                   _vm._l(_vm.navItems, function(item, index) {
                     return _c("div", { key: index, staticClass: "row mb-2" }, [
-                      _c("div", { staticClass: "col-md-12 text-right" }, [
+                      _c("div", { class: "col-md-12 " + item.alignment }, [
                         _c(
                           "a",
                           {
