@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="card mb-2">
-        <div class="card-header">Dashboard</div>
+        <div class="card-header">Dashboard <span class="float-right" style="font-size: 1.2em"><a href="{{ route('users.edit') }}"><i class="fa fas fa-cog"></i></a></span></div>
 
         <div class="card-body">
             <div class="card card-rounded">

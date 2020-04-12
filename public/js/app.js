@@ -2176,11 +2176,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
     this.datapools = JSON.parse(this.dps);
   },
-  props: ['dps'],
+  props: ['dps', 'addroute'],
   data: function data() {
     return {
       datapools: 0,
@@ -3776,6 +3777,7 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
+//
 //
 //
 //
@@ -75138,7 +75140,9 @@ var render = function() {
             : _c("div", { staticClass: "row" }, [_vm._m(1)])
         ])
       ])
-    ])
+    ]),
+    _vm._v(" "),
+    _c("a", { staticClass: "add-btn btn-dark", attrs: { href: this.addroute } })
   ])
 }
 var staticRenderFns = [
@@ -77175,7 +77179,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    {},
+    { staticClass: "mb-5" },
     [
       _vm._m(0),
       _vm._v(" "),
@@ -77612,7 +77616,12 @@ var render = function() {
             ]
           )
         ]
-      )
+      ),
+      _vm._v(" "),
+      _c("a", {
+        staticClass: "add-btn btn-dark",
+        attrs: { href: this.addroute }
+      })
     ],
     2
   )

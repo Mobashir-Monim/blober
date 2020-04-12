@@ -234,3 +234,26 @@ body {
 .form-control {
     font-size: 0.9em !important;
 }
+
+.add-btn {
+    position: fixed;
+    bottom: 25px;
+    right: 20px;
+    width: 4em;
+    height: 4em;
+    border-radius: 50%;
+    text-align: center;
+    padding: 5px !important;
+    vertical-align: middle !important;
+    background-image: url('../img/plus.svg');
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    background-size: cover !important;
+    background-origin: content-box !important;
+    transition: ease-in-out 0.25s;
+    box-shadow: 5px 5px 10px #e3342f;
+}
+
+.add-btn:hover {
+    box-shadow: 5px 5px 10px #6cb2eb;
+}

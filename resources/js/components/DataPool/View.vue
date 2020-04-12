@@ -60,6 +60,7 @@
                 </div>
             </div>
         </div>
+        <a :href="this.addroute" class="add-btn btn-dark"></a>
     </div>
 </template>
 
@@ -69,7 +70,7 @@
             this.datapools = JSON.parse(this.dps);
         },
 
-        props: ['dps'],
+        props: ['dps', 'addroute'],
 
         data() {
             return {

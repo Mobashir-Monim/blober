@@ -1,5 +1,5 @@
 <template>
-    <div class="">
+    <div class="mb-5">
         <div class=" card text-center mb-3 text-muted" style="border-radius: 20px">
             <div class="card-body h4 my-0">All Quizzes</div>
         </div>
@@ -123,6 +123,7 @@
                 </div>
             </div>
         </div>
+        <a :href="this.addroute" class="add-btn btn-dark"></a>
     </div>
 </template>
 
