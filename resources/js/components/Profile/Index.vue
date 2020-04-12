@@ -100,7 +100,6 @@
                 let x = false;
 
                 x |= this.users[role][j].email.toLowerCase().includes(val.toLowerCase());
-                x |= this.users[role][j].last_activity.toLowerCase().includes(val.toLowerCase());
                 x |= this.users[role][j].name.toLowerCase().includes(val.toLowerCase());
 
                 return x;
