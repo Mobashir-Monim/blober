@@ -57,6 +57,9 @@ Route::group(['middleware' => ['auth', 'auth-code']], function () {
     Route::get('/quiz/panel', 'QuizController@panel')->name('quiz.panel')->middleware('has-quiz');
     Route::get('/quiz/start', 'QuizController@start')->name('quiz.start')->middleware(['has-quiz', 'valid-link', 'valid-set']);
     Route::get('/quiz/invalid', 'QuizController@invalid')->name('quiz.invalid');
+
+    // Section Routes
+    Route::get('/sections', 'SectionController@index')->name('sections.index');
 });
 
 Route::get('test', function (Illuminate\Http\Request $request) {

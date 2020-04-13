@@ -39,7 +39,7 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col-md-5 pl-4">
-                        <div class="card body-bg card-rounded">
+                        <div class="card body-bg card-rounded mb-2">
                             <div class="card-body body-bg card-rounded">
                                 @foreach ($user->student->analytics() as $key => $val)
                                     <div class="row border-bottom mb-1">
@@ -48,6 +48,9 @@
                                     </div>
                                 @endforeach
                             </div>
+                        </div>
+                        <div class="text-center">
+                            <i class="text-muted" style="font-size: 0.8em"><strong>Note:</strong> Please click on legend items on chart to hide/show item(s)</i>
                         </div>
                     </div>
                     <div class="col-md-7">

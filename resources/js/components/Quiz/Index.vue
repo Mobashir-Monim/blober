@@ -1,6 +1,6 @@
 <template>
     <div class="mb-5">
-        <div class=" card text-center mb-3 text-muted" style="border-radius: 20px">
+        <div class=" card text-center mb-3 text-muted card-rounded">
             <div class="card-body h4 my-0">All Quizzes</div>
         </div>
         <div class="card mb-3 text-muted" style="border-radius: 25px" :id="'quiz-' + quiz.id" v-for="(quiz, index) in list" :key="index">

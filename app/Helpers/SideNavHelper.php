@@ -28,6 +28,7 @@ class SideNavHelper extends Helper
         array_push($this->items, ['route' => route('tags.index'), 'name' => 'Tags', 'width' => $this->widths[rand(0,1)], 'alignment' => $this->floats[rand(0, 1)]]);
         array_push($this->items, ['route' => route('analytics.tags'), 'name' => 'Tag Analytics', 'width' => $this->widths[rand(0,1)], 'alignment' => $this->floats[rand(0, 1)]]);
         array_push($this->items, ['route' => route('quiz.index'), 'name' => 'Quizzes', 'width' => $this->widths[rand(0,1)], 'alignment' => $this->floats[rand(0, 1)]]);
+        array_push($this->items, ['route' => route('sections.index'), 'name' => 'Sections', 'width' => $this->widths[rand(0,1)], 'alignment' => $this->floats[rand(0, 1)]]);
     }
 
     public function developer()
@@ -41,6 +42,7 @@ class SideNavHelper extends Helper
         array_push($this->items, ['route' => route('analytics.tags'), 'name' => 'Tag Analytics', 'width' => $this->widths[rand(0,1)], 'alignment' => $this->floats[rand(0, 1)]]);
         array_push($this->items, ['route' => route('quiz.index'), 'name' => 'Quizzes', 'width' => $this->widths[rand(0,1)], 'alignment' => $this->floats[rand(0, 1)]]);
         array_push($this->items, ['route' => route('quiz.panel'), 'name' => 'Attempt Quiz', 'width' => $this->widths[rand(0,1)], 'alignment' => $this->floats[rand(0, 1)]]);
+        array_push($this->items, ['route' => route('sections.index'), 'name' => 'Sections', 'width' => $this->widths[rand(0,1)], 'alignment' => $this->floats[rand(0, 1)]]);
     }
 
     public function admin()
@@ -51,6 +53,7 @@ class SideNavHelper extends Helper
         array_push($this->items, ['route' => route('tags.index'), 'name' => 'Tags', 'width' => $this->widths[rand(0,1)], 'alignment' => $this->floats[rand(0, 1)]]);
         array_push($this->items, ['route' => route('analytics.tags'), 'name' => 'Tag Analytics', 'width' => $this->widths[rand(0,1)], 'alignment' => $this->floats[rand(0, 1)]]);
         array_push($this->items, ['route' => route('quiz.index'), 'name' => 'Quizzes', 'width' => $this->widths[rand(0,1)], 'alignment' => $this->floats[rand(0, 1)]]);
+        array_push($this->items, ['route' => route('sections.index'), 'name' => 'Sections', 'width' => $this->widths[rand(0,1)], 'alignment' => $this->floats[rand(0, 1)]]);
     }
 
     public function lab_coordinator()
@@ -62,6 +65,7 @@ class SideNavHelper extends Helper
         array_push($this->items, ['route' => route('tags.index'), 'name' => 'Tags', 'width' => $this->widths[rand(0,1)], 'alignment' => $this->floats[rand(0, 1)]]);
         array_push($this->items, ['route' => route('analytics.tags'), 'name' => 'Tag Analytics', 'width' => $this->widths[rand(0,1)], 'alignment' => $this->floats[rand(0, 1)]]);
         array_push($this->items, ['route' => route('quiz.index'), 'name' => 'Quizzes', 'width' => $this->widths[rand(0,1)], 'alignment' => $this->floats[rand(0, 1)]]);
+        array_push($this->items, ['route' => route('sections.index'), 'name' => 'Sections', 'width' => $this->widths[rand(0,1)], 'alignment' => $this->floats[rand(0, 1)]]);
     }
 
     public function lab_instructor()
