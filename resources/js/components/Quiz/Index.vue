@@ -132,7 +132,7 @@
         mounted() {
             this.quizzes = JSON.parse(this.qlist);
         },
-        props:['sessioncode', 'qlist'],
+        props:['sessioncode', 'qlist', 'addroute'],
         data() {
             return {
                 quizzes: [],

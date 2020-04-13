@@ -10,25 +10,30 @@ use App\QuizQuestions as QQ;
 use App\Helpers\QueryChecker as QCH;
 use App\Helpers\QuizHelper as QH;
 use App\QueryPool as QP;
+use App\Section;
 
 class QuizController extends Controller
 {
     public function index()
     {
         $quizzes = array();
-        // $quizzes = Quiz::orderBy('created_at', 'DESC')->get();
 
         foreach (Quiz::orderBy('created_at', 'DESC')->get() as $quiz) {
             array_push($quizzes, $quiz->viewableData());
         }
-        // dd($quizzes);
 
         return view('quiz.index', compact('quizzes'));
     }
 
     public function create()
     {
-        return view('quiz.create');
+        $sections = Section::where('user_id', auth()->user()->id)->select('section_id')->groupBy('section_id')->get()->pluck('section_id')->toArray();
+
+        if (auth()->user()->highestRole()->name == 'developer' || auth()->user()->highestRole()->name == 'lab-coordinator') {
+            $sections = Section::select('section_id')->groupBy('section_id')->get()->pluck('section_id')->toArray();
+        }
+
+        return view('quiz.create', compact('sections'));
     }
 
     public function store(Request $request)
@@ -59,7 +64,20 @@ class QuizController extends Controller
 
     public function edit(Request $request, Quiz $quiz)
     {
-        return view('quiz.edit', compact('quiz'));
+        $sections = Section::where('user_id', auth()->user()->id)->select('section_id')->groupBy('section_id')->get()->pluck('section_id')->toArray();
+
+        if (auth()->user()->highestRole()->name == 'developer' || auth()->user()->highestRole()->name == 'lab-coordinator') {
+            $sections = Section::select('section_id')->groupBy('section_id')->get()->pluck('section_id')->toArray();
+        }
+
+        return view('quiz.edit', compact('quiz', 'sections'));
+    }
+
+    public function update(Request $request, Quiz $quiz)
+    {
+        $quiz->updateQuiz($request);
+
+        return redirect(route('quiz.index'))->with('success', 'Quiz Updated');
     }
 
     public function deleteQuiz(Request $request, Quiz $quiz)

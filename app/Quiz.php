@@ -56,7 +56,7 @@ class Quiz extends BaseModel
             'duration' => Carbon::parse($this->duration())->format("H:i:s"),
             'start' => Carbon::parse($this->start)->format("H:i a d M, Y"),
             'creator' => $this->creator->name . ' on ' . Carbon::parse($this->created_at)->format("d M, Y"),
-            'updator' => !is_null($this->updator) ? $this->creator->name . ' on ' . Carbon::parse($this->created_at)->format("d M, Y") : 'NOT UPDATED YET',
+            'updator' => !is_null($this->updator) ? $this->updator->name . ' on ' . Carbon::parse($this->updated_at)->format("d M, Y") : 'NOT UPDATED YET',
             'edit' => !is_null(auth()->user()),
             'delete' => is_null(auth()->user()) ? false : $this->creator->id == auth()->user()->id,
         ];
@@ -76,5 +76,15 @@ class Quiz extends BaseModel
         } else {
             return $this->duration() - $set->usedTime();
         }
+    }
+
+    public function updateQuiz($request)
+    {
+        $this->section = $request->section;
+        $this->start = Carbon::parse($request->date . ' ' . $request->start)->toDateTimeString();
+        $this->end = Carbon::parse($request->date . ' ' . $request->end)->toDateTimeString();
+        $this->data = $request->qData;
+        $this->updated_by = auth()->user()->id;
+        $this->save();
     }
 }

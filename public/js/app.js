@@ -3742,6 +3742,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
     this.vals.section = this.section;
     this.vals.start = this.start;
     this.vals.end = this.end;
+    document.getElementById('qForm').action = window.location.pathname;
   },
   props: ['systemtags', 'labsections', 'token', 'classeslist', 'section', 'date', 'start', 'end'],
   data: function data() {
@@ -3972,7 +3973,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   mounted: function mounted() {
     this.quizzes = JSON.parse(this.qlist);
   },
-  props: ['sessioncode', 'qlist'],
+  props: ['sessioncode', 'qlist', 'addroute'],
   data: function data() {
     return {
       quizzes: [],
@@ -77043,11 +77044,14 @@ var render = function() {
               return _c("div", { key: index }, [
                 _c(
                   "div",
-                  { staticClass: "row mb-3 border card-rounded mx-1" },
+                  { staticClass: "row mb-3 border card-rounded mx-1 body-bg" },
                   [
                     _c(
                       "div",
-                      { staticClass: "col-md-12 bg-secondary-2 card-rounded" },
+                      {
+                        staticClass:
+                          "col-md-12 bg-secondary-2 card-rounded body-bg"
+                      },
                       [
                         _c("h5", { staticClass: "border-bottom py-3" }, [
                           _vm._v("Questions " + _vm._s(index + 1) + " Class "),
@@ -77209,31 +77213,23 @@ var render = function() {
             _vm._v(" "),
             _c("div", { staticClass: "row" }, [
               _c("div", { staticClass: "col-md-12 text-right" }, [
-                _c(
-                  "span",
-                  {
-                    staticClass: "q-class-add btn-success",
-                    on: {
-                      click: function($event) {
-                        return _vm.addClass()
-                      }
+                _c("span", {
+                  staticClass: "q-add-lg btn-dark",
+                  on: {
+                    click: function($event) {
+                      return _vm.addClass()
                     }
-                  },
-                  [_vm._v("✛")]
-                ),
+                  }
+                }),
                 _vm._v(" "),
-                _c(
-                  "span",
-                  {
-                    staticClass: "q-class-add btn-secondary",
-                    on: {
-                      click: function($event) {
-                        return _vm.submitData()
-                      }
+                _c("span", {
+                  staticClass: "q-tick-lg btn-secondary",
+                  on: {
+                    click: function($event) {
+                      return _vm.submitData()
                     }
-                  },
-                  [_vm._v("✔")]
-                )
+                  }
+                })
               ])
             ])
           ],

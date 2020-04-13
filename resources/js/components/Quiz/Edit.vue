@@ -32,8 +32,8 @@
                     </form>
 
                     <div v-for="(obj, index) in classes" :key="index">
-                        <div class="row mb-3 border card-rounded mx-1">
-                            <div class="col-md-12 bg-secondary-2 card-rounded">
+                        <div class="row mb-3 border card-rounded mx-1 body-bg">
+                            <div class="col-md-12 bg-secondary-2 card-rounded body-bg">
                                 <h5 class="border-bottom py-3">Questions {{ index + 1 }} Class <span class="q-class-close btn-danger px-2" @click="removeClass(index)">&#10007;</span></h5>
                                 <div class="row mb-3">
                                     <div class="col-md">
@@ -77,8 +77,8 @@
 
                     <div class="row">
                         <div class="col-md-12 text-right">
-                            <span class="q-class-add btn-success" @click="addClass()">&#10011;</span>
-                            <span class="q-class-add btn-secondary" @click="submitData()">&#10004;</span>
+                            <span class="q-add-lg btn-dark" @click="addClass()"></span>
+                            <span class="q-tick-lg btn-secondary" @click="submitData()"></span>
                         </div>
                     </div>
                 </div>
@@ -97,6 +97,7 @@
             this.vals.section = this.section;
             this.vals.start = this.start;
             this.vals.end = this.end;
+            document.getElementById('qForm').action = window.location.pathname;
         },
         props: ['systemtags', 'labsections', 'token', 'classeslist', 'section', 'date', 'start', 'end'],
         data() {
