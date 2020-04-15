@@ -63,7 +63,7 @@ class QuizScoreExporter extends Helper implements FromView
             $score['attempted'] = sizeof($groups);
 
             foreach (QA::where('user_id', $user->id)->where('quiz_id', $quiz->id)->get() as $attempt) {
-                if ($attempt->is_correct) {
+                if ($attempt->is_correct === true) {
                     $score['points'] += $attempt->question->points;
                 } else {
                     $score['points'] -= $attempt->question->deductible != null ? $attempt->question->deductible : 0;
