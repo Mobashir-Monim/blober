@@ -3969,6 +3969,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
     this.quizzes = JSON.parse(this.qlist);
@@ -77685,6 +77686,18 @@ var render = function() {
                                 _vm._v(" "),
                                 _c("i", [_vm._v(_vm._s(_vm.quiz_data.updator))])
                               ]),
+                              _vm._v(" "),
+                              _c(
+                                "a",
+                                {
+                                  staticClass: "pl-5 text-primary",
+                                  attrs: {
+                                    href: "/quiz/score/" + _vm.quiz_data.id,
+                                    target: "_blank"
+                                  }
+                                },
+                                [_vm._v("Generate Score Sheet")]
+                              ),
                               _vm._v(" "),
                               _vm.quiz_data.edit
                                 ? _c(

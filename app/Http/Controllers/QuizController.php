@@ -11,6 +11,8 @@ use App\Helpers\QueryChecker as QCH;
 use App\Helpers\QuizHelper as QH;
 use App\QueryPool as QP;
 use App\Section;
+use Excel;
+use App\Helpers\SpreadSheets\QuizScoreExporter as QE;
 
 class QuizController extends Controller
 {
@@ -138,5 +140,11 @@ class QuizController extends Controller
         $set->flag();
 
         return view('quiz.invalid', compact('navBool', 'message'));
+    }
+
+    public function export()
+    {
+        libxml_use_internal_errors(true);
+        return Excel::download(new QE, 'quiz-scores.xlsx');
     }
 }

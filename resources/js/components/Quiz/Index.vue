@@ -84,6 +84,7 @@
                                             <div style="font-size: 0.8em; margin-bottom: -3px;">Last Updated</div>
                                             <i>{{ quiz_data.updator }}</i>
                                         </div>
+                                        <a :href="'/quiz/score/' + quiz_data.id" target="_blank" class="pl-5 text-primary">Generate Score Sheet</a>
                                         <a :href="'/quiz/' + quiz_data.id + '/edit'" target="_blank" class="pl-5 text-secondary" v-if="quiz_data.edit">Edit Quiz</a>
                                         <a href="#/" @click="deleteQuiz(quiz_data.id)" v-if="quiz_data.delete" class="pl-5 text-danger">Delete Quiz</a>
                                     </div>

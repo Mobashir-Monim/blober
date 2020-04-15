@@ -18,7 +18,7 @@ class QuizAttempt extends BaseModel
 
     public function question()
     {
-        return $this->belongsTo('App\QueryPool');
+        return $this->belongsTo('App\QueryPool', 'query_pool_id');
     }
 
     public function quiz()
