@@ -3003,6 +3003,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
     this.allTags = JSON.parse(this.tags);
@@ -76083,7 +76084,9 @@ var render = function() {
                   }
                 },
                 [_vm._v("Confirm Tags")]
-              )
+              ),
+              _vm._v(" "),
+              _vm._m(0)
             ])
           ])
         ])
@@ -76374,7 +76377,7 @@ var render = function() {
               ])
             ]),
             _vm._v(" "),
-            _vm._m(0),
+            _vm._m(1),
             _vm._v(" "),
             _c("div", { staticClass: "row mb-2" }, [
               _c("div", { staticClass: "col-md-6" }, [
@@ -76416,6 +76419,21 @@ var render = function() {
   ])
 }
 var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "i",
+      { staticClass: "text-muted", staticStyle: { "font-size": "0.8em" } },
+      [
+        _c("strong", [_vm._v("Note:")]),
+        _vm._v(
+          " Please select and confirm tags from tag list to practice queries of those tags"
+        )
+      ]
+    )
+  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
@@ -78870,7 +78888,7 @@ var render = function() {
                     { staticClass: "hidden", attrs: { id: "inp-" + index } },
                     [
                       _c("input", {
-                        staticClass: "form-control",
+                        staticClass: "form-control rounded-inp",
                         attrs: {
                           type: "text",
                           name: "tag",

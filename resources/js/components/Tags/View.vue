@@ -23,7 +23,7 @@
                         <div class="col-md-6 text-center my-1" v-for="(tag, index) in tags" :key="index">
                             <div class="py-4 label-info rounded" v-bind:id="'tag-' + index" @dblclick="editTag(index)">{{ tag }}</div>
                             <div v-bind:id="'inp-'+index" class="hidden">
-                                <input type="text" name="tag" v-bind:id="'tag-inp-'+index" class="form-control" :value="tag" placeholder="Tag Name">
+                                <input type="text" name="tag" v-bind:id="'tag-inp-'+index" class="form-control rounded-inp" :value="tag" placeholder="Tag Name">
                                 <div class="row mt-1">
                                     <div class="col-md-6">
                                         <a href="#/" class="btn btn-dark w-100" @click="updateTag(index)">Save</a>

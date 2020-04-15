@@ -21,6 +21,7 @@
                                 </div>
                             </div>
                             <a href="#/" class="btn btn-dark w-100" @click="continueWithTags()">Confirm Tags</a>
+                            <i class="text-muted" style="font-size: 0.8em"><strong>Note:</strong> Please select and confirm tags from tag list to practice queries of those tags</i>
                         </div>
                     </div>
                 </div>
