@@ -94,6 +94,13 @@
                     <div class="row mb-2">
                         <div class="col-md-12">
                             <h3 class="border-bottom">Query Output</h3>
+                            <div class="row" v-if="loadingResults">
+                                <div class="col-md-12 text-center">
+                                    <div class="spinner-border" role="status">
+                                        <span class="sr-only">Loading...</span>
+                                    </div>
+                                </div>
+                            </div>
                             <div v-if="qOutput != null">
                                 <table class="table table-sm table-striped">
                                     <thead class="thead-light">
@@ -165,6 +172,7 @@
                 currentError: null,
                 attemptResult: null,
                 queryOutput: null,
+                resultsLoad: false,
             }
         },
         methods: {
@@ -211,6 +219,7 @@
                 }
             },
             submitQuery() {
+                this.resultsLoad = true;
                 (async () => {
                     const rawResponse = await fetch('/api/quiz/submit-query', {
                         method: 'POST',
@@ -227,6 +236,7 @@
                         })
                     });
                     let res = await rawResponse.json();
+                    this.resultsLoad = false;
                     this.attemptResult = res.data.result;
                     this.currentError = res.data.error;
                     this.queryOutput = res.data.output;
@@ -300,6 +310,14 @@
             result: {
                 get() {
                     return this.attemptResult;
+                },
+                set() {
+
+                }
+            },
+            loadingResults: {
+                get() {
+                    return resultsLoad;
                 },
                 set() {
 

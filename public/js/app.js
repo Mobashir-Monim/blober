@@ -3004,6 +3004,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
     this.allTags = JSON.parse(this.tags);
@@ -3035,7 +3042,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       allTags: [],
       currentTags: [],
       attemptStarted: false,
-      attemptGroups: []
+      attemptGroups: [],
+      resultsLoad: false
     };
   },
   methods: {
@@ -3099,6 +3107,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     submitQuery: function submitQuery() {
       var _this2 = this;
 
+      this.resultsLoad = true;
+
       _asyncToGenerator(
       /*#__PURE__*/
       _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
@@ -3129,11 +3139,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
               case 5:
                 res = _context2.sent;
+                _this2.resultsLoad = false;
                 _this2.attemptResult = res.data.result;
                 _this2.currentError = res.data.error;
                 _this2.queryOutput = res.data.output;
 
-              case 9:
+              case 10:
               case "end":
                 return _context2.stop();
             }
@@ -3256,6 +3267,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       set: function set(value) {
         this.attemptStarted = value;
       }
+    },
+    loadingResults: {
+      get: function get() {
+        return resultsLoad;
+      },
+      set: function set() {}
     }
   }
 });
@@ -4304,6 +4321,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
     var _this = this;
@@ -4333,7 +4357,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       attempt_groups: [],
       currentError: null,
       attemptResult: null,
-      queryOutput: null
+      queryOutput: null,
+      resultsLoad: false
     };
   },
   methods: {
@@ -4383,6 +4408,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     submitQuery: function submitQuery() {
       var _this3 = this;
 
+      this.resultsLoad = true;
+
       _asyncToGenerator(
       /*#__PURE__*/
       _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
@@ -4414,11 +4441,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
               case 5:
                 res = _context.sent;
+                _this3.resultsLoad = false;
                 _this3.attemptResult = res.data.result;
                 _this3.currentError = res.data.error;
                 _this3.queryOutput = res.data.output;
 
-              case 9:
+              case 10:
               case "end":
                 return _context.stop();
             }
@@ -4483,6 +4511,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     result: {
       get: function get() {
         return this.attemptResult;
+      },
+      set: function set() {}
+    },
+    loadingResults: {
+      get: function get() {
+        return resultsLoad;
       },
       set: function set() {}
     }
@@ -76278,6 +76312,10 @@ var render = function() {
                   _vm._v("Query Output")
                 ]),
                 _vm._v(" "),
+                _vm.loadingResults
+                  ? _c("div", { staticClass: "row" }, [_vm._m(1)])
+                  : _vm._e(),
+                _vm._v(" "),
                 _vm.qOutput != null
                   ? _c("div", [
                       _c(
@@ -76377,7 +76415,7 @@ var render = function() {
               ])
             ]),
             _vm._v(" "),
-            _vm._m(1),
+            _vm._m(2),
             _vm._v(" "),
             _c("div", { staticClass: "row mb-2" }, [
               _c("div", { staticClass: "col-md-6" }, [
@@ -76433,6 +76471,16 @@ var staticRenderFns = [
         )
       ]
     )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-md-12 text-center" }, [
+      _c("div", { staticClass: "spinner-border", attrs: { role: "status" } }, [
+        _c("span", { staticClass: "sr-only" }, [_vm._v("Loading...")])
+      ])
+    ])
   },
   function() {
     var _vm = this
@@ -78276,6 +78324,10 @@ var render = function() {
                 _vm._v("Query Output")
               ]),
               _vm._v(" "),
+              _vm.loadingResults
+                ? _c("div", { staticClass: "row" }, [_vm._m(1)])
+                : _vm._e(),
+              _vm._v(" "),
               _vm.qOutput != null
                 ? _c("div", [
                     _c(
@@ -78337,7 +78389,7 @@ var render = function() {
             ])
           ]),
           _vm._v(" "),
-          _vm._m(1),
+          _vm._m(2),
           _vm._v(" "),
           _c("div", { staticClass: "row mb-2" }, [
             _c("div", { staticClass: "col-md" }, [
@@ -78412,6 +78464,16 @@ var staticRenderFns = [
       _c("span", { attrs: { id: "minutes" } }, [_vm._v("0")]),
       _vm._v(" : "),
       _c("span", { attrs: { id: "seconds" } }, [_vm._v("0")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-md-12 text-center" }, [
+      _c("div", { staticClass: "spinner-border", attrs: { role: "status" } }, [
+        _c("span", { staticClass: "sr-only" }, [_vm._v("Loading...")])
+      ])
     ])
   },
   function() {

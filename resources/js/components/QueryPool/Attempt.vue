@@ -95,6 +95,13 @@
                         <div class="row mb-2">
                             <div class="col-md-12">
                                 <h3 class="border-bottom">Query Output</h3>
+                                <div class="row" v-if="loadingResults">
+                                    <div class="col-md-12 text-center">
+                                        <div class="spinner-border" role="status">
+                                            <span class="sr-only">Loading...</span>
+                                        </div>
+                                    </div>
+                                </div>
                                 <div v-if="qOutput != null">
                                     <table class="table table-sm table-striped">
                                         <thead class="thead-light">
@@ -185,6 +192,7 @@
                 currentTags: [],
                 attemptStarted: false,
                 attemptGroups: [],
+                resultsLoad: false,
             }
         },
 
@@ -222,6 +230,7 @@
                     this.attemptGroups.push(res.group);
             },
             submitQuery() {
+                this.resultsLoad = true;
                 (async () => {
                     const rawResponse = await fetch('/api/query/submit-query', {
                         method: 'POST',
@@ -237,6 +246,7 @@
                         })
                     });
                     let res = await rawResponse.json();
+                    this.resultsLoad = false;
                     this.attemptResult = res.data.result;
                     this.currentError = res.data.error;
                     this.queryOutput = res.data.output;
@@ -357,6 +367,14 @@
                 },
                 set(value) {
                     this.attemptStarted = value;
+                }
+            },
+            loadingResults: {
+                get() {
+                    return resultsLoad;
+                },
+                set() {
+
                 }
             },
         }
