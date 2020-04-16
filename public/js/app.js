@@ -3270,7 +3270,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     },
     loadingResults: {
       get: function get() {
-        return resultsLoad;
+        return this.resultsLoad;
       },
       set: function set() {}
     }
@@ -4516,7 +4516,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     },
     loadingResults: {
       get: function get() {
-        return resultsLoad;
+        return this.resultsLoad;
       },
       set: function set() {}
     }

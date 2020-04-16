@@ -371,7 +371,7 @@
             },
             loadingResults: {
                 get() {
-                    return resultsLoad;
+                    return this.resultsLoad;
                 },
                 set() {
 
