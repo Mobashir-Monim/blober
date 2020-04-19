@@ -14,12 +14,13 @@
     
     <!-- Webcam video snapshot -->
     <canvas id="canvas" width="640" height="480"></canvas>
+    <span id="errorMsg"></span>
   </body>
   <script>
     const video = document.getElementById('video');
     const canvas = document.getElementById('canvas');
     const snap = document.getElementById("snap");
-    const errorMsgElement = document.querySelector('span#errorMsg');
+    const errorMsgElement = document.querySelector('#errorMsg');
 
     const constraints = {
     audio: false,
@@ -30,12 +31,12 @@
 
     // Access webcam
     async function init() {
-    try {
-        const stream = await navigator.mediaDevices.getUserMedia(constraints);
-        handleSuccess(stream);
-    } catch (e) {
-        errorMsgElement.innerHTML = `navigator.getUserMedia error:${e.toString()}`;
-    }
+        try {
+            const stream = await navigator.mediaDevices.getUserMedia(constraints);
+            handleSuccess(stream);
+        } catch (e) {
+            errorMsgElement.innerHTML = `navigator.getUserMedia error:${e.toString()}`;
+        }
     }
 
     // Success
