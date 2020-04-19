@@ -36,7 +36,7 @@
             const stream = await navigator.mediaDevices.getUserMedia(constraints);
             handleSuccess(stream);
         } catch (e) {
-            errorMsgElement.innerHTML = `navigator.getUserMedia error:${e.toString()}`;
+            errorMsgElement.innerHTML = `navigator.mediaDevices.getUserMedia error:${e.toString()}`;
         }
     }
 
