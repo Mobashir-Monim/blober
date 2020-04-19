@@ -24,9 +24,7 @@
 
     const constraints = {
         audio: false,
-        video: {
-            width: 1280, height: 720
-        }
+        video: true,
     };
 
     // Access webcam
