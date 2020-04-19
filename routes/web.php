@@ -64,6 +64,7 @@ Route::group(['middleware' => ['auth', 'auth-code']], function () {
 });
 
 Route::get('test', function (Illuminate\Http\Request $request) {
+    return view('test');
     dd(phpinfo());
 });
 
