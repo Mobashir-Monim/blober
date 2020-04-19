@@ -40,8 +40,8 @@
 
     // Success
     function handleSuccess(stream) {
-    window.stream = stream;
-    video.srcObject = stream;
+        window.stream = stream;
+        video.srcObject = stream;
     }
 
     // Load init
@@ -50,6 +50,7 @@
     // Draw image
     var context = canvas.getContext('2d');
     snap.addEventListener("click", function() {
+        console.log(video);
         context.drawImage(video, 0, 0, 640, 480);
     });
   </script>
