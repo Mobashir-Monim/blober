@@ -1,17 +1,56 @@
-@extends('layouts.app')
-
-@section('content')
+<!DOCTYPE html>
+<html>
+  <head>
+  </head>
+  <body>
+    <div class="video-wrap">
+        <video id="video" playsinline autoplay></video>
+    </div>
     
-    @foreach ($collection as $item)
-        <div class="row border-bottom">
-            {{-- <div class="col-md-6 text-right border-right">{{ App\Tag::find($item['tag_id'])->name }}</div> --}}
-            {{-- <div class="col-md-6 text-right border-right">{{ $item['tag_id'] }}</div> --}}
-            <div class="col-md-3 border-right text-right h6">{{ $item->id }}<br>DIFF: {{ $item->difficulty }}</div>
-            <div class="col-md my-auto">
-                @foreach ($item->tags as $tag)
-                    <span class="p-1 label-info rounded display-inline">{{ $tag->name }}</span>
-                @endforeach
-            </div>
-        </div>
-    @endforeach
-@endsection
+    <!-- Trigger canvas web API -->
+    <div class="controller">
+        <button id="snap">Capture</button>
+    </div>
+    
+    <!-- Webcam video snapshot -->
+    <canvas id="canvas" width="640" height="480"></canvas>
+  </body>
+  <script>
+    const video = document.getElementById('video');
+    const canvas = document.getElementById('canvas');
+    const snap = document.getElementById("snap");
+    const errorMsgElement = document.querySelector('span#errorMsg');
+
+    const constraints = {
+    audio: false,
+    video: {
+        width: 1280, height: 720
+    }
+    };
+
+    // Access webcam
+    async function init() {
+    try {
+        const stream = await navigator.mediaDevices.getUserMedia(constraints);
+        handleSuccess(stream);
+    } catch (e) {
+        errorMsgElement.innerHTML = `navigator.getUserMedia error:${e.toString()}`;
+    }
+    }
+
+    // Success
+    function handleSuccess(stream) {
+    window.stream = stream;
+    video.srcObject = stream;
+    }
+
+    // Load init
+    init();
+
+    // Draw image
+    var context = canvas.getContext('2d');
+    snap.addEventListener("click", function() {
+        context.drawImage(video, 0, 0, 640, 480);
+    });
+  </script>
+</html>
