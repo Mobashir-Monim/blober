@@ -23,14 +23,15 @@
     const errorMsgElement = document.querySelector('#errorMsg');
 
     const constraints = {
-    audio: false,
-    video: {
-        width: 1280, height: 720
-    }
+        audio: false,
+        video: {
+            width: 1280, height: 720
+        }
     };
 
     // Access webcam
     async function init() {
+        console.log(navigator)
         try {
             const stream = await navigator.mediaDevices.getUserMedia(constraints);
             handleSuccess(stream);
