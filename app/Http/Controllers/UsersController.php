@@ -46,7 +46,6 @@ class UsersController extends Controller
 
     public function create()
     {
-        dd(request()->root());
         return view('users.create');
     }
 
