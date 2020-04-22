@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Excel;
 use App\Helpers\SectionHelper as SH;
 use App\Helpers\SpreadSheets\SectionsImporter as SI;
 
@@ -15,7 +16,7 @@ class SectionController extends Controller
         return view('section.index', compact('sections'));
     }
 
-    public function store()
+    public function store(Request $request)
     {
         Excel::import(new SI, $request->file('instructor_data'));
 
