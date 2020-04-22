@@ -61,6 +61,10 @@ Route::group(['middleware' => ['auth', 'auth-code']], function () {
 
     // Section Routes
     Route::get('/sections', 'SectionController@index')->name('sections.index');
+    Route::post('/sections/create', 'SectionController@store')->name('sections.create');
+
+    // Student Routes
+    Route::post('/students/add', 'StudentController@addStudents')->name('students.add');
 });
 
 Route::get('test', function (Illuminate\Http\Request $request) {

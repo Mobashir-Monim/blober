@@ -41,6 +41,22 @@
                     <div class="col-md-5 pl-4">
                         <div class="card body-bg card-rounded mb-2">
                             <div class="card-body body-bg card-rounded">
+                                <div class="row border-bottom mb-1">
+                                    <div class="col-md-6 pl-0">Student ID:</div>
+                                    <div class="col-md-6 text-right pr-0">{{ $user->student->student_id }}</div>
+                                </div>
+                                <div class="row border-bottom mb-1">
+                                    <div class="col-md-6 pl-0">Section:</div>
+                                    <div class="col-md-6 text-right pr-0">{{ $user->student->section }}</div>
+                                </div>
+                                <div class="row border-bottom mb-1">
+                                    <div class="col-md-6 pl-0">Status:</div>
+                                    <div class="col-md-6 text-right pr-0">{{ strtoupper($user->student->status) }}</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card body-bg card-rounded mb-2">
+                            <div class="card-body body-bg card-rounded">
                                 @foreach ($user->student->analytics() as $key => $val)
                                     <div class="row border-bottom mb-1">
                                         <div class="col-md-8 pl-0">{{ $key }}</div>

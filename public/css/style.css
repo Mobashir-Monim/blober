@@ -282,3 +282,27 @@ body {
     outline-style: none !important;
     outline-color: #f8fafc !important;
 }
+
+input[type=file] {
+    border-radius: 25px !important;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+    padding-left: 0 !important;
+}
+
+::-webkit-file-upload-button {
+    border-top-left-radius: 25px !important;
+    border-bottom-left-radius: 25px !important;
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+    height: inherit;
+    color: #fff;
+    background-color: #343a40;
+    border-color: #343a40;
+}
+
+::-webkit-file-upload-button:hover {
+    color: #fff;
+    background-color: #23272b;
+    border-color: #1d2124;
+}

@@ -46,6 +46,7 @@ class UsersController extends Controller
 
     public function create()
     {
+        dd(request()->getHttpHost());
         return view('users.create');
     }
 

@@ -125,4 +125,27 @@ class Student extends BaseModel
 
         return $dates;
     }
+
+    public static function getEnrollment()
+    {
+        $now = Carbon::now();
+
+        return ($now->month <= 4 ? 'Spring ' : ($now->month <= 8 ? 'Summer ' : 'Fall ')) . $now->year;
+    }
+
+    public function incrementStatus()
+    {
+        $status = explode('-', $this->status)[0];
+        $this->enrollment = self::getEnrollment();
+
+        if ($status == 'first') {
+            $this->status = 'second-enrollment';
+        } elseif ( $status == 'second') {
+            $this->status = 'third-enrollment';
+        } else {
+            $this->status = 'post-third-enrollment';
+        }
+
+        $this->save();
+    }
 }
