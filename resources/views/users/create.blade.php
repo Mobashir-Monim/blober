@@ -36,7 +36,7 @@
                                 <button class="btn btn-dark w-100">Upload</button>
                             </div>
                             <div class="col-md-12 text-muted text-right" style="font-size: 0.8em">
-                                <a href="http://view.officeapps.live.com/op/view.aspx?src={{ request()->root() . '/files/Blober Student Data test.xlsx' }}" target="_blank">View upload file format</a>
+                                <a href="http://view.officeapps.live.com/op/view.aspx?src={{ request()->root() . '/files/Blober Student Data Format.xlsx' }}" target="_blank">View upload file format</a>
                             </div>
                         </div>
                     </form>
