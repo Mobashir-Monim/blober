@@ -24,6 +24,7 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 // DataPool Components
 Vue.component('dp-create', require('./components/DataPool/Create.vue').default);
 Vue.component('dp-view', require('./components/DataPool/View.vue').default);
+Vue.component('dp-edit', require('./components/DataPool/Edit.vue').default);
 
 // QueryPool Components
 Vue.component('qp-create', require('./components/QueryPool/Create.vue').default);

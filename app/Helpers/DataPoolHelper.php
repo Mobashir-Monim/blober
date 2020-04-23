@@ -18,6 +18,20 @@ class DataPoolHelper extends Helper
         $this->tables = $tables;
     }
 
+    public function dropExistingTables($pool)
+    {
+        $pool->name = $this->name;
+        $pool->save();
+
+        foreach ($pool->tables as $key => $table) {
+            \DB::statement("drop table $table->name;");
+            $table->name = $this->names[$key];
+            $table->save();
+        }
+
+        return;
+    }
+
     public function createTablesWithValues()
     {
         $this->createTables($this->generateCreateStatements());

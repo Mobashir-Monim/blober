@@ -32,6 +32,8 @@ Route::group(['middleware' => ['auth', 'auth-code', 'authorized']], function () 
     Route::get('/datapool', 'DataPoolController@index')->name('datapool.index');
     Route::get('/datapool/create', 'DataPoolController@create')->name('datapool.create');
     Route::post('/datapool/create', 'DataPoolController@store')->name('datapool.create');
+    Route::get('/datapool/{pool}/edit', 'DataPoolController@edit')->name('datapool.edit');
+    Route::post('/datapool/{pool}/edit', 'DataPoolController@update')->name('datapool.edit');
 
     // Query Pool Routes
     Route::get('/queries', 'QueryPoolController@index')->name('query.index');

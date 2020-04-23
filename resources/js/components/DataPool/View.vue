@@ -12,7 +12,7 @@
                 </div>
             </div>
             <div class="card mb-3">
-                <div class="card-header">Tables</div>
+                <div class="card-header">Tables <span class="float-right" v-if="editRoute != false" style="font-size: 1.2em"><a :href="editRoute"><i class="fa fas fa-cog"></i></a></span></div>
                 <div class="card-body">
                     <div class="row mb-2" v-if="currentPool">
                         <div class="col-md-12">
@@ -26,7 +26,7 @@
                     </div>
                     <div class="row mb-2" v-else>
                         <div class="col-md-12">
-                            <h4 class="text-center">No Pool selected</h4>
+                            <h4 class="text-center">No Pool selected </h4>
                         </div>
                     </div>
 
@@ -85,6 +85,7 @@
         methods: {
             changeSelectedPool(value) {
                 this.selectedPool = value;
+                console.log(value);
                 this.fetchDPTables();
             },
             changeSelectedTable(value) {
@@ -124,6 +125,14 @@
                 },
                 set(value) {
                     this.selectedTable = value;
+                }
+            },
+            editRoute: {
+                get() {
+                    return this.selectedPool == null ? false : '/datapool/' + this.selectedPool + '/edit';
+                },
+                set() {
+
                 }
             },
         }

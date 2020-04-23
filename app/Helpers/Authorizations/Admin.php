@@ -23,7 +23,8 @@ class Admin extends Helper
         'quiz.score.export',
         'sections.index',
         'sections.create',
-        'students.add'
+        'students.add',
+        'datapool.edit'
     ];
 
     public $actions = [
@@ -33,6 +34,7 @@ class Admin extends Helper
         'quiz.create',
         'quiz.edit',
         'sections.create',
-        'students.add'
+        'students.add',
+        'datapool.edit'
     ];
 }

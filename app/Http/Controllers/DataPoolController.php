@@ -31,8 +31,32 @@ class DataPoolController extends Controller
         $helper->createTablesWithValues();
         $helper->createDataPoolsWithTables();
 
-        return back();
-    }   
+        return redirect(route('datapool.index'))->with('success', 'Datapool created');
+    }
+
+    public function edit(Request $request, DataPool $pool)
+    {
+        $tables = array();
+
+        foreach ($pool->tables->pluck('name', 'id')->toArray() as $key => $value) {
+            $tables[$value] = $this->objToArray($this->getTablesData($request, Table::find($key))->getData(), false)['data'];
+        }
+
+        return view('datapool.edit', compact('tables', 'pool'));
+    }
+
+    public function update(Request $request, DataPool $pool)
+    {
+        // dd(json_decode($request->tables), $request->all());
+        $names = json_decode($request->tableNames, true);
+        $tables = json_decode($request->tables, true);
+        $helper = new DPH($request->dp_name, $names, $tables);
+        $helper->dropExistingTables($pool);
+        $helper->createTablesWithValues();
+        $helper->createDataPoolsWithTables();
+
+        return redirect(route('datapool.index'))->with('success', 'Datapool updated');
+    }
 
     public function getPoolTables(Request $request, $pool)
     {
@@ -44,10 +68,7 @@ class DataPoolController extends Controller
             $result = DataPool::find($pool);
 
             if (is_null($result)) {
-                response()->json([
-                    'success' => false,
-                    'data' => 404,
-                ]);
+                response()->json(['success' => false, 'data' => 404]);
             }
 
             $result = $result->tables->pluck('name', 'id')->toArray();
