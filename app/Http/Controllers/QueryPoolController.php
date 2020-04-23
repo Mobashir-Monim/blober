@@ -19,7 +19,6 @@ class QueryPoolController extends Controller
 
     public function store(Request $request)
     {
-        // dd($request->all());
         $query = QP::create((new QPH)->generateDBInsert($request));
         (new QPH)->attachTags($query, explode(',', $request->tags));
 

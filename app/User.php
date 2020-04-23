@@ -71,7 +71,7 @@ class User extends Authenticatable
 
     public function sections()
     {
-        return $this->hasMany('App\Section');
+        return $this->belongsToMany('App\Section');
     }
 
     /**

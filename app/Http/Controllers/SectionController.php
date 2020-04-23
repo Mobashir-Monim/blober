@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Excel;
+use Carbon\Carbon;
 use App\Helpers\SectionHelper as SH;
 use App\Helpers\SpreadSheets\SectionsImporter as SI;
 
@@ -11,7 +12,9 @@ class SectionController extends Controller
 {
     public function index()
     {
-        $sections = (new SH)->getViewableData(null);
+        $now = new Carbon;
+        $semester = request()->semester == null ? ($now->month <= 4 ? 'Spring ' : ($now->month <= 8 ? 'Summer ' : 'Fall ')) . $now->year : request()->semester;
+        $sections = (new SH)->getViewableData(null, $semester);
 
         return view('section.index', compact('sections'));
     }

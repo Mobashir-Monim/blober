@@ -19,14 +19,13 @@ class StudentsImporter extends Helper implements ToCollection
 
                 if (is_null($user)) {
                     $user = User::create(['name' => $row[1], 'email' => $row[2], 'password' => User::generatePassword()]);
-                    // dd($row, ['name' => $row[1], 'email' => $row[2], 'password' => User::generatePassword()]);
                     $user->roles()->attach(Role::where('name', 'student')->first()->id);
                 }
 
                 if (is_null($user->student)) {
                     Student::create($this->generateStudentDataArray($user, $row));
                 } else {
-                    $user->student->incrementStatus();
+                    $user->student->incrementStatus($row[3]);
                 }
             }
         }

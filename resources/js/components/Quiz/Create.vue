@@ -25,7 +25,7 @@
                                 Lab Section:
                                 <select name="section" class="form-control">
                                     <option value="">Select Section</option>
-                                    <option v-for="(section, index) in this.sections" :key="index" :value="index + 1">{{ index + 1 }}</option>
+                                    <option v-for="(section, index) in this.sections" :key="index" :value="index + 1">{{ index }}</option>
                                 </select>
                             </div>
                         </div>

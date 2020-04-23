@@ -29,10 +29,12 @@ class QuizController extends Controller
 
     public function create()
     {
-        $sections = Section::where('user_id', auth()->user()->id)->select('section_id')->groupBy('section_id')->get()->pluck('section_id')->toArray();
+        $now = new Carbon;
+        $semester = ($now->month <= 4 ? 'Spring ' : ($now->month <= 8 ? 'Summer ' : 'Fall ')) . $now->year;
+        $sections = auth()->user()->sections->where('semester', $semester)->pluck('section', 'id')->toArray();
 
         if (auth()->user()->highestRole()->name == 'developer' || auth()->user()->highestRole()->name == 'lab-coordinator') {
-            $sections = Section::select('section_id')->groupBy('section_id')->get()->pluck('section_id')->toArray();
+            $sections = Section::where('semester', $semester)->get()->pluck('section', 'id')->toArray();
         }
 
         return view('quiz.create', compact('sections'));
@@ -66,10 +68,12 @@ class QuizController extends Controller
 
     public function edit(Request $request, Quiz $quiz)
     {
-        $sections = Section::where('user_id', auth()->user()->id)->select('section_id')->groupBy('section_id')->get()->pluck('section_id')->toArray();
+        $now = new Carbon;
+        $semester = ($now->month <= 4 ? 'Spring ' : ($now->month <= 8 ? 'Summer ' : 'Fall ')) . $now->year;
+        $sections = auth()->user()->sections->where('semester', $semester)->pluck('section', 'id')->toArray();
 
         if (auth()->user()->highestRole()->name == 'developer' || auth()->user()->highestRole()->name == 'lab-coordinator') {
-            $sections = Section::select('section_id')->groupBy('section_id')->get()->pluck('section_id')->toArray();
+            $sections = Section::where('semester', $semester)->get()->pluck('section', 'id')->toArray();
         }
 
         return view('quiz.edit', compact('quiz', 'sections'));

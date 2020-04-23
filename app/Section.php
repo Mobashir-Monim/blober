@@ -6,8 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Section extends BaseModel
 {
-    public function user()
+    public function users()
     {
-        return $this->belongsTo('App\User');
+        return $this->belongsToMany('App\User');
     }
 }

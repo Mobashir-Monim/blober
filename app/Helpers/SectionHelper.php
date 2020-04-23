@@ -8,12 +8,12 @@ use App\User;
 
 class SectionHelper extends Helper
 {
-    public function getViewableData($section)
+    public function getViewableData($section, $semester)
     {
         if (isset($section) || !is_null($section)) {
             return $this->getSectionData($section);
         } else {
-            return $this->allSections();
+            return $this->allSections($semester);
         }
     }
 
@@ -21,23 +21,22 @@ class SectionHelper extends Helper
     {
         $data = ['section' => $section, 'instructors' => array(), 'students' => $this->getStudentData($section)];
 
-        foreach (Section::where('section_id', $section)->get() as $entity) {
-            array_push($data['instructors'], $entity->user->name);
+        foreach (Section::find($section)->users as $entity) {
+            array_push($data['instructors'], $entity->name);
         }
 
         return $data;
     }
 
-    public function allSections()
+    public function allSections($semester)
     {
         $data = array();
-        $sections = Section::select('section_id')->groupBy('section_id')->get()->pluck('section_id')->toArray();
 
-        foreach ($sections as $key => $section) {
-            $sdata = ['section' => $section, 'instructors' => array(), 'students' => $this->getStudentData($section)];
+        foreach (Section::where('semester', $semester)->get() as $key => $section) {
+            $sdata = ['section' => $section->section, 'instructors' => array(), 'students' => $this->getStudentData($section->id)];
 
-            foreach (Section::where('section_id', $section)->get() as $entity) {
-                array_push($sdata['instructors'], $entity->user->name);
+            foreach ($section->users as $entity) {
+                array_push($sdata['instructors'], $entity->name);
             }
 
             array_push($data, $sdata);

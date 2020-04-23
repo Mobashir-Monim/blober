@@ -20,7 +20,6 @@ class AnalyticsController extends Controller
         $vals = array();
 
         foreach ($tags as $tag) {
-            // dd(QA::whereIn('query_pool_id', $tags[1]->pools->pluck('id')->toArray())->get());
             array_push($vals, [
                 $tag->name,
                 $helper->getUserAttemptsCount($tag),

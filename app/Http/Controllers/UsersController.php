@@ -24,8 +24,6 @@ class UsersController extends Controller
 
         $roles = $roles->toArray();
 
-        // dd($users);
-
         return view('users.index', compact('users', 'roles'));
     }
 

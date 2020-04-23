@@ -133,10 +133,11 @@ class Student extends BaseModel
         return ($now->month <= 4 ? 'Spring ' : ($now->month <= 8 ? 'Summer ' : 'Fall ')) . $now->year;
     }
 
-    public function incrementStatus()
+    public function incrementStatus($section)
     {
         $status = explode('-', $this->status)[0];
         $this->enrollment = self::getEnrollment();
+        $this->section = $section;
 
         if ($status == 'first') {
             $this->status = 'second-enrollment';
