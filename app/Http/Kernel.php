@@ -52,6 +52,7 @@ class Kernel extends HttpKernel
      */
     protected $routeMiddleware = [
         'auth' => \App\Http\Middleware\Authenticate::class,
+        'authorized' => \App\Http\Middleware\AuthorizationMiddlware::class,
         'auth-code' => \App\Http\Middleware\AuthCodeMiddleware::class,
         'valid-link' => \App\Http\Middleware\ValidQuizLinkMiddleware::class,
         'valid-set' => \App\Http\Middleware\QuizSetValidityMiddleware::class,

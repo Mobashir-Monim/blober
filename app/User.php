@@ -162,4 +162,12 @@ class User extends Authenticatable
     {
         return Carbon::parse($this->created_at)->format('d M, Y');
     }
+
+    public function sectionAuthorized($section)
+    {
+        if ($this->hasRole('developer') || $this->hasRole('lab-coordinator') || !is_null($this->sections->where('id', $section)->first()))
+            return true;
+
+        return false;
+    }
 }

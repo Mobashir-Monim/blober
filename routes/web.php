@@ -19,7 +19,7 @@ Route::group(['middleware' => ['auth-code']], function () {
     Auth::routes(['register' => false]);
 });
 
-Route::group(['middleware' => ['auth', 'auth-code']], function () {
+Route::group(['middleware' => ['auth', 'auth-code', 'authorized']], function () {
     Route::get('/home', 'HomeController@index')->name('home');
     Route::get('/home/{email}', 'HomeController@dashboard')->name('home.user');
     Route::get('/users', 'UsersController@index')->name('users.index');

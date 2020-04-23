@@ -10,4 +10,9 @@ class Section extends BaseModel
     {
         return $this->belongsToMany('App\User');
     }
+
+    public function quizzes()
+    {
+        return $this->hasMany('App\Quiz');
+    }
 }

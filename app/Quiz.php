@@ -27,6 +27,11 @@ class Quiz extends BaseModel
         return $this->belongsTo('App\User', 'updated_by');
     }
 
+    public function section()
+    {
+        return $this->belongsTo('App\Section');
+    }
+
     public function questionCount()
     {
         $data = json_decode($this->data, true);
@@ -57,8 +62,8 @@ class Quiz extends BaseModel
             'start' => Carbon::parse($this->start)->format("H:i a d M, Y"),
             'creator' => $this->creator->name . ' on ' . Carbon::parse($this->created_at)->format("d M, Y"),
             'updator' => !is_null($this->updator) ? $this->updator->name . ' on ' . Carbon::parse($this->updated_at)->format("d M, Y") : 'NOT UPDATED YET',
-            'edit' => !is_null(auth()->user()),
-            'delete' => is_null(auth()->user()) ? false : $this->creator->id == auth()->user()->id,
+            'edit' => !is_null(auth()->user()) ? auth()->user()->sectionAuthorized($this->section) : false,
+            'delete' => !is_null(auth()->user()) ? auth()->user()->sectionAuthorized($this->section) : false,
         ];
     }
 

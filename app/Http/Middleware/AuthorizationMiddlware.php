@@ -22,6 +22,6 @@ class AuthorizationMiddlware
             return $next($request);
         }
 
-        return back()->with('error', 'You are not authorized');
+        return redirect(route('home'))->with('error', 'You are not authorized');
     }
 }

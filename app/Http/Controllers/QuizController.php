@@ -57,8 +57,8 @@ class QuizController extends Controller
     {
         $data = $quiz->viewableData();
         $data['details'] = json_decode($quiz->data, true);
-        $data['edit'] = !is_null(User::getUser($request->sessioncode));
-        $data['delete'] = is_null(User::getUser($request->sessioncode)) ? false : $quiz->creator->id == User::getUser($request->sessioncode)->id;
+        $data['edit'] = !is_null(User::getUser($request->sessioncode)) ? User::getUser($request->sessioncode)->sectionAuthorized($quiz['section']) : false;
+        $data['delete'] = !is_null(User::getUser($request->sessioncode)) ? User::getUser($request->sessioncode)->sectionAuthorized($quiz['section']) : false;
 
         return response()->json([
             'success' => true,
