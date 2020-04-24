@@ -27,7 +27,9 @@ Vue.component('dp-view', require('./components/DataPool/View.vue').default);
 Vue.component('dp-edit', require('./components/DataPool/Edit.vue').default);
 
 // QueryPool Components
+Vue.component('qp-index', require('./components/QueryPool/Index.vue').default);
 Vue.component('qp-create', require('./components/QueryPool/Create.vue').default);
+Vue.component('qp-edit', require('./components/QueryPool/Edit.vue').default);
 Vue.component('qp-attempt', require('./components/QueryPool/Attempt.vue').default);
 
 // Profile Components

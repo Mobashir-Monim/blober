@@ -39,6 +39,8 @@ Route::group(['middleware' => ['auth', 'auth-code', 'authorized']], function () 
     Route::get('/queries', 'QueryPoolController@index')->name('query.index');
     Route::get('/query/create', 'QueryPoolController@create')->name('query.create');
     Route::post('/query/create', 'QueryPoolController@store')->name('query.create');
+    Route::get('/query/{query}/edit', 'QueryPoolController@edit')->name('query.edit');
+    Route::post('/query/{query}/edit', 'QueryPoolController@update')->name('query.edit');
 
     // Query Attempt Routtes
     Route::get('/query/attempt', 'QueryPoolController@attempt')->name('query.attempt');

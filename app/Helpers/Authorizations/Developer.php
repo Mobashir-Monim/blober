@@ -29,7 +29,8 @@ class Developer extends Helper
         'sections.index',
         'sections.create',
         'students.add',
-        'datapool.edit'
+        'datapool.edit',
+        'query.edit'
     ];
 
     public $actions = [
@@ -42,6 +43,7 @@ class Developer extends Helper
         'quiz.edit',
         'sections.create',
         'students.add',
-        'datapool.edit'
+        'datapool.edit',
+        'query.edit'
     ];
 }

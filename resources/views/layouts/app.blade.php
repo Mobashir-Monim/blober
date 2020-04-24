@@ -8,6 +8,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}" id="csrf">
 
     <title>{{ config('app.name', 'Blober') }}</title>
+    <link rel="icon" href="/img/blober-w.svg" type="image/gif" sizes="16x16">
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
@@ -31,6 +32,7 @@
             <nav class="navbar navbar-expand-md navbar-dark bg-dark shadow-sm text-white">
                 <div class="container">
                     <a class="navbar-brand" href="{{ url('/') }}">
+                        <img src="/img/blober-bl-w.svg" class="img-fluid w-10">
                         {{ config('app.name', 'Blober') }}
                     </a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
@@ -121,6 +123,18 @@
                 </div>
             </div>
         </main>
+        <footer class="footer bg-dark text-white" style="position: relative !important;">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6">
+                        © {{ Carbon\Carbon::now()->format('Y') }}, Eveneer, All rights reserved.
+                    </div>
+                    <a href="https://www.eveneer.xyz" target="_blank" class="col-md-6 text-right h5 mb-0 my-auto text-white">
+                        <img src="/img/eveneer-white.svg" class="w-10 p-2"> Eveneer
+                    </a>
+                </div>
+            </div>
+        </footer>
     </div>
 </body>
 </html>

@@ -28,4 +28,15 @@ class DataPool extends BaseModel
     /**
      * Custom functions
     */
+
+    public function getViewableQueries()
+    {
+        $queries = array();
+
+        foreach ($this->queries as $key => $query) {
+            array_push($queries, $query->viewableData());
+        }
+
+        return $queries;
+    }
 }

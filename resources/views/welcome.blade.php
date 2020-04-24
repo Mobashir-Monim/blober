@@ -9,6 +9,7 @@
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
+        <link rel="icon" href="/img/blober-w.svg" type="image/gif" sizes="16x16">
 
         <!-- Styles -->
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -78,9 +79,9 @@
             @if (Route::has('login'))
                 <div class="top-right links">
                     @auth
-                        <a href="{{ url('/home') }}" class="bg-dark text-white card-rounded px-5 py-1">Home</a>
+                        <a href="{{ url('/home') }}" class="bg-dark text-white card-rounded px-5 py-1" style="background-color: #171717 !important">Home</a>
                     @else
-                        <a href="{{ route('login') }}" class="bg-dark text-white card-rounded px-5 py-1">Login</a>
+                        <a href="{{ route('login') }}" class="bg-dark text-white card-rounded px-5 py-1" style="background-color: #171717 !important">Login</a>
 
                         @if (Route::has('register'))
                             <a href="{{ route('register') }}">Register</a>
@@ -91,6 +92,7 @@
 
             <div class="content">
                 <div class="title m-b-md">
+                    <img src="/img/blober-w.svg" class="img-fluid w-25">
                     Blober
                 </div>
 
@@ -108,5 +110,17 @@
                 </div> --}}
             </div>
         </div>
+        <footer class="footer bg-dark text-white">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6">
+                        © {{ Carbon\Carbon::now()->format('Y') }}, Eveneer, All rights reserved.
+                    </div>
+                    <a href="https://www.eveneer.xyz" class="col-md-6 text-right h5 mb-0 my-auto text-white">
+                        <img src="/img/eveneer-white.svg" class="w-10 p-2"> Eveneer
+                    </a>
+                </div>
+            </div>
+        </footer>
     </body>
 </html>

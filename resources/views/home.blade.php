@@ -3,7 +3,7 @@
 @section('content')
     <div class="card mb-2">
         <div class="card-header">Dashboard 
-            @if (auth()->user()->id != $user->id)
+            @if (auth()->user()->id == $user->id)
                 <span class="float-right" style="font-size: 1.2em"><a href="{{ route('users.edit') }}"><i class="fa fas fa-cog"></i></a></span>
             @endif
         </div>

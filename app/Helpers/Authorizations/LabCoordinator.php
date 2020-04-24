@@ -22,6 +22,7 @@ class LabCoordinator extends Helper
         'quiz.score.export',
         'sections.index',
         'datapool.edit',
+        'query.edit',
     ];
 
     public $actions = [
@@ -30,5 +31,6 @@ class LabCoordinator extends Helper
         'quiz.create',
         'quiz.edit',
         'datapool.edit',
+        'query.edit',
     ];
 }

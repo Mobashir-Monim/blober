@@ -30,4 +30,18 @@ class QueryPool extends BaseModel
     {
         return $this->hasMany('App\QuizAttempt');
     }
+
+    public function viewableData()
+    {
+        return [
+            'id' => $this->id,
+            'question' => $this->question,
+            'query' => is_null($this->query) ? $this->output : $this->query,
+            'points' => $this->points,
+            'deductible' => $this->deductible,
+            'time' => $this->time,
+            'is_quiz_query' => $this->is_quiz_query,
+            'tags' => $this->tags->pluck('name', 'id')->toArray()
+        ];
+    }
 }

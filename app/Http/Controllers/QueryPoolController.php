@@ -27,7 +27,27 @@ class QueryPoolController extends Controller
 
     public function index()
     {
-        dd('Under Development');
+        return view('querypool.index');
+    }
+
+    public function edit(Request $request, QP $query)
+    {
+        $difficulties = [1,2,3,4,5,6,7,8,9,10];
+        unset($difficulties[array_search($query->difficulty, $difficulties)]);
+        $tags = '';
+
+        foreach ($query->tags as $tag) {
+            $tags .= $tag->name . ',';
+        }
+
+        return view('querypool.edit', compact('query', 'difficulties', 'tags'));
+    }
+
+    public function update(Request $request, QP $query)
+    {
+        (new QPH)->detachAllTags($query);
+        $query->update((new QPH)->generateDBInsert($request));
+        dd('done updating');
     }
     
     public function attempt()
@@ -59,6 +79,16 @@ class QueryPoolController extends Controller
         return response()->json([
             'success' => true,
             'data' => $data,
+        ]);
+    }
+
+    public function getQueries(Request $request, DP $dp)
+    {
+        return response()->json([
+            'success' => true,
+            'data' => [
+                'queries' => $dp->getViewableQueries()
+            ]
         ]);
     }
 }
