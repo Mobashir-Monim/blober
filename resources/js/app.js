@@ -66,3 +66,7 @@ Vue.component('section-index', require('./components/Section/Index.vue').default
 const app = new Vue({
     el: '#app',
 });
+
+Vue.config.devtools = false
+Vue.config.debug = false
+Vue.config.silent = true

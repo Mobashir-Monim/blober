@@ -92451,6 +92451,9 @@ Vue.component('section-index', __webpack_require__(/*! ./components/Section/Inde
 var app = new Vue({
   el: '#app'
 });
+Vue.config.devtools = false;
+Vue.config.debug = false;
+Vue.config.silent = true;
 
 /***/ }),
 
