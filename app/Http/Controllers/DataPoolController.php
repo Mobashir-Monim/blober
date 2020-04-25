@@ -47,7 +47,6 @@ class DataPoolController extends Controller
 
     public function update(Request $request, DataPool $pool)
     {
-        // dd(json_decode($request->tables), $request->all());
         $names = json_decode($request->tableNames, true);
         $tables = json_decode($request->tables, true);
         $helper = new DPH($request->dp_name, $names, $tables);

@@ -45,9 +45,10 @@ class QueryPoolController extends Controller
 
     public function update(Request $request, QP $query)
     {
-        (new QPH)->detachAllTags($query);
+        (new QPH)->updateTags($query, explode(',', $request->tags));
         $query->update((new QPH)->generateDBInsert($request));
-        dd('done updating');
+
+        return redirect(route('query.index'))->with('success', 'Query Updated');
     }
     
     public function attempt()

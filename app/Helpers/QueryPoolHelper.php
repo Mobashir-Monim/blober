@@ -152,21 +152,26 @@ class QueryPoolHelper extends Helper
         return AG::create(['endtime' => null]);
     }
 
-    public function detachAllTags($query)
+    public function updateTags($query, $tags)
     {
         foreach ($query->tags->pluck('name', 'id') as $key => $value) {
-            dd($key);
+            if (array_search($value, $tags) === false) {
+                $query->tags()->detach($key);
+            }
         }
+
+        $this->attachTags($query, $tags);
     }
 
     public function attachTags($query, $tags)
     {
+        $ctags = $query->tags->pluck('name', 'id')->toArray();
+
         foreach ($tags as $tag) {
             $tag = Tag::where('name', $tag)->first();
             
-            if (!is_null($tag)) {
-                dd($tag);
-                
+            if (!is_null($tag) && array_search($tag, $ctags) === false) {
+                $query->tags()->attach($tag->id);
             }
         }
     }
