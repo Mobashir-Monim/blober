@@ -2623,6 +2623,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
     this.fetchUserData();
@@ -2635,7 +2638,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       update: null
     };
   },
-  props: ['user', 'editor'],
+  props: ['user', 'editor', 'route', 'token'],
   methods: {
     fetchUserData: function fetchUserData() {
       var _this = this;
@@ -76392,9 +76395,16 @@ var render = function() {
       _vm._v(" "),
       _c("h3", { staticClass: "border-bottom mb-3" }, [_vm._v("Password")]),
       _vm._v(" "),
-      _vm._m(0),
-      _vm._v(" "),
-      _vm._m(1)
+      _c("form", { attrs: { action: this.route, method: "POST" } }, [
+        _c("input", {
+          attrs: { type: "hidden", name: "_token" },
+          domProps: { value: this.token }
+        }),
+        _vm._v(" "),
+        _vm._m(0),
+        _vm._v(" "),
+        _vm._m(1)
+      ])
     ])
   ])
 }
@@ -76412,11 +76422,10 @@ var staticRenderFns = [
           _vm._v(" "),
           _c("div", { staticClass: "col-md my-auto" }, [
             _c("input", {
-              staticClass: "form-control disabled",
+              staticClass: "form-control",
               attrs: {
                 type: "password",
                 name: "password",
-                disabled: "",
                 placeholder: "New Password",
                 id: "name",
                 required: ""
@@ -76434,11 +76443,10 @@ var staticRenderFns = [
           _vm._v(" "),
           _c("div", { staticClass: "col-md my-auto" }, [
             _c("input", {
-              staticClass: "form-control disabled",
+              staticClass: "form-control",
               attrs: {
                 type: "password",
-                name: "password_confirmed",
-                disabled: "",
+                name: "password_confirmation",
                 placeholder: "Confirm Password",
                 id: "email",
                 required: ""
@@ -76462,11 +76470,10 @@ var staticRenderFns = [
           _vm._v(" "),
           _c("div", { staticClass: "col-md my-auto" }, [
             _c("input", {
-              staticClass: "form-control disabled",
+              staticClass: "form-control",
               attrs: {
                 type: "password",
                 name: "current_password",
-                disabled: "",
                 placeholder: "Current Password",
                 id: "role",
                 required: ""
@@ -76479,10 +76486,7 @@ var staticRenderFns = [
       _c("div", { staticClass: "col-md-6 my-auto" }, [
         _c(
           "button",
-          {
-            staticClass: "btn btn-dark w-100 disabled",
-            attrs: { type: "submit", disabled: "" }
-          },
+          { staticClass: "btn btn-dark w-100", attrs: { type: "submit" } },
           [_vm._v("Update Password")]
         )
       ])

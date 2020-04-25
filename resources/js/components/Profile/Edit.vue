@@ -41,37 +41,40 @@
             </div>
 
             <h3 class="border-bottom mb-3">Password</h3>
-            <div class="row mb-3">
-                <div class="col-md-6">
-                    <div class="row">
-                        <div class="col-md-3 text-right my-auto">New Password:</div>
-                        <div class="col-md my-auto">
-                            <input type="password" name="password" class="form-control disabled" disabled placeholder="New Password" id="name" required>
+            <form :action="this.route" method="POST">
+                <input type="hidden" name="_token" :value="this.token">
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <div class="row">
+                            <div class="col-md-3 text-right my-auto">New Password:</div>
+                            <div class="col-md my-auto">
+                                <input type="password" name="password" class="form-control" placeholder="New Password" id="name" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="row">
+                            <div class="col-md-3 text-right my-auto">Confirm Password:</div>
+                            <div class="col-md my-auto">
+                                <input type="password" name="password_confirmation" class="form-control" placeholder="Confirm Password" id="email" required>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6">
-                    <div class="row">
-                        <div class="col-md-3 text-right my-auto">Confirm Password:</div>
-                        <div class="col-md my-auto">
-                            <input type="password" name="password_confirmed" class="form-control disabled" disabled placeholder="Confirm Password" id="email" required>
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <div class="row">
+                            <div class="col-md-3 text-right my-auto">Current Password:</div>
+                            <div class="col-md my-auto">
+                                <input type="password" name="current_password" class="form-control" placeholder="Current Password" id="role" required>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </div>
-            <div class="row mb-3">
-                <div class="col-md-6">
-                    <div class="row">
-                        <div class="col-md-3 text-right my-auto">Current Password:</div>
-                        <div class="col-md my-auto">
-                            <input type="password" name="current_password" class="form-control disabled" disabled placeholder="Current Password" id="role" required>
-                        </div>
+                    <div class="col-md-6 my-auto">
+                        <button type="submit" class="btn btn-dark w-100">Update Password</button>
                     </div>
                 </div>
-                <div class="col-md-6 my-auto">
-                    <button type="submit" class="btn btn-dark w-100 disabled" disabled>Update Password</button>
-                </div>
-            </div>
+            </form>
         </div>
     </div>
 </template>
@@ -89,7 +92,7 @@
                 update: null,
             }
         },
-        props: ['user', 'editor'],
+        props: ['user', 'editor', 'route', 'token'],
         methods: {
             fetchUserData() {
                 (async () => {

@@ -2,8 +2,8 @@
 
 @section('content')
     <div class="card mb-2">
-        <div class="card-header">Dashboard 
-            @if (auth()->user()->id == $user->id)
+        <div class="card-header">Dashboard
+            @if (auth()->user()->id == $user->id || auth()->user()->highestRole()->level == 6)
                 <span class="float-right" style="font-size: 1.2em"><a href="{{ route('users.edit') }}"><i class="fa fas fa-cog"></i></a></span>
             @endif
         </div>

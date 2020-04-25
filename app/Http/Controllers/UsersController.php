@@ -19,7 +19,7 @@ class UsersController extends Controller
 
         foreach ($roles as $key => $role) {
             $users[$role->name] = User::select('name', 'email')->whereIn('id', $role->users->pluck('id')->toArray())->get()->toArray();
-            $roles[$key] = ucwords($role->name, '-');
+            $roles[$key] = $role->display_name;
         }
 
         $roles = $roles->toArray();
@@ -89,7 +89,7 @@ class UsersController extends Controller
         $user = User::find($request->user);
         $user->name = $request->name;
 
-        if (User::find($request->editor)->highestRole()->level > 2) {
+        if (User::find($request->editor)->highestRole()->level >= 4) {
             $user->email = $request->email;
             $user->roles()->attach(Role::where('display_name', $request->role)->first()->id);
         }
@@ -102,5 +102,27 @@ class UsersController extends Controller
                 'update' => 'Profile information updated'
             ]
         ]);
+    }
+
+    public function updatePassword(Request $request)
+    {
+        if (!(\Hash::check($request->get('current_password'), auth()->user()->password))) {
+            return back()->with("error","Your current password does not matches with the password you provided. Please try again.");
+        }
+
+        if(strcmp($request->get('current_password'), $request->get('password')) == 0){
+            return back()->with("error","New Password cannot be same as your current password. Please choose a different password.");
+        }
+
+        $validatedData = $request->validate([
+            'current_password' => 'required',
+            'password' => 'required|string|min:6|confirmed|required_with:password_confirmed',
+        ]);
+
+        $user = auth()->user();
+        $user->password = bcrypt($request->get('password'));
+        $user->save();
+
+        return back()->with("success","Password changed successfully !");
     }
 }
