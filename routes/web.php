@@ -69,8 +69,7 @@ Route::group(['middleware' => ['auth', 'auth-code', 'authorized']], function () 
 
     // Student Routes
     Route::post('/students/add', 'StudentController@addStudents')->name('students.add');
-});
 
-Route::get('test', function (Illuminate\Http\Request $request) {
-    dd(phpinfo());
+    // Testing Route
+    Route::get('test', 'HomeController@test')->name('test');
 });

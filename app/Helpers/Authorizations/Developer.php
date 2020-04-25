@@ -30,7 +30,8 @@ class Developer extends Helper
         'sections.create',
         'students.add',
         'datapool.edit',
-        'query.edit'
+        'query.edit',
+        'test'
     ];
 
     public $actions = [
