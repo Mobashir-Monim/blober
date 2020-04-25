@@ -89,7 +89,7 @@ class UsersController extends Controller
         $user = User::find($request->user);
         $user->name = $request->name;
 
-        if (User::find($request->editor)->highestRole()->level >= 4) {
+        if (User::find($request->editor)->highestRole()->level >= 6) {
             $user->email = $request->email;
             $user->roles()->attach(Role::where('display_name', $request->role)->first()->id);
         }
