@@ -13,9 +13,9 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
+// Route::middleware('auth:api')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
 
 Route::get('/datapools/{pool}', 'DataPoolController@getPoolTables')->name('datapools.tables.get');
 Route::get('/datapools/tables/{table}', 'DataPoolController@getTablesData')->name('datapools.tables.data.get');
