@@ -24,7 +24,6 @@ class SideNavHelper extends Helper
         array_push($this->items, ['route' => route('users.index'), 'name' => 'Users', 'width' => $this->widths[rand(0,1)], 'alignment' => $this->floats[rand(0, 1)]]);
         array_push($this->items, ['route' => route('datapool.index'), 'name' => 'Datapools', 'width' => $this->widths[rand(0,1)], 'alignment' => $this->floats[rand(0, 1)]]);
         array_push($this->items, ['route' => route('query.index'), 'name' => 'Queries', 'width' => $this->widths[rand(0,1)], 'alignment' => $this->floats[rand(0, 1)]]);
-        array_push($this->items, ['route' => route('query.create'), 'name' => 'Add Query', 'width' => $this->widths[rand(0,1)], 'alignment' => $this->floats[rand(0, 1)]]);
         array_push($this->items, ['route' => route('tags.index'), 'name' => 'Tags', 'width' => $this->widths[rand(0,1)], 'alignment' => $this->floats[rand(0, 1)]]);
         array_push($this->items, ['route' => route('analytics.tags'), 'name' => 'Tag Analytics', 'width' => $this->widths[rand(0,1)], 'alignment' => $this->floats[rand(0, 1)]]);
         array_push($this->items, ['route' => route('quiz.index'), 'name' => 'Quizzes', 'width' => $this->widths[rand(0,1)], 'alignment' => $this->floats[rand(0, 1)]]);
@@ -36,7 +35,6 @@ class SideNavHelper extends Helper
         array_push($this->items, ['route' => route('users.index'), 'name' => 'Users', 'width' => $this->widths[rand(0,1)], 'alignment' => $this->floats[rand(0, 1)]]);
         array_push($this->items, ['route' => route('datapool.index'), 'name' => 'Datapools', 'width' => $this->widths[rand(0,1)], 'alignment' => $this->floats[rand(0, 1)]]);
         array_push($this->items, ['route' => route('query.index'), 'name' => 'Queries', 'width' => $this->widths[rand(0,1)], 'alignment' => $this->floats[rand(0, 1)]]);
-        array_push($this->items, ['route' => route('query.create'), 'name' => 'Add Query', 'width' => $this->widths[rand(0,1)], 'alignment' => $this->floats[rand(0, 1)]]);
         array_push($this->items, ['route' => route('query.attempt'), 'name' => 'Practice', 'width' => $this->widths[rand(0,1)], 'alignment' => $this->floats[rand(0, 1)]]);
         array_push($this->items, ['route' => route('tags.index'), 'name' => 'Tags', 'width' => $this->widths[rand(0,1)], 'alignment' => $this->floats[rand(0, 1)]]);
         array_push($this->items, ['route' => route('analytics.tags'), 'name' => 'Tag Analytics', 'width' => $this->widths[rand(0,1)], 'alignment' => $this->floats[rand(0, 1)]]);
@@ -61,7 +59,6 @@ class SideNavHelper extends Helper
         array_push($this->items, ['route' => route('users.index'), 'name' => 'Users', 'width' => $this->widths[rand(0,1)], 'alignment' => $this->floats[rand(0, 1)]]);
         array_push($this->items, ['route' => route('datapool.index'), 'name' => 'Datapools', 'width' => $this->widths[rand(0,1)], 'alignment' => $this->floats[rand(0, 1)]]);
         array_push($this->items, ['route' => route('query.index'), 'name' => 'Queries', 'width' => $this->widths[rand(0,1)], 'alignment' => $this->floats[rand(0, 1)]]);
-        array_push($this->items, ['route' => route('query.create'), 'name' => 'Add Query', 'width' => $this->widths[rand(0,1)], 'alignment' => $this->floats[rand(0, 1)]]);
         array_push($this->items, ['route' => route('tags.index'), 'name' => 'Tags', 'width' => $this->widths[rand(0,1)], 'alignment' => $this->floats[rand(0, 1)]]);
         array_push($this->items, ['route' => route('analytics.tags'), 'name' => 'Tag Analytics', 'width' => $this->widths[rand(0,1)], 'alignment' => $this->floats[rand(0, 1)]]);
         array_push($this->items, ['route' => route('quiz.index'), 'name' => 'Quizzes', 'width' => $this->widths[rand(0,1)], 'alignment' => $this->floats[rand(0, 1)]]);
@@ -73,7 +70,6 @@ class SideNavHelper extends Helper
         array_push($this->items, ['route' => route('users.index'), 'name' => 'Users', 'width' => $this->widths[rand(0,1)], 'alignment' => $this->floats[rand(0, 1)]]);
         array_push($this->items, ['route' => route('datapool.index'), 'name' => 'Datapools', 'width' => $this->widths[rand(0,1)], 'alignment' => $this->floats[rand(0, 1)]]);
         array_push($this->items, ['route' => route('query.index'), 'name' => 'Queries', 'width' => $this->widths[rand(0,1)], 'alignment' => $this->floats[rand(0, 1)]]);
-        array_push($this->items, ['route' => route('query.create'), 'name' => 'Add Query', 'width' => $this->widths[rand(0,1)], 'alignment' => $this->floats[rand(0, 1)]]);
         array_push($this->items, ['route' => route('tags.index'), 'name' => 'Tags', 'width' => $this->widths[rand(0,1)], 'alignment' => $this->floats[rand(0, 1)]]);
         array_push($this->items, ['route' => route('analytics.tags'), 'name' => 'Tag Analytics', 'width' => $this->widths[rand(0,1)], 'alignment' => $this->floats[rand(0, 1)]]);
         array_push($this->items, ['route' => route('quiz.index'), 'name' => 'Quizzes', 'width' => $this->widths[rand(0,1)], 'alignment' => $this->floats[rand(0, 1)]]);
