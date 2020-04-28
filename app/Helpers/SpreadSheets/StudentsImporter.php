@@ -23,9 +23,9 @@ class StudentsImporter extends Helper implements ToCollection
                     $password = User::generatePassword();
                     $user = User::create(['name' => $row[1], 'email' => $row[2], 'password' => $password]);
                     $user->roles()->attach(Role::where('name', 'student')->first()->id);
-                    dd($user);
-                    $invite = (new Inviter($user, $password))->delay(Carbon::now()->addMinutes(10));
-                    dispatch($invite);
+                    // dd($user);
+                    // $invite = (new Inviter($user, $password))->delay(Carbon::now()->addMinutes(10));
+                    // dispatch($invite);
                 }
 
                 if (is_null($user->student)) {
