@@ -25,8 +25,8 @@ Route::group(['middleware' => ['auth', 'auth-code', 'authorized']], function () 
     Route::get('/users', 'UsersController@index')->name('users.index');
     Route::get('/users/create', 'UsersController@create')->name('users.create');
     Route::post('/users/create', 'UsersController@store')->name('users.create');
-    Route::get('/users/edit', 'UsersController@edit')->name('users.edit');
-    Route::post('/users/edit', 'UsersController@update')->name('users.edit');
+    Route::get('/users/{user}/edit', 'UsersController@edit')->name('users.edit');
+    Route::post('/users/{user}/edit', 'UsersController@update')->name('users.edit');
     Route::post('/users/update-password', 'UsersController@updatePassword')->name('users.password');
 
     // Data Pool Routes

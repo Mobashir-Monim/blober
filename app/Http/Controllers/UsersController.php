@@ -81,9 +81,13 @@ class UsersController extends Controller
         ]);
     }
 
-    public function edit()
+    public function edit(Request $request, User $user)
     {
-        return view('users.edit');
+        if (auth()->user()->highestRole()->level != 6) {
+            $user = auth()->user();
+        }
+
+        return view('users.edit', compact('user'));
     }
 
     public function update(Request $request)
