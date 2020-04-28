@@ -29,7 +29,7 @@ class SectionsImporter extends Helper implements ToCollection
                     $user->roles()->attach(Role::where('name', 'lab-instructor')->first()->id);
                     $invite = (new Inviter($user, $password))->delay(Carbon::now()->addSeconds($delay));
                     dispatch($invite);
-                    $delay += 10;
+                    $delay += 30;
                 }
 
                 $this->addToSections($user, $row, $semester);
