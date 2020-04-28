@@ -39,7 +39,7 @@ class UserCreateMail extends Mailable
             ->with('greeting', 'Hello ' . $this->name . '!')
             ->with('introLines', ['An account was created for you at'])
             ->with('actionText', 'Blobler')
-            ->with('actionUrl', request()->root())
+            ->with('actionUrl', route('login'))
             ->with('outroLines', ["Please use $this->password as your password and this email address to login"]);
     }
 }
