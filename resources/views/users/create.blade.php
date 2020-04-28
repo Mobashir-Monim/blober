@@ -1,24 +1,26 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="card mb-3 text-muted card-rounded">
-        <div class="card-body my-0">
-            <h5 class="mb-3 border-bottom">Add User</h5>
+    @if ((new App\Helpers\AuthorizationHelper)->isAuthorized('users.create', 'POST'))
+        <div class="card mb-3 text-muted card-rounded">
+            <div class="card-body my-0">
+                <h5 class="mb-3 border-bottom">Add User</h5>
 
-            <form action="{{ route('users.create') }}" method="POST">
-                @csrf
-                @if (auth()->user()->highestRole()->name == 'developer')
-                    <profile-create
-                        systemroles="{{ json_encode(App\Role::where('level', '<=', auth()->user()->highestRole()->level)->get()->pluck('name', 'id')->toArray()) }}"
-                        ></profile-create>
-                @else
-                    <profile-create
-                        systemroles="{{ json_encode(App\Role::where('level', '<', auth()->user()->highestRole()->level)->get()->pluck('name', 'id')->toArray()) }}"
-                        ></profile-create>
-                @endif
-            </form>
+                <form action="{{ route('users.create') }}" method="POST">
+                    @csrf
+                    @if (auth()->user()->highestRole()->name == 'developer')
+                        <profile-create
+                            systemroles="{{ json_encode(App\Role::where('level', '<=', auth()->user()->highestRole()->level)->get()->pluck('name', 'id')->toArray()) }}"
+                            ></profile-create>
+                    @else
+                        <profile-create
+                            systemroles="{{ json_encode(App\Role::where('level', '<', auth()->user()->highestRole()->level)->get()->pluck('name', 'id')->toArray()) }}"
+                            ></profile-create>
+                    @endif
+                </form>
+            </div>
         </div>
-    </div>
+    @endif
 
     <div class="row">
         <div class="col-md-6">

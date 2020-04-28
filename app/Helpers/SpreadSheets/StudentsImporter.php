@@ -8,6 +8,8 @@ use Maatwebsite\Excel\Concerns\ToCollection;
 use App\User;
 use App\Student;
 use App\Role;
+use App\Jobs\UserInviter as Inviter;
+use Carbon\Carbon;
 
 class StudentsImporter extends Helper implements ToCollection
 {
@@ -18,8 +20,12 @@ class StudentsImporter extends Helper implements ToCollection
                 $user = User::where('email', $row[2])->first();
 
                 if (is_null($user)) {
-                    $user = User::create(['name' => $row[1], 'email' => $row[2], 'password' => User::generatePassword()]);
+                    $password = User::generatePassword();
+                    $user = User::create(['name' => $row[1], 'email' => $row[2], 'password' => $password]);
+                    $user->save();
                     $user->roles()->attach(Role::where('name', 'student')->first()->id);
+                    $invite = (new Inviter($user, $password))->delay(Carbon::now()->addMinutes(10));
+                    dispatch($invite);
                 }
 
                 if (is_null($user->student)) {

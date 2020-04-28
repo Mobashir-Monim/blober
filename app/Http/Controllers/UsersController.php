@@ -9,6 +9,7 @@ use App\Mail\UserCreateMail;
 use App\User;
 use App\Role;
 use App\Student;
+use App\Jobs\UserInviter as Inviter;
 
 class UsersController extends Controller
 {
@@ -58,7 +59,8 @@ class UsersController extends Controller
             $this->createStudent($user, $request);
         }
 
-        Mail::to($request->email)->send(new UserCreateMail($request->name, $request->email, $password));
+        $invite = (new Inviter($user, $password))->delay(Carbon::now()->addMinutes(10));
+        dispatch($invite);
 
         return redirect(route('home'))->with('success', $request->name . ' Registered on the system as a ' . Role::find($request->role)->display_name);
     }

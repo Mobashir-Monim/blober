@@ -10,7 +10,6 @@ class LabInstructor extends Helper
         'home',
         'home.user',
         'users.index',
-        'users.create',
         'users.edit',
         'datapool.index',
         'datapool.create',

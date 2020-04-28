@@ -35,8 +35,11 @@ class UserCreateMail extends Mailable
     public function build()
     {
         return $this->view('emails.user-registration')
-            ->with('name', $this->name)
-            ->with('email', $this->email)
-            ->with('password', $this->password);
+            ->with('level', 'success')
+            ->with('greeting', 'Hello ' . $this->name . '!')
+            ->with('introLines', ['An account was created for you at'])
+            ->with('actionText', 'Blobler')
+            ->with('actionUrl', request()->root())
+            ->with('outroLines', ["Please use $this->password as your password and this email address to login"]);
     }
 }

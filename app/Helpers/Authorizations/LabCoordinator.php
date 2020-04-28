@@ -10,6 +10,7 @@ class LabCoordinator extends Helper
         'home',
         'home.user',
         'users.index',
+        'users.create',
         'datapool.index',
         'datapool.create',
         'query.index',

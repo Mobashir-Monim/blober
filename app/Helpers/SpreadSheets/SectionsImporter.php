@@ -9,6 +9,7 @@ use App\User;
 use App\Section;
 use App\Role;
 use Carbon\Carbon;
+use App\Jobs\UserInviter as Inviter;
 
 class SectionsImporter extends Helper implements ToCollection
 {
@@ -22,8 +23,11 @@ class SectionsImporter extends Helper implements ToCollection
                 $user = User::where('email', $row[2])->first();
 
                 if (is_null($user)) {
-                    $user = User::create(['name' => $row[0], 'email' => $row[1], 'password' => User::generatePassword()]);
+                    $password = User::generatePassword();
+                    $user = User::create(['name' => $row[0], 'email' => $row[1], 'password' => $password]);
                     $user->roles()->attach(Role::where('name', 'lab-instructor')->first()->id);
+                    $invite = (new Inviter($user, $password))->delay(Carbon::now()->addMinutes(10));
+                    dispatch($invite);
                 }
 
                 $this->addToSections($user, $row, $semester);
