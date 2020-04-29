@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use Mail;
+use App\Mail\UserCreateMail;
+use App\Jobs\UserInviter as Inviter;
 
 class HomeController extends Controller
 {
@@ -52,7 +55,9 @@ class HomeController extends Controller
 
     public function test()
     {
-        dd(request()->root());
+        $user = auth()->user();
+        $password = User::generatePassword();
+        Mail::to($user->email)->send(new UserCreateMail($user->name, $user->email, $password));
         dd(phpinfo());
     }
 }

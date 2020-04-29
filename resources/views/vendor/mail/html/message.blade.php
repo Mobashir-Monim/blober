@@ -1,7 +1,7 @@
-@component('vendor.mail.html.layout')
+@component('mail::layout')
 {{-- Header --}}
 @slot('header')
-@component('vendor.mail.html.header', ['url' => config('app.url')])
+@component('mail::header', ['url' => config('app.url')])
 {{ config('app.name') }}
 @endcomponent
 @endslot
@@ -12,7 +12,7 @@
 {{-- Subcopy --}}
 @isset($subcopy)
 @slot('subcopy')
-@component('vendor.mail.html.subcopy')
+@component('mail::subcopy')
 {{ $subcopy }}
 @endcomponent
 @endslot
@@ -20,7 +20,7 @@
 
 {{-- Footer --}}
 @slot('footer')
-@component('vendor.mail.html.footer')
+@component('mail::footer')
 © {{ date('Y') }} {{ config('app.name') }}. @lang('All rights reserved.')
 @endcomponent
 @endslot

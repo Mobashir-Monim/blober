@@ -34,8 +34,8 @@ class UserCreateMail extends Mailable
      */
     public function build()
     {
-        return $this->view('emails.user-registration')
-            ->with('level', 'success')
+        return $this->markdown('vendor.notifications.email')
+            ->with('level', 'dark')
             ->with('greeting', 'Hello ' . $this->name . '!')
             ->with('introLines', ['An account was created for you at'])
             ->with('actionText', 'Blobler')

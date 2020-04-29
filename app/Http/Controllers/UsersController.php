@@ -59,7 +59,7 @@ class UsersController extends Controller
             $this->createStudent($user, $request);
         }
 
-        $invite = (new Inviter($user, $password))->delay(Carbon::now()->addMinutes(10));
+        $invite = (new Inviter($user, $password))->delay(Carbon::now()->addSeconds(10));
         dispatch($invite);
 
         return redirect(route('home'))->with('success', $request->name . ' Registered on the system as a ' . Role::find($request->role)->display_name);

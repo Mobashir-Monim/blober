@@ -17,7 +17,7 @@ class SectionsImporter extends Helper implements ToCollection
     {
         $now = new Carbon;
         $semester = ($now->month <= 4 ? 'Spring ' : ($now->month <= 8 ? 'Summer ' : 'Fall ')) . $now->year;
-        $delay = 300;
+        $delay = 30;
 
         foreach ($rows as $key => $row) {
             if ($key != 0 && $row[0] != null && $row[1] != null && $row[2] != null) {
@@ -29,7 +29,7 @@ class SectionsImporter extends Helper implements ToCollection
                     $user->roles()->attach(Role::where('name', 'lab-instructor')->first()->id);
                     $invite = (new Inviter($user, $password))->delay(Carbon::now()->addSeconds($delay));
                     dispatch($invite);
-                    $delay += 30;
+                    $delay += 10;
                 }
 
                 $this->addToSections($user, $row, $semester);

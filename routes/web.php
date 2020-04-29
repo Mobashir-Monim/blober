@@ -74,3 +74,10 @@ Route::group(['middleware' => ['auth', 'auth-code', 'authorized']], function () 
     // Testing Route
     Route::get('test', 'HomeController@test')->name('test');
 });
+
+Route::get('mailable', function () {
+    $user = auth()->user();
+    $password = App\User::generatePassword();
+
+    return new App\Mail\UserCreateMail($user->name, $user->email, $password);
+});

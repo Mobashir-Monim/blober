@@ -15,7 +15,7 @@ class StudentsImporter extends Helper implements ToCollection
 {
     public function collection(Collection $rows)
     {
-        $delay = 300;
+        $delay = 30;
 
         foreach ($rows as $key => $row) {
             if ($key != 0 && $row[0] != null && $row[1] != null && $row[2] != null && $row[3]) {
@@ -27,7 +27,7 @@ class StudentsImporter extends Helper implements ToCollection
                     $user->roles()->attach(Role::where('name', 'student')->first()->id);
                     $invite = (new Inviter($user, $password))->delay(Carbon::now()->addSeconds($delay));
                     dispatch($invite);
-                    $delay += 30;
+                    $delay += 10;
                 }
 
                 if (is_null($user->student)) {
