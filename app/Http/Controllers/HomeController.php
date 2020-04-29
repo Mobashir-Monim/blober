@@ -55,9 +55,6 @@ class HomeController extends Controller
 
     public function test()
     {
-        $user = auth()->user();
-        $password = User::generatePassword();
-        Mail::to($user->email)->send(new UserCreateMail($user->name, $user->email, $password));
         dd(phpinfo());
     }
 }

@@ -325,3 +325,48 @@ input[type=file] {
 main {
     min-height: 75vh !important;
 }
+
+.landing {
+    height: 100vh;
+    margin: 0;
+    background: #eee;
+}
+  
+.landing:before {
+    content: "";
+    position: absolute;
+    top: 25vh;
+    bottom: 0;
+    width: 100vw;
+    height: 55vh;
+    background: #171717 !important;
+    transform: skewY(5deg);
+    transform-origin:top;
+}
+
+/* .landing:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 20vw;
+    left: 40vw;
+    background: #343a40;
+    transform: skew(-45deg);
+    transform-origin:top;
+    z-index: -1;
+} */
+
+.landing-title {
+    font-size: 12vw;
+    color: white;
+    font-weight: bold;
+}
+
+.landing-logo {
+    width: 20vw;
+}
+
+.landing-body {
+    height: 84vh;
+}
