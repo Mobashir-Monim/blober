@@ -42,17 +42,10 @@
                 </div>
             </div>
         </div>
-        {{-- <div class="flex-center position-ref full-height">
-
-            <div class="content">
-                <div class="title m-b-md">
-                    <img src="/img/blober-w.svg" class="img-fluid w-25">
-                    Blober
-                </div>
-
-                <div class="lg-font bg-dark text-white card-rounded px-5">Proficiency in MySQL Queries</div>
-            </div>
-        </div> --}}
+        {{-- <div class="d1"></div>
+        <div class="d2"></div>
+        <div class="d3"></div>
+        <div class="d4"></div> --}}
         <footer class="footer bg-dark text-white" style="background: #171717 !important">
             <div class="container">
                 <div class="row">
