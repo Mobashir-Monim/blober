@@ -339,9 +339,28 @@ main {
     bottom: 0;
     width: 100vw;
     height: 55vh;
-    background: rgba(23,23,23, 1) !important;
     transform: skewY(5deg);
     transform-origin:top;
+    background-color: rgba(52,58,64, 1);
+    animation: bg-tansit 2s ease normal;
+}
+
+@-webkit-keyframes bg-tansit {
+    0% {
+        background-color: rgba(52,58,64, 0);
+    }
+    100% {
+        background-color: rgba(52,58,64, 1);
+    }
+}
+
+@keyframes bg-tansit {
+    0% {
+        background-color: rgba(52,58,64, 0);
+    }
+    100% {
+        background-color: rgba(52,58,64, 1);
+    }
 }
 
 .d1:before {
@@ -352,7 +371,6 @@ main {
     width: 100vw;
     height: 26vw;
     background: rgba(52,58,64, 1) !important;
-    /* background: rgba(255,255,255, 1) !important; */
     z-index: -1;
 }
 
@@ -401,7 +419,7 @@ main {
 }
 
 .landing-logo {
-    width: 20vw;
+    width: 50vw;
 }
 
 .landing-body {
