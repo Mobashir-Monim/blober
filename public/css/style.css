@@ -329,7 +329,7 @@ main {
 .landing {
     height: 100vh;
     margin: 0;
-    background: #eee;
+    background: #fff;
 }
   
 .landing:before {
@@ -342,7 +342,7 @@ main {
     transform: skewY(5deg);
     transform-origin:top;
     background-color: rgba(52,58,64, 1);
-    animation: bg-tansit 2s ease normal;
+    animation: bg-tansit 3s ease normal;
 }
 
 @-webkit-keyframes bg-tansit {
