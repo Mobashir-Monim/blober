@@ -35,13 +35,12 @@
             <div class="row landing-body">
                 <div class="col-md-12 col-12 col-sm-12 col-lg-12 text-center my-auto">
                     <img src="/img/blobler-logo.svg" class="img-fluid landing-logo">
+                    <div class="tagline">
+                        Automated DB query grading
+                    </div>
                 </div>
             </div>
         </div>
-        {{-- <div class="d1"></div>
-        <div class="d2"></div>
-        <div class="d3"></div>
-        <div class="d4"></div> --}}
         <footer class="footer bg-dark text-white">
             <div class="container">
                 <div class="row">
