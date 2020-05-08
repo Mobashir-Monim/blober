@@ -36,7 +36,7 @@
                 <div class="col-md-12 col-12 col-sm-12 col-lg-12 text-center my-auto">
                     <img src="/img/blobler-logo.svg" class="img-fluid landing-logo">
                     <div class="tagline">
-                        Automated DB query grading
+                        Google Classrom for Database Systems
                     </div>
                 </div>
             </div>
