@@ -252,6 +252,7 @@ body {
     background-origin: content-box !important;
     transition: ease-in-out 0.25s;
     box-shadow: 5px 5px 10px #e3342f;
+    z-index: 3 !important;
 }
 
 .add-btn:hover {

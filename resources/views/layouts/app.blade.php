@@ -82,7 +82,7 @@
             </nav>
         @endif
 
-        <main class="py-1">
+        <main class="py-1 mb-5">
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-md-12 col-sm-12 col-12">
