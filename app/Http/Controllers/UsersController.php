@@ -10,6 +10,8 @@ use App\User;
 use App\Role;
 use App\Student;
 use App\Jobs\UserInviter as Inviter;
+use App\Section;
+use App\Helpers\SectionHelper as SH;
 
 class UsersController extends Controller
 {
@@ -68,14 +70,16 @@ class UsersController extends Controller
     public function createStudent($user, $request)
     {
         $now = Carbon::now();
+        $semester = ($now->month <= 4 ? 'Spring ' : ($now->month <= 8 ? 'Summer ' : 'Fall ')) . $now->year;
+        $section = Section::where('section', $request->section)->where('semester', $semester)->first();
         
         Student::create([
             'user_id' => $user->id,
             'level_name' => 'Beginner',
             'level' => 0,
             'points' => 0,
-            'enrollment' => ($now->month <= 4 ? 'Spring ' : ($now->month <= 8 ? 'Summer ' : 'Fall ')) . $now->year,
-            'section' => $request->section,
+            'enrollment' => $semester,
+            'section' => is_null($section) ? (new SH)->createSection($request->section, $semester)->id : $section->id,
             'status' => 'first-enrollment',
             'student_id' => $request->student_id
         ]);

@@ -60,4 +60,9 @@ class SectionHelper extends Helper
         
         return $students;
     }
+
+    public function createSection($section, $semester)
+    {
+        return Section::create(['section' => $section, 'semester' => $semester]);
+    }
 }
