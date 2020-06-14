@@ -29,7 +29,7 @@
                 <div class="modal-dialog modal-xl" role="document">
                     <div class="modal-content card-rounded">
                         <div class="modal-header bg-dark text-white card-rounded-top">
-                            <h5 class="modal-title" id="exampleModalLabel">Section {{ sectionData[section].section }}</h5>
+                            <h5 class="modal-title" id="exampleModalLabel">Section {{ sectionData[current].section }}</h5>
                             <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true" class="text-white">&times;</span>
                             </button>
@@ -37,10 +37,10 @@
                         <div class="modal-body">
                             <div class="row mb-3">
                                 <div class="col-md-12 mb-2">Instructors</div>
-                                <div class="col-md-6 h6" v-for="(instructor, i) in sectionData[section].instructors" :key="i">{{ instructor }}</div>
+                                <div class="col-md-6 h6" v-for="(instructor, i) in sectionData[current].instructors" :key="i">{{ instructor }}</div>
                             </div>
                             <div class="row mb-2">
-                                <div class="col-md-6 mb-2" v-for="(student, i) in sectionData[section].students" :key="i">
+                                <div class="col-md-6 mb-2" v-for="(student, i) in sectionData[current].students" :key="i">
                                     <div class="card card-rounded" @click="openProfile(student.dashboard)">
                                         <div class="card-body card-rounded body-bg-hoverable">
                                             <div class="row">
@@ -72,19 +72,12 @@
     export default {
         mounted() {
             this.sections = JSON.parse(this.allsections);
-            Object.size = function(obj) {
-                var size = 0, key;
-                for (key in obj) {
-                    if (obj.hasOwnProperty(key)) size++;
-                }
-                return size;
-            };
         },
         props:['allsections'],
         data() {
             return {
                 sections: [],
-                selected: 1,
+                selected: 0,
             }
         },
         methods: {
@@ -105,8 +98,9 @@
 
                 }
             },
-            section: {
+            current: {
                 get() {
+                    // console.log(this.sections[this.selected]);
                     return this.selected;
                 },
                 set() {

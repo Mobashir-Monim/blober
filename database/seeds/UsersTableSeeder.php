@@ -25,13 +25,13 @@ class UsersTableSeeder extends Seeder
             DB::table('role_user')->insert(['user_id' => $key + 1,'role_id' => $key + 1,]);
         }
 
-        DB::table('role_user')->insert(['user_id' => 2,'role_id' => 6,]);
-        $count = 2 * rand(3, 6);
+        // DB::table('role_user')->insert(['user_id' => 2,'role_id' => 6,]);
+        // $count = 2 * rand(3, 6);
 
-        for ($i = 1; $i <= $count; $i++) {
-            $user = App\User::create(['name' => 'Instructor '.$i, 'email' => 'li'.$i.'@blober.org', 'password' => bcrypt('bangladesh'), 'email_verified_at' => Carbon::now()->toDateTimeString()],);
+        // for ($i = 1; $i <= $count; $i++) {
+        //     $user = App\User::create(['name' => 'Instructor '.$i, 'email' => 'li'.$i.'@blober.org', 'password' => bcrypt('bangladesh'), 'email_verified_at' => Carbon::now()->toDateTimeString()],);
             
-            DB::table('role_user')->insert(['user_id' => $user->id,'role_id' => 5,]);
-        }
+        //     DB::table('role_user')->insert(['user_id' => $user->id,'role_id' => 5,]);
+        // }
     }
 }

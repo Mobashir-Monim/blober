@@ -5086,23 +5086,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
     this.sections = JSON.parse(this.allsections);
-
-    Object.size = function (obj) {
-      var size = 0,
-          key;
-
-      for (key in obj) {
-        if (obj.hasOwnProperty(key)) size++;
-      }
-
-      return size;
-    };
   },
   props: ['allsections'],
   data: function data() {
     return {
       sections: [],
-      selected: 1
+      selected: 0
     };
   },
   methods: {
@@ -5121,8 +5110,9 @@ __webpack_require__.r(__webpack_exports__);
       },
       set: function set() {}
     },
-    section: {
+    current: {
       get: function get() {
+        // console.log(this.sections[this.selected]);
         return this.selected;
       },
       set: function set() {}
@@ -79828,7 +79818,7 @@ var render = function() {
                       [
                         _vm._v(
                           "Section " +
-                            _vm._s(_vm.sectionData[_vm.section].section)
+                            _vm._s(_vm.sectionData[_vm.current].section)
                         )
                       ]
                     ),
@@ -79846,7 +79836,7 @@ var render = function() {
                         _vm._v("Instructors")
                       ]),
                       _vm._v(" "),
-                      _vm._l(_vm.sectionData[_vm.section].instructors, function(
+                      _vm._l(_vm.sectionData[_vm.current].instructors, function(
                         instructor,
                         i
                       ) {
@@ -79863,7 +79853,7 @@ var render = function() {
                   _c(
                     "div",
                     { staticClass: "row mb-2" },
-                    _vm._l(_vm.sectionData[_vm.section].students, function(
+                    _vm._l(_vm.sectionData[_vm.current].students, function(
                       student,
                       i
                     ) {
