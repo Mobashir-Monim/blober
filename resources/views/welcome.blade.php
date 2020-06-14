@@ -15,7 +15,7 @@
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
         <link href="{{ asset('css/style.css') }}" rel="stylesheet">
     </head>
-    <body class="landing">
+    <body>
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12 text-right py-3">

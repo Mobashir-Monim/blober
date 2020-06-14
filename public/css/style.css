@@ -312,7 +312,7 @@ input[type=file] {
 }
 
 .footer {
-    position: fixed;
+    position: fixed !important;
     margin-top: 50px;
     bottom: 0 !important;
     width: 100%;
@@ -325,14 +325,8 @@ input[type=file] {
 main {
     min-height: 75vh !important;
 }
-
-.landing {
-    height: 100vh;
-    margin: 0;
-    background: #fff;
-}
   
-.landing:before {
+.landing-body:before {
     content: "";
     position: absolute;
     top: 23vh;
@@ -378,6 +372,6 @@ main {
 
 .tagline {
     color: white;
-    font-size: 1.5vw;
+    font-size: 2vw;
     margin-left: 10vw;
 }
